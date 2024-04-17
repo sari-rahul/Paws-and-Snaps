@@ -1,0 +1,14 @@
+.NavBar {
+  border: 1px solid #dadadf;
+  background-color: #e6e6e6;
+
+}
+.NavBarBrand img {
+transition: 0.3s;
+}
+
+.NavBarBrand img:hover {
+transform: scale(1.1);
+transition: 0.5s;
+transform: rotate(-60deg);
+}
