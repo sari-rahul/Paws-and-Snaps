@@ -12,3 +12,10 @@ transform: scale(1.1);
 transition: 0.5s;
 transform: rotate(-60deg);
 }
+.NavLink {
+  padding: 5px;
+}
+
+.Active i {
+  color: #FFB7CE;
+}
