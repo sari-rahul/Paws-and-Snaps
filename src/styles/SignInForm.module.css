@@ -1,8 +1,8 @@
 .Header {
-    font-size: 30px;
+    font-size: 50px;
     line-height: 19px;
     text-align: center;
-    color: rgb(67, 66, 66);
+    color: #FFB7CE;
     padding-bottom: 10px;
 }
 .SignUpCol {
@@ -20,12 +20,11 @@
     border-color: #ffeeba;
 }
 .Input {
-    background: #ffffff;
+    background: #636262;
     border: 1px solid #aeaeae;
     box-sizing: border-box;
     border-radius: 5px;
     font-family: Vollkorn;
-    color: #7177a1;
     text-align: center;
     padding: 10px;
 }

@@ -1,7 +1,7 @@
 .App {
-  font-family: "Pacifico", sans-serif;
+  font-family: "Vollkorn", sans-serif;
   min-height: 100vh;
-  background-color: #e6e6e6;
+  background-color: #313131;
 }
 
 * {
@@ -13,7 +13,7 @@
 }
 
 a {
-  color: rgb(67, 66, 66);
+  color:#C292A1;
   font-size: 1.4rem;
   transition: color ease-in-out 0.3s;
 }

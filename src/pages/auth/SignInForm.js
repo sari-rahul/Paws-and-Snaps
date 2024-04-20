@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import image from '../../assets/signinpage.jpg'
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -108,11 +108,10 @@ const SignInForm = () => {
       >
         <Image
           className={`${styles.Image}`}
-            src={
-                "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
+            src={image}
         />
       </Col>
+      
     </Row>
   );
 };
