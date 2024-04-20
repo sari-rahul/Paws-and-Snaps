@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
+
+import {useHistory } from "react-router-dom";
+
 import styles from "../../styles/SignInForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import {useHistory } from "react-router-dom";
-import {
-    Form,
-    Button,
-    Image,
-    Col,
-    Container,
-    Alert,
-    Row,
-  } from "react-bootstrap";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
+  const setCurrentUser = useSetCurrentUser();
+  
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -106,7 +109,7 @@ const SignInForm = () => {
         <Image
           className={`${styles.Image}`}
             src={
-                "https://images.pexels.com/photos/1084165/pexels-photo-1084165.jpeg?auto=compress&cs=tinysrgb&w=600"
+                "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
         />
       </Col>

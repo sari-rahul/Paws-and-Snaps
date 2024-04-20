@@ -1,8 +1,7 @@
 .NavBar {
   border: 1px solid #dadadf;
-  padding:0 !important;
+  padding:0!important;
   background-color: #c4c1c1;
-
 }
 .NavBarBrand img {
 transition: 0.3s;
