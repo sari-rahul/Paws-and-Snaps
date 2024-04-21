@@ -1,7 +1,6 @@
 .App {
   font-family: "Vollkorn", sans-serif;
   min-height: 100vh;
-  background-color: #313131;
 }
 
 * {
@@ -13,7 +12,7 @@
 }
 
 a {
-  color:#C292A1;
+  color:rgb(134, 132, 132);
   font-size: 1.4rem;
   transition: color ease-in-out 0.3s;
 }

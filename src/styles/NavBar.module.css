@@ -14,9 +14,13 @@ transition: 0.5s;
 transform: rotate(-60deg);
 }
 .NavLink {
-  padding: 5px;
+  padding: 8px;
 }
 
 .Active i {
   color: #FFB7CE;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #FFB7CE;
+  
 }
