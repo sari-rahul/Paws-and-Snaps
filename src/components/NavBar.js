@@ -26,7 +26,7 @@ const NavBar = () => {
   <NavLink
     className={styles.NavLink}
     activeClassName={styles.Active}
-    to="/post/create" >   
+    to="/articles/create" >   
     Add Article
   </NavLink>)
 
@@ -54,6 +54,14 @@ const NavBar = () => {
         Wellness
       </NavLink>
       {/*Logout link*/}
+
+      {/*Happy corner link*/}
+      <NavLink
+        className={styles.NavLink}
+        to="/"     
+      >
+        Happy corner
+      </NavLink>
       <NavLink
         className={styles.NavLink}
         to="/"
