@@ -1,7 +1,7 @@
 .NavBar {
   padding:0!important;
   color:#cdcaca;
-  
+  background-color: #ffff;
 
 }
 .NavBarBrand img {
@@ -19,8 +19,4 @@ transform: rotate(-60deg);
 
 .Active i {
   color: #FFB7CE;
-}
-.navbar-light .navbar-nav .nav-link {
-  color: #FFB7CE;
-  
 }

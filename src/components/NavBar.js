@@ -6,10 +6,12 @@ import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const {expanded, setExpanded, ref} = useClickOutsideToggle();
 
   const handleSignOut= async()=>{
     try{
@@ -29,12 +31,6 @@ const NavBar = () => {
   </NavLink>)
 
   const loggedInIcons = <>
-   {/*Blog drop down menu */}
-      <NavDropdown className ={styles.NavDropdown} title="Blogs" id="basic-nav-dropdown" >
-        <NavDropdown.Item href="#action/3.1">Dogs</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Cats</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Others</NavDropdown.Item>
-      </NavDropdown>
    {/*Adoption link*/}
       <NavLink
         className={styles.NavLink}
@@ -43,10 +39,13 @@ const NavBar = () => {
         Adoption
       </NavLink>
       {/*Wildlife link*/}
-      <NavDropdown className ={styles.NavDropdown} title="Wildlife" id="basic-nav-dropdown" >
-        <NavDropdown.Item href="#action/3.1">Animal Entcounters</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Environment</NavDropdown.Item>
-      </NavDropdown>
+      <NavLink
+        className={styles.NavLink}
+        to="/"     
+      >
+        Wildlife
+      </NavLink>
+      
       {/*Wellness link*/}
       <NavLink
         className={styles.NavLink}
@@ -88,7 +87,7 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} expand="md" fixed="top">
+    <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
@@ -97,7 +96,11 @@ const NavBar = () => {
         </NavLink>
         {currentUser && add}
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle 
+        aria-controls="basic-navbar-nav" 
+        ref={ref}
+        onClick={() => setExpanded(!expanded)}/>
+
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
             <NavLink
