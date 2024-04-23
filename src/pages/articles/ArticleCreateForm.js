@@ -1,28 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactQuill from 'react-quill';
-import styles from '../../styles/ArticleCreateEditForm.module.css'
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import 'react-quill/dist/quill.snow.css';
+import styles from '../../styles/ArticleCreateEditForm.module.css';
+import { useHistory } from "react-router";
+import { axiosReq } from "../../api/axiosDefault";
 
-const BlogForm = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+function BlogForm() {
+  const [errors, setErrors] = useState({});
+  const [blogData, setBlogData] = useState({
+    title: "",
+    article: "",
+    category: "",
+  });
+  const { title, article, category } = blogData;
+  const history = useHistory();
+  const quillRef = useRef();
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+  const handleChange = (event) => {
+    setBlogData({
+      ...blogData,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  const handleContentChange = (html) => {
-    setContent(html);
+  const handleArticleChange = (value) => {
+    setBlogData({
+      ...blogData,
+      article: value,
+    });
   };
 
   const modules = {
     toolbar: [
       [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-      [{size: []}],
+      [{ size: [] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, 
-       {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'], // Include image button in toolbar
+      [{ 'list': 'ordered'}, { 'list': 'bullet' },
+       { 'indent': '-1'}, { 'indent': '+1' }],
+      ['link', 'image'],
       ['clean']
     ],
   };
@@ -34,36 +49,66 @@ const BlogForm = ({ onSubmit }) => {
     'link', 'image'
   ];
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onSubmit({ title, content });
-    // Reset form fields after submission
-    setTitle('');
-    setContent('');
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("article", article);
+    formData.append("category", category);
+
+    try {
+      const { data } = await axiosReq.post("/articles/", formData);
+      history.push(`/articles/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="title">Title:</label>
+        <label htmlFor="title" className={styles.title}>Title:</label>
         <input
           type="text"
           id="title"
+          name="title"
           value={title}
-          onChange={handleTitleChange}
+          onChange={handleChange}
           required
         />
       </div>
       <div>
-        <label htmlFor="content" >Content:</label>
+        <label htmlFor="content" className={styles.content}>Content:</label>
         <ReactQuill
           theme="snow"
           modules={modules}
           formats={formats}
-          value={content}
+          value={article}
           className={styles.quillEditor}
-          onChange={handleContentChange}
+          onChange={handleArticleChange}
+          ref={quillRef}
         />
+      </div>
+      <div>
+        <label htmlFor="category" className={styles.category}>Category:</label>
+        <select
+          id="category"
+          name="category"
+          value={category}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Category</option>
+          <option value="wellness">Wellness</option>
+          <option value="adoption">Adoption</option>
+          <option value="wildlife">Wildlife</option>
+          <option value="travel">Travel</option>
+          <option value="general">General</option>
+          <option value="training">Training</option>
+        </select>
       </div>
       <button type="submit" className={styles.Button}>Create</button>
     </form>
