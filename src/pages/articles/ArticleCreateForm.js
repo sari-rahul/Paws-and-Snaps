@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
+import styles from '../../styles/ArticleCreateEditForm.module.css'
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 const BlogForm = ({ onSubmit }) => {
@@ -54,16 +55,17 @@ const BlogForm = ({ onSubmit }) => {
         />
       </div>
       <div>
-        <label htmlFor="content">Content:</label>
+        <label htmlFor="content" >Content:</label>
         <ReactQuill
           theme="snow"
           modules={modules}
           formats={formats}
           value={content}
+          className={styles.quillEditor}
           onChange={handleContentChange}
         />
       </div>
-      <button type="submit">Create</button>
+      <button type="submit" className={styles.Button}>Create</button>
     </form>
   );
 };

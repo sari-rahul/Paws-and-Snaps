@@ -1,0 +1,29 @@
+input{
+    width:100%;
+    border-radius: 5px;
+    padding-top: 5px;  
+    border: 1px solid grey;
+    margin-bottom: 15px;  
+}
+.quillEditor {
+    min-height: 400px !important;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+select{
+    border-radius: 5px;
+}
+.Button {
+    border-radius: 5px;
+    padding: 10px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 25%;
+  
+    border: 1px solid #aeaeae;
+    min-width: 75px;
+    background-color: #cdcaca;
+    color:black ;
+  
+  }
