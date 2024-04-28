@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -7,30 +6,24 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import Asset from "../../components/Assets";
-
 import Upload from "../../assets/upload.png";
-
 import styles from "../../styles/ArticleCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 
 function ArticleCreateForm() {
   const [errors, setErrors] = useState({});
-
   const [articleData, setArticleData] = useState({
     title: "",
     article: "",
     image: "",
   });
-
-
   const { title, article, image } = articleData;
-
   const imageInput = useRef(null);
   const history = useHistory();
 
@@ -51,10 +44,16 @@ function ArticleCreateForm() {
     }
   };
 
+  const handleArticleChange = (value) => {
+    setArticleData({
+      ...articleData,
+      article: value,
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
     formData.append("title", title);
     formData.append("article", article);
     formData.append("image", imageInput.current.files[0]);
@@ -78,6 +77,7 @@ function ArticleCreateForm() {
           type="text"
           name="title"
           value={title}
+          className={styles.Title}
           onChange={handleChange}
         />
       </Form.Group>
@@ -89,12 +89,11 @@ function ArticleCreateForm() {
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="article"
+        <ReactQuill
+          theme="snow"
           value={article}
-          onChange={handleChange}
+          className={styles.quillEditor}
+          onChange={handleArticleChange}
         />
       </Form.Group>
       {errors?.article?.map((message, idx) => (
@@ -104,12 +103,12 @@ function ArticleCreateForm() {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${styles.Button} `}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={`${styles.Button} `} type="submit">
         create
       </Button>
     </div>
@@ -129,7 +128,7 @@ function ArticleCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      className={`${styles.Button} ${styles.Blue} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
@@ -160,7 +159,6 @@ function ArticleCreateForm() {
                 {message}
               </Alert>
             ))}
-
           </Container>
           <Container className={appStyles.Content}>{textFields}</Container>
       </Row>
