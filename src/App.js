@@ -6,6 +6,7 @@ import "./api/axiosDefault";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ArticleCreateForm from "./pages/articles/ArticleCreateForm";
+import ArticlePage from "./pages/articles/ArticlePage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/articles/create" render={() => <ArticleCreateForm />} />
+              <Route exact path="/articles/:id" render={() => <ArticlePage />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Container>

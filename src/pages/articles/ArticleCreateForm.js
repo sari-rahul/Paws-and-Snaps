@@ -1,20 +1,28 @@
-import React, { useRef, useState } from "react";
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React
+import React, { useRef, useState } from "react";
+import { useHistory } from "react-router";
+import { axiosReq } from "../../api/axiosDefault";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Import of third party library React quill and its styles
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Internal imports
 import Asset from "../../components/Assets";
 import Upload from "../../assets/upload.png";
 import styles from "../../styles/ArticleCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { useHistory } from "react-router";
-import { axiosReq } from "../../api/axiosDefault";
+
+
 
 function ArticleCreateForm() {
   const [errors, setErrors] = useState({});
