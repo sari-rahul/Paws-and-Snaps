@@ -72,7 +72,7 @@ function ArticleCreateForm() {
   const textFields = (
     <div className="text-center">
       <Form.Group>
-        <Form.Label>Title</Form.Label>
+        <Form.Label className={styles.label}>Title</Form.Label>
         <Form.Control
           type="text"
           name="title"
@@ -88,7 +88,7 @@ function ArticleCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Content</Form.Label>
+        <Form.Label className={styles.label}>Content</Form.Label>
         <ReactQuill
           theme="snow"
           value={article}
@@ -103,13 +103,13 @@ function ArticleCreateForm() {
       ))}
 
       <Button
-        className={`${styles.Button} `}
+        className={`${styles.Button} ${btnStyles.Button} `}
         onClick={() => history.goBack()}
       >
-        cancel
+        Cancel
       </Button>
-      <Button className={`${styles.Button} `} type="submit">
-        create
+      <Button className={`${styles.Button}`} type="submit">
+        Create
       </Button>
     </div>
   );
@@ -128,7 +128,7 @@ function ArticleCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${styles.Button} ${styles.Blue} btn`}
+                      className={`${styles.Button}`}
                       htmlFor="image-upload"
                     >
                       Change the image
