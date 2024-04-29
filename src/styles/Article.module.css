@@ -1,0 +1,34 @@
+.Article{
+    background-color: #ffffff;
+    margin-bottom: 16px;
+    text-align: left;
+    padding-left:50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+  }
+.Title{
+  text-align: center;
+}
+.Article img{
+  padding: 20px
+}
+.Content{
+  padding-left:50px;
+  text-align: left;
+} 
+.Author{
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+  flex-direction: row;
+  height: fit-content;
+
+} 
+.Author p{
+  margin-top: auto;
+  text-transform: capitalize;
+}
+.Updation{
+  padding-left:50px;
+  
+}
