@@ -1,17 +1,23 @@
 .Article{
-    background-color: #ffffff;
     margin-bottom: 16px;
     text-align: left;
     padding-left:50px;
     padding-right: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
+    padding-top: 2%;
   }
+.Articlebackground{
+  background-color: #ffffff;
+  text-align: center;
+}
 .Title{
   text-align: center;
 }
-.Article img{
-  padding: 20px
+.Photo{
+  
+  padding: 0.5%;
 }
+
 .Content{
   padding-left:50px;
   text-align: left;
@@ -22,7 +28,7 @@
   text-align: center;
   flex-direction: row;
   height: fit-content;
-
+  padding-left: 20px;
 } 
 .Author p{
   margin-top: auto;
@@ -31,4 +37,12 @@
 .Updation{
   padding-left:50px;
   
+}
+@media (max-width: 767px) {
+  .article-preview .Article_Author__EkjDS img,
+  .article-preview .Article_Updation__2aOF2,
+  .article-preview .Article_Content__1XSO0 
+  .Article_Photo{
+      display: none;
+  }
 }

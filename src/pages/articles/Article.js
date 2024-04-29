@@ -16,7 +16,7 @@ const Article = (props) => {
     article,
     image,
     updated_at,
-    postPage,
+    articlePage,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -24,18 +24,25 @@ const Article = (props) => {
 
 
   return (
-    <div className={styles.Article}>
-      <Image src={image} alt="Article Image" fluid  className={styles.Article}/>
+    <div className={styles.Articlebackground}>
+      <Image src={image} alt="Article Image" 
+        fluid  className={styles.Photo}
+      />
+      <div className={styles.Article}>
       <h1 className={styles.Title}>{title}</h1>
       <div className={styles.Author}>
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} height={120} />
             {owner}
         </Link>
+
       </div>
-      <p className={styles.Updation}>Last Updated: {updated_at}</p>
+      <p className={styles.Updation}>Last Updated: {updated_at}
+      {is_owner && articlePage && "..."}
+      </p>
       <div dangerouslySetInnerHTML={{ __html: article }}
         className={styles.Content}></div>
+      </div>
     </div>
   );
 }

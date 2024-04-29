@@ -36,9 +36,9 @@ const NavBar = () => {
         className={styles.NavLink}
         to="/"     
       >
-        Adoption
+        News
       </NavLink>
-      {/*Wildlife link*/}
+      {/*Wildlife link
       <NavLink
         className={styles.NavLink}
         to="/"     
@@ -46,7 +46,7 @@ const NavBar = () => {
         Wildlife
       </NavLink>
       
-      {/*Wellness link*/}
+      {/*Wellness link
       <NavLink
         className={styles.NavLink}
         to="/"     

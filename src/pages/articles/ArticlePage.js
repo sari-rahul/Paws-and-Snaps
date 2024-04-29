@@ -30,7 +30,7 @@ function ArticlePage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={12}>
-        <Article { ...article.results[0]}/>  
+        <Article { ...article.results[0]} articlePage/>  
       </Col>
     </Row>
   );
