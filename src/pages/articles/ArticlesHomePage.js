@@ -30,14 +30,14 @@ function ArticlesHomePage({ message, filter = "" }) {
   }, [filter, pathname]);
 
   return (
-    <Container>
+    <Container className={styles.Container}>
       {/* Larger screen layout */}
       <Row className="d-none d-lg-flex justify-content-center">
         <Col>
           {/* Large card covering 60% of the screen */}
           {hasLoaded && article.results.length > 0 ? (
             <Card className={`${styles.LargeCard} my-3`} key={article.results[0].id}>
-              <Card.Img variant="top" src={article.results[0].image} />
+              <Card.Img variant="top" src={article.results[0].image} className={styles.LargeCardImage}/>
               <Card.Body>
                 <Card.Title>{article.results[0].title}</Card.Title>
               </Card.Body>
@@ -51,9 +51,9 @@ function ArticlesHomePage({ message, filter = "" }) {
           article.results.slice(1).map((article) => (
             <Col key={article.id} lg={4}>
               <Card className={`${styles.SmallCard} my-3`}>
-                <Card.Img variant="top" src={article.image} />
+                <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
                 <Card.Body>
-                  <Card.Title>{article.title}</Card.Title>
+                  <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
                 </Card.Body>
               </Card>
             </Col>
@@ -70,7 +70,7 @@ function ArticlesHomePage({ message, filter = "" }) {
               {article.results.length ? (
                 article.results.map((article) => (
                   <Card className={`${styles.Card} my-3`} key={article.id}>
-                    <Card.Img variant="top" src={article.image} />
+                    <Card.Img variant="top" src={article.image}className={styles.SmallScreenCardImage} />
                     <Card.Body>
                       <Card.Title>{article.title}</Card.Title>
                     </Card.Body>

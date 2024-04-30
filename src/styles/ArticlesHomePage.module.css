@@ -1,5 +1,35 @@
+.Container{
+  background-color: #ffff;
+}
 .Card{
   width:90%;
   margin-left: 5%;
-}
+  border: none !important;
+  border-radius: none !important;}
   
+.LargeCard {
+  /* Ensures the card takes 60% of the screen width */
+  width:100%;
+}
+
+.LargeCard .card-img-top,
+.SmallCard .card-img-top {
+  /* Ensure the image takes up the entire height of the card */
+  height: 100%;
+  /* Ensure the image maintains its aspect ratio and covers the entire area */
+  object-fit: cover;
+}
+.SmallCardImage{
+  height:200px;
+}
+.SmallCardTitle{
+  height:50px;
+  overflow: hidden;
+}
+.LargeCardImage{
+  height:500px;
+}
+.SmallScreenCardImage{
+  height:300px;
+  object-fit: cover;
+}
