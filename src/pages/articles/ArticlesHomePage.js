@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -8,11 +9,15 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/ArticlesHomePage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
+import ArticlePage from "./ArticlePage";
 
 function ArticlesHomePage({ message, filter = "" }) {
   const [article, setArticles] = useState({ results: [] });
+  const [selectedArticle, setSelectedArticle] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const history = useHistory(); // Initialize useHistory
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -29,14 +34,21 @@ function ArticlesHomePage({ message, filter = "" }) {
     fetchPosts();
   }, [filter, pathname]);
 
+  // Function to handle click on a card
+  const handleCardClick = (selectedArticle) => {
+    setSelectedArticle(selectedArticle);
+    // Redirect to the ArticlePage with the selected article's ID
+    history.push(`/articles/${selectedArticle.id}`);
+  };
+
   return (
-    <Container className={styles.Container}>
+    <Container className={styles.Container}onClick={() => setSelectedArticle(null)}>
       {/* Larger screen layout */}
       <Row className="d-none d-lg-flex justify-content-center">
         <Col>
           {/* Large card covering 60% of the screen */}
           {hasLoaded && article.results.length > 0 ? (
-            <Card className={`${styles.LargeCard} my-3`} key={article.results[0].id}>
+            <Card className={`${styles.LargeCard} my-3`} key={article.results[0].id} onClick={() => handleCardClick(article.results[0])}>
               <Card.Img variant="top" src={article.results[0].image} className={styles.LargeCardImage}/>
               <Card.Body>
                 <Card.Title>{article.results[0].title}</Card.Title>
@@ -50,7 +62,7 @@ function ArticlesHomePage({ message, filter = "" }) {
         {hasLoaded && article.results.length > 1 ? (
           article.results.slice(1).map((article) => (
             <Col key={article.id} lg={4}>
-              <Card className={`${styles.SmallCard} my-3`}>
+              <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
                 <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
                 <Card.Body>
                   <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
@@ -69,7 +81,7 @@ function ArticlesHomePage({ message, filter = "" }) {
             <>
               {article.results.length ? (
                 article.results.map((article) => (
-                  <Card className={`${styles.Card} my-3`} key={article.id}>
+                  <Card className={`${styles.Card} my-3`} key={article.id} onClick={() => handleCardClick(article)}>
                     <Card.Img variant="top" src={article.image}className={styles.SmallScreenCardImage} />
                     <Card.Body>
                       <Card.Title>{article.title}</Card.Title>
@@ -85,6 +97,9 @@ function ArticlesHomePage({ message, filter = "" }) {
           )}
         </Col>
       </Row>
+
+      {/* Render Article component if an article is selected */}
+      {selectedArticle && <ArticlePage {...selectedArticle} />}
     </Container>
   );
 }
