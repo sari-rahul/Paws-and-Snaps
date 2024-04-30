@@ -1,9 +1,14 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React from "react";
-import styles from "../../styles/Article.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Link } from "react-router-dom";
-import Avatar from "../../components/Avatar";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from  React Bootstrap
 import Image from "react-bootstrap/Image";
+import { Link } from "react-router-dom";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Avatar from "../../components/Avatar";
+import styles from "../../styles/Article.module.css";
 
 
 const Article = (props) => {

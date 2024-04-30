@@ -5,6 +5,7 @@
     padding-right: 50px;
     padding-bottom: 30px;
     padding-top: 2%;
+    font-family: 'Anek Devanagari' ,'sans serif';
   }
 .Articlebackground{
   background-color: #ffffff;
@@ -13,6 +14,7 @@
 
 .Title{
   text-align: center;
+  font-family: 'Oswald' ,'sans serif';
 }
 .Photo{
   padding: 1.5%;

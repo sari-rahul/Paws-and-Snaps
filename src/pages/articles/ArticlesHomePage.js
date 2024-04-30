@@ -1,15 +1,21 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal React Bootstrap 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import Asset from "../../components/Assets";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/ArticlesHomePage.module.css";
-import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "./ArticlePage";
+
 
 function ArticlesHomePage({ message, filter = "" }) {
   const [article, setArticles] = useState({ results: [] });
@@ -48,7 +54,9 @@ function ArticlesHomePage({ message, filter = "" }) {
         <Col>
           {/* Large card covering 60% of the screen */}
           {hasLoaded && article.results.length > 0 ? (
-            <Card className={`${styles.LargeCard} my-3`} key={article.results[0].id} onClick={() => handleCardClick(article.results[0])}>
+            <Card className={`${styles.LargeCard} my-3`}
+               key={article.results[0].id} 
+               onClick={() => handleCardClick(article.results[0])}>
               <Card.Img variant="top" src={article.results[0].image} className={styles.LargeCardImage}/>
               <Card.Body>
                 <Card.Title>{article.results[0].title}</Card.Title>
