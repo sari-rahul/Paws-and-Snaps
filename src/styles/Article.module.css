@@ -10,12 +10,15 @@
   background-color: #ffffff;
   text-align: center;
 }
+
 .Title{
   text-align: center;
 }
 .Photo{
-  
-  padding: 0.5%;
+  padding: 1.5%;
+  height:500px;
+  width:100%;
+  object-fit: cover;
 }
 
 .Content{

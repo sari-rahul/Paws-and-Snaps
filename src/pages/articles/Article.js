@@ -35,7 +35,6 @@ const Article = (props) => {
           <Avatar src={profile_image} height={120} />
             {owner}
         </Link>
-
       </div>
       <p className={styles.Updation}>Last Updated: {updated_at}
       {is_owner && articlePage && "..."}
