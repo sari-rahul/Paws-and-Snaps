@@ -1,0 +1,36 @@
+.Background {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-image: url('https://collection.cloudinary.com/dvabeyaj5/0752b03258e0b78fe371bf41f5279b29');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #453a2c;
+}
+
+.Heading1 {
+    font-size: 2.7rem;
+    padding: 1rem 0;
+}
+
+.Heading2 {
+    font-size: 1.5rem;
+}
+
+.Link {
+    font-size: 1.2rem;
+}
+
+.Link a {
+    color: #2142b2;
+}
+.Content{
+    font-family: 'Anek Devanagari' ,'sans serif';
+}
