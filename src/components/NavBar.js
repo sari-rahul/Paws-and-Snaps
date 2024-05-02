@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav ,Form, FormControl, Button} from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -22,63 +22,49 @@ const NavBar = () => {
     }
   };
 
-  const add = (
-  <NavLink
-    className={styles.NavLink}
-    activeClassName={styles.Active}
-    to="/articles/create" >   
-    Add Article
-  </NavLink>)
+  
 
   const loggedInIcons = <>
-   {/*Adoption link*/}
-      <NavLink
-        className={styles.NavLink}
-        to="/"     
-      >
-        News
-      </NavLink>
-      {/*Wildlife link
-      <NavLink
-        className={styles.NavLink}
-        to="/"     
-      >
-        Wildlife
-      </NavLink>
-      
-      {/*Wellness link
-      <NavLink
-        className={styles.NavLink}
-        to="/"     
-      >
-        Wellness
-      </NavLink>
-      {/*Logout link*/}
+   {/*Start here link*/}
+    <NavLink
+    exact
+    className={`${styles.NavLink} ${styles.padding}`}
+    activeClassName={styles.Active}
+    to="/"
+    >
+    START HERE
+    </NavLink>
+   {/*Add Article link*/}
+    <NavLink
+      className={`${styles.NavLink} ${styles.padding}`}
+      activeClassName={styles.Active}
+      to="/articles/create" >   
+      Add Article
+    </NavLink>
+    {/*Blog link*/}
+    <NavLink
+      className={`${styles.NavLink} ${styles.padding}`}
+      to="/news">
+      News
+    </NavLink>
 
-      {/*Happy corner link*/}
-      <NavLink
-        className={styles.NavLink}
-        to="/"     
-      >
-        Happy corner
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        to="/"
-        onClick={handleSignOut}
+    <NavLink
+      className={`${styles.NavLink} ${styles.padding}`}
+      to="/"
+      onClick={handleSignOut}
       > Log out
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        to={`/profiles/${currentUser?.profile_id}`}
-      >
-        <Avatar src={currentUser?.profile_image} text= "Profile" height={40}/>
-      </NavLink>
+    </NavLink>
+    <NavLink
+      className={styles.NavLink}
+      to={`/profiles/${currentUser?.profile_id}`}
+    >
+      <Avatar src={currentUser?.profile_image} text= "Profile" height={40}/>
+    </NavLink>
   </>;
   const loggedOutIcons = (
     <>
       <NavLink
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${styles.padding}`}
         activeClassName={styles.Active}
         to="/signin"
       >
@@ -86,7 +72,7 @@ const NavBar = () => {
       </NavLink>
       <NavLink
         to="/signup"
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${styles.padding}`}
         activeClassName={styles.Active}
       >
         Sign up
@@ -95,36 +81,32 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
-      <Container>
-        <NavLink to="/">
-          <Navbar.Brand>
-            <img src={logo} alt="logo" height="65" />
-          </Navbar.Brand>
-        </NavLink>
-        {currentUser && add}
+    <Container>
+      <div className={styles.LogoAndSearchContainer}>
+        <div>
+        <img src={logo} alt="logo" height="120" />
+        </div>
+      <Form.Group className={styles.SearchBar}>
+        <Form.Control size="lg" type="text" placeholder="Search this Website"/>        
+      </Form.Group>
+      </div>
+      <Navbar expanded={expanded} className={styles.NavBar} expand="md" >
+        <Container className={styles.NavContainer}>
+          <Navbar.Toggle 
+          aria-controls="basic-navbar-nav" 
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}/>
 
-        <Navbar.Toggle 
-        aria-controls="basic-navbar-nav" 
-        ref={ref}
-        onClick={() => setExpanded(!expanded)}/>
-
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto text-left">
-            <NavLink
-              exact
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/"
-            >
-              Home
-            </NavLink>
-
-            {currentUser ? loggedInIcons : loggedOutIcons}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className={styles.NavbarOutterContainer}>
+              <div >
+                {currentUser ? loggedInIcons : loggedOutIcons}
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>      
+    </Container>  
   );
 };
 

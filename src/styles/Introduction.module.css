@@ -1,17 +1,24 @@
 .Container{
     background-color: #fff;
     padding-left: 0px 10px 0px 10px;
+    margin: auto;
+}
+.IntroContainer{
+    padding-top: 2%;
 }
 .Image{
     margin-bottom: 20px;
     margin-top: 20px;
+    width: 100%;
+    height: auto;
 }
 .ImageContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     object-fit: cover;
-
+    max-height: 500px; /* Adjust the height as needed */
+    overflow: hidden;
 }
 p{
     font-family: 'Anek Devanagari' ,'sans serif';

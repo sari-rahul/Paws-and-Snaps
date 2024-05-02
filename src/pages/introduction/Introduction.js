@@ -7,7 +7,7 @@ import { Col } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
-import image from '../../assets/introimage.png';
+import image from '../../assets/introimage.jpg';
 import { axiosReq } from "../../api/axiosDefault";
 import Asset from "../../components/Assets";
 import styles from "../../styles/Introduction.module.css";
@@ -42,12 +42,15 @@ const Introduction = (filter = "") => {
   };
 
   return (
-      <Row className={`${styles.Container} justify-content-center`}onClick={() => setSelectedQuestion(null)}>
-        <Col lg={10}>
+      <Row className={`${styles.Container} justify-content-center`}
+        onClick={() => setSelectedQuestion(null)}>
+        <Col lg={10} className={styles.IntroContainer}>
           <h3>Start Here – Paws&Snaps 101</h3>
           <div className={styles.ImageContainer}>
-          <img src={image} alt='dogimage' className={`${styles.Image} img-fluid`} />
+            <img src={image} alt='dogimage' 
+            className={`${styles.Image} img-fluid`} />
           </div>
+          <br />
           <h3>What Is Paws&Snaps?</h3>
           <br />
           <p>Paws&Snaps is about living a happy, simple life 
@@ -77,12 +80,16 @@ const Introduction = (filter = "") => {
           {hasLoaded && article.results.length > 1 ? (
             article.results.slice(1).map((article) => (
               <div key={article.id} lg={4}>
-                <div className={`${styles.Question} my-3`}onClick={() => handleClick(article.results[0])}>
-                    <p onClick={() => history.push(`/articles/${article.id}`)}>° {article.title}</p>
+                <div className={`${styles.Question} my-3`}
+                  onClick={() => handleClick(article.results[0])}>
+                    <p onClick={() => history.push(`/articles/${article.id}`)}>
+                      <i class="fa fa-circle" aria-hidden="true"></i> 
+                      {article.title}
+                    </p>
                 </div>
               </div>
             ))
-          ): <Asset smallspinner />}
+          ): <Asset smallSpinner />}
           {/* Render Article component if an article is selected */}
           {selectedQuestion && <ArticlePage {...selectedQuestion} />}
         </Col>

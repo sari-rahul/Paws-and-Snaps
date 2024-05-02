@@ -1,19 +1,15 @@
 .App {
   font-family: "Oswald", sans-serif;
   min-height: 100vh;
-  background-color: rgb(199, 196, 196);
+  background-color: rgb(226, 224, 224);
 }
 
 * {
   box-sizing: border-box;
 }
 
-.Main{
-  padding-top: 91px;
-}
-
 a {
-  color:rgb(0, 0, 0);
+  color: rgb(105 104 104);
   font-size: 1.2rem;
   transition: color ease-in-out 0.3s;
 }
@@ -21,6 +17,7 @@ a {
 a:hover {
   text-decoration: none;
   color: rgb(67, 66, 66);
+  
 }
 
 a:hover i {
@@ -74,4 +71,9 @@ figure {
 }
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+@media screen and (max-width: 600px){
+  a {
+    font-size: .8 rem;
+  }
 }

@@ -66,4 +66,7 @@ select{
     width: 78%;
     margin-bottom: 20px;
 }
-
+.OutterContainer{
+    background-color: #fff;
+    padding-top:2%;
+}

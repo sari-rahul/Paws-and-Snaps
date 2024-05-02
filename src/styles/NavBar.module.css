@@ -14,9 +14,58 @@ transition: 0.5s;
 transform: rotate(-60deg);
 }
 .NavLink {
-  padding: 8px;
+  padding: 18px;
+}
+.padding{
+  padding-left: 18px;
+  padding-top: 25px;
+
 }
 
 .Active i {
   color: #FFB7CE;
+}
+.LogoAndSearchContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-left:30px ;
+  padding-top:20px ;
+  background-color: #fff;
+}
+.SearchBar{
+  width:30%;
+
+}
+.NavContainer{
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+
+  background-color: rgb(232, 229, 229);
+  border-top: 1px solid rgb(206, 205, 205);
+  border-bottom: 1px solid rgb(206, 205, 205);
+
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.NavbarOutterContainer{
+ margin: auto;
+}
+
+@media screen and (max-width: 800px){
+  .LogoAndSearchContainer{  
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+  
+  }
+  .SearchBar{
+    width:70%;
+  }
 }

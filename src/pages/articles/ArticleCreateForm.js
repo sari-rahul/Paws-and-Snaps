@@ -123,6 +123,7 @@ function ArticleCreateForm() {
   );
 
   return (
+    <Container className={styles.OutterContainer}>
     <Form onSubmit={handleSubmit}>
       <Row>
           <Container
@@ -171,6 +172,7 @@ function ArticleCreateForm() {
           <Container className={appStyles.Content}>{textFields}</Container>
       </Row>
     </Form>
+    </Container>
   );
 }
 

@@ -9,6 +9,7 @@ import ArticleCreateForm from "./pages/articles/ArticleCreateForm";
 import ArticlePage from "./pages/articles/ArticlePage";
 import ArticleHomePage from "./pages/articles/ArticlesHomePage";
 import About from "./pages/about/About";
+import Introduction from "./pages/introduction/Introduction";
 
 
 function App() {
@@ -19,8 +20,9 @@ function App() {
           <NavBar />
           <Container className={styles.Main}>
             <Switch>
-              <Route exact path="/" render={() => <ArticleHomePage/>} />
+              <Route exact path="/" render={() => <Introduction/>} />
               <Route exact path="/about" render={() => <About/>} />
+              <Route exact path="/news" render={() => <ArticleHomePage/>} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/articles/create" render={() => <ArticleCreateForm />} />
