@@ -1,0 +1,27 @@
+.Container{
+    background-color: #fff;
+    padding-left: 0px 10px 0px 10px;
+}
+.Image{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.ImageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+
+}
+p{
+    font-family: 'Anek Devanagari' ,'sans serif';
+    font-size: 20px;
+}
+.Question{
+    font-weight: 600;
+    padding-left: 20px;
+    color: rgb(56, 82, 61);
+}
+.Question:hover{
+    cursor: pointer;
+}
