@@ -24,9 +24,13 @@
 
 
 .SignInContainer{
-    padding:5% !important;
+    padding:8% !important;
     background-color: rgb(226, 224, 224);
-    
+    background-image: url('../assets/bcg-pawprint.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 .CardContainer{
     display: flex;
@@ -36,7 +40,10 @@
     height: 300px;
     margin: auto !important;
     background-color: pink !important;
+    box-shadow: 0 4px 10px rgba(74, 74, 74, 0.1); /* Adjust the shadow values as needed */
+
 }
+
 
 @media screen and (max-width: 500px) {
 
