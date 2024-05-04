@@ -1,20 +1,21 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useState } from "react";
+import {useHistory } from "react-router-dom";
 import axios from "axios";
-import image from '../../assets/signinpage.jpg'
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
+import { Card } from "react-bootstrap";
 
-import {useHistory } from "react-router-dom";
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import styles from "../../styles/SignInForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -40,7 +41,7 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/login/", signInData);
-      history.push("/");
+      history.push("/intro");
       console.log('redirected')
     } catch (err) {
       setErrors(err.response?.data);
@@ -48,12 +49,12 @@ const SignInForm = () => {
   };
 
   return (
-    <Row className={styles.Row}>
-      <Col className="my-auto py-2 p-md-2" md={6}>
-        <Container className={`${appStyles.Content} p-4 `}>
-          <h1 className={styles.Header}>Sign in</h1>
-
-          <Form onSubmit={handleSubmit}>
+    <Container className={styles.SignInContainer}>
+      <Card className={styles.CardContainer}>
+        <Card.Title className={styles.Header}>Sign in</Card.Title>
+        <br />
+        <br />
+        <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
               <Form.Control
@@ -99,22 +100,10 @@ const SignInForm = () => {
                 {message}
               </Alert>
             ))}
-          </Form>
-        </Container>
-      </Col>
-      <Col
-        md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
-      >
-        <Image
-          className={`${styles.Image}`}
-            src={image}
-        />
-      </Col>
-      
-    </Row>
-  );
-};
+          </Form>    
+    </Card>
+    </Container>
+)}
 
 export default SignInForm;
 

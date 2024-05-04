@@ -30,7 +30,7 @@ const NavBar = () => {
     exact
     className={`${styles.NavLink} ${styles.padding}`}
     activeClassName={styles.Active}
-    to="/"
+    to="/intro"
     >
     START HERE
     </NavLink>

@@ -1,29 +1,30 @@
-.Background {
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-image: url('https://collection.cloudinary.com/dvabeyaj5/0752b03258e0b78fe371bf41f5279b29');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 0;
+.OutterContainer{
+    background-color: rgb(250, 217, 223);
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #453a2c;
+    align-items: center;
+    flex-direction: row;
+}
+.CardContainer{
+    width:60%;
+    margin: 1%;
+    padding : 20px;
+    text-align: center;
+    background-color: rgb(250, 217, 223);
+    border-radius: 0px !important;
+    border: none;
 }
 
-.Heading1 {
+.Quote {
     font-size: 2.7rem;
-    padding: 1rem 0;
+    padding:  0;
+    text-align: center;
+    font-family: 'Oswald', 'sans-serif';
 }
 
-.Heading2 {
-    font-size: 1.5rem;
+.CardText{
+    padding:20px
 }
-
 .Link {
     font-size: 1.2rem;
 }
@@ -34,3 +35,15 @@
 .Content{
     font-family: 'Anek Devanagari' ,'sans serif';
 }
+@media screen and (max-width: 900px) {
+
+    .OutterContainer h4{
+        font-size: 30px;
+    }
+    .CardContainer{
+        width:100%;
+        margin: 1%;
+        padding : 0px;
+    }
+}
+    
