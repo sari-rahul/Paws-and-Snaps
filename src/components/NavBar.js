@@ -34,18 +34,19 @@ const NavBar = () => {
     >
     START HERE
     </NavLink>
-   {/*Add Article link*/}
-    <NavLink
-      className={`${styles.NavLink} ${styles.padding}`}
-      activeClassName={styles.Active}
-      to="/articles/create" >   
-      Add Article
-    </NavLink>
+   
     {/*Blog link*/}
     <NavLink
       className={`${styles.NavLink} ${styles.padding}`}
       to="/news">
       News
+    </NavLink>
+    {/*Add Article link*/}
+    <NavLink
+      className={`${styles.NavLink} ${styles.padding}`}
+      activeClassName={styles.Active}
+      to="/articles/create" >   
+      Add Article
     </NavLink>
 
     <NavLink

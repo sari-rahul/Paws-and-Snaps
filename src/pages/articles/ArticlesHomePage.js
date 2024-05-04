@@ -84,7 +84,6 @@ function ArticlesHomePage({ message, filter = "" }) {
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-lg-none justify-content-center">
         <Col className="py-2 p-0 ">
-          <p>Popular profiles mobile</p>
           {hasLoaded ? (
             <>
               {article.results.length ? (
