@@ -10,6 +10,7 @@ import ArticlePage from "./pages/articles/ArticlePage";
 import ArticleHomePage from "./pages/articles/ArticlesHomePage";
 import About from "./pages/about/About";
 import Introduction from "./pages/introduction/Introduction";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -29,7 +30,9 @@ function App() {
               <Route exact path="/articles/:id" render={() => <ArticlePage />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
+            <Footer/> 
           </Container>
+          
         </div>
       
   );

@@ -1,0 +1,34 @@
+.FooterContainer{
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: space-evenly;
+    background-color: #fff;
+    margin-top: 50px;
+    padding:0px !important
+}
+.FooterBlocks{
+    width:30%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    text-align: center;
+    
+}
+.IconDiv{
+    background-color: rgb(255, 206, 214);
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.IconOutterDiv{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-evenly;
+}
+.FooterBlocks p{
+    font-size: 18px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav ,Form, FormControl, Button} from "react-bootstrap";
+import { Navbar, Container, Nav ,Form,} from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -21,8 +21,6 @@ const NavBar = () => {
       console.log(err)
     }
   };
-
-  
 
   const loggedInIcons = <>
    {/*Start here link*/}
