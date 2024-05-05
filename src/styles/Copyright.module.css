@@ -1,0 +1,13 @@
+.CopyrightContainer{
+    background-color: grey;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    text-align: center;
+}
+p{
+    padding-top: 10px;
+    color:#fff;
+    font-size: 15px;
+}

@@ -11,7 +11,7 @@ import ArticleHomePage from "./pages/articles/ArticlesHomePage";
 import About from "./pages/about/About";
 import Introduction from "./pages/introduction/Introduction";
 import Footer from "./components/Footer";
-
+import Copyright from "./components/Copyright";
 
 function App() {
   
@@ -32,7 +32,7 @@ function App() {
             </Switch>
             <Footer/> 
           </Container>
-          
+          <Copyright/>          
         </div>
       
   );

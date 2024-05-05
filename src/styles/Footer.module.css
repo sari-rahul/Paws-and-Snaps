@@ -11,8 +11,7 @@
     width:30%;
     margin-top: 5%;
     margin-bottom: 3%;
-    text-align: center;
-    
+    text-align: center;    
 }
 .IconDiv{
     background-color: rgb(255, 206, 214);
@@ -31,4 +30,21 @@
 }
 .FooterBlocks p{
     font-size: 18px;
+}
+@media screen and (max-width: 800px) {
+    .FooterContainer{
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: space-evenly;
+        
+    }
+    .FooterBlocks{
+        width:50%;
+        margin-top: 5%;
+        margin-bottom: 3%;
+        text-align: center;
+        
+    }
+    
 }

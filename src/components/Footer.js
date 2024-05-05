@@ -3,8 +3,17 @@ import { Container,Form } from 'react-bootstrap';
 import styles from '../styles/Footer.module.css';
 
 const Footer = () => {
+    function handlePinterstIconClick() {
+        window.open('https://www.pinterest.com', '_blank');
+      }
+      function handleFacebookIconClick() {
+        window.open('https://www.facebook.com', '_blank');
+      }
+      function handleInstagramIconClick() {
+        window.open('https://www.Instagram.com', '_blank');
+      }
   return (
-  <>
+
     <Container className={styles.FooterContainer}>
     <div className={styles.FooterBlocks}>
         <h5>CATEGORIES</h5>
@@ -18,13 +27,13 @@ const Footer = () => {
         <h5>FOLLOW US</h5>
         <hr />
         <div className={styles.IconOutterDiv}>
-            <div className={styles.IconDiv}>
+            <div className={styles.IconDiv} onClick={handlePinterstIconClick}>
                 <i class="fa fa-pinterest-square" aria-hidden="true"></i>
             </div>
-            <div className={styles.IconDiv}>
+            <div className={styles.IconDiv} onClick={handleFacebookIconClick}>
                 <i class="fa fa-facebook" aria-hidden="true"></i>
             </div>
-            <div className={styles.IconDiv}>
+            <div className={styles.IconDiv} onClick={handleInstagramIconClick}>
                 <i class="fa fa-instagram" aria-hidden="true"></i>
             </div>
         </div>
@@ -37,13 +46,10 @@ const Footer = () => {
             designed to provide a means for sites to earn advertising 
             fees by advertising & linking to Amazon.com</p>
     </div>
-    </Container>
-    <Container>
-    <p> <strong>Copyright:Paws & Snaps</strong> :All rights Reserved</p>
-    </Container>
- </>
+    </Container> 
    
-  );
-};
+    );
+    };
 
 export default Footer
+
