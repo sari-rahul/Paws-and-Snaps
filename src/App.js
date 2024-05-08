@@ -12,6 +12,7 @@ import About from "./pages/about/About";
 import Introduction from "./pages/introduction/Introduction";
 import Footer from "./components/Footer";
 import Copyright from "./components/Copyright";
+import ArticleEditForm from "./pages/articles/ArticlesEditForm";
 //import ProfilePage from "./pages/profiles/ProfilePage";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/articles/create" render={() => <ArticleCreateForm />} />
               <Route exact path="/articles/:id" render={() => <ArticlePage />} />
+              <Route exact path="/articles/:id/edit" render={() => <ArticleEditForm />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
             <Footer/> 

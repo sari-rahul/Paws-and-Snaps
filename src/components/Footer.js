@@ -40,7 +40,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className={styles.FooterBlocks}>
-                        <img src={logo} alt="logo" height="140"/>
+                        <img src={logo} alt="logo" height="100"/>
                     </div>
                     <div className={styles.FooterBlocks}>
                         <h5>AFFILIATE DISCLOSURE</h5>

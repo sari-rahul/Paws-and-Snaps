@@ -8,14 +8,14 @@ input{
 .quillEditor{
     min-height: 400px !important;
     border: 1px solid rgb(121, 121, 121);
-    background-color:rgb(240, 243, 235);
+    background-color: rgb(242, 237, 237);
     color: black;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 .Title{
     border: 1px solid rgb(121, 121, 121);
-    background-color:rgb(240, 243, 235);
+    background-color: rgb(242, 237, 237);
 
     border-radius: 5px;
     margin-bottom: 10px;
@@ -24,7 +24,7 @@ input{
 .Title:focus{
     color: black;
     border: 1px solid rgb(121, 121, 121);
-    background-color:rgb(240, 243, 235);
+    background-color: rgb(242, 237, 237);
     box-shadow: none !important;
     outline: 0;
   }
@@ -60,9 +60,10 @@ select{
 
 .Container{
     border: 1px solid rgb(121, 121, 121) !important;
-    background-color:rgb(240, 243, 235);
+    background-color: rgb(242, 237, 237);
     border-radius: 5px !important;
     height: 60vh !important;
+    overflow: hidden;
     width: 78%;
     margin-bottom: 20px;
 }
@@ -72,5 +73,6 @@ select{
 }
 .Category{
     border: 1px solid rgb(121, 121, 121);
-    background-color:rgb(240, 243, 235);
+    background-color: rgb(242, 237, 237);
+
 }

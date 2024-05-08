@@ -29,18 +29,23 @@
 .Author{
   display: flex;
   justify-content: flex-start;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   flex-direction: row;
   height: fit-content;
-  padding-left: 20px;
+  padding-left: 50px;
 } 
 .Author p{
   margin-top: auto;
   text-transform: capitalize;
 }
 .Updation{
-  padding-left:50px;
-  
+  margin-left: 0px;  
+  font-family: 'Oswald','sans-serif';
+}
+.Margin{
+  margin: auto;
+  margin-right: 0px;
 }
 @media (max-width: 767px) {
   .article-preview .Article_Author__EkjDS img,
@@ -48,5 +53,17 @@
   .article-preview .Article_Content__1XSO0 
   .Article_Photo{
       display: none;
+  }
+}
+@media (max-width: 550px) {
+  .Content{
+    padding-left:0px;
+    font-size: 10px;
+  } 
+  .Title{
+    font-size: 25px;
+  }
+  .Author{
+    padding-left: 0px;
   }
 }
