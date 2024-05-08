@@ -1,11 +1,16 @@
-import React from "react";
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React bootstrap
 import { Navbar, Container, Nav ,Form,} from "react-bootstrap";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Internal imports
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
-import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
-import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
@@ -36,7 +41,7 @@ const NavBar = () => {
     {/*Blog link*/}
     <NavLink
       className={`${styles.NavLink} ${styles.padding}`}
-      to="/news">
+      to="/articles">
       News
     </NavLink>
     {/*Add Article link*/}
@@ -85,9 +90,7 @@ const NavBar = () => {
         <div>
         <img src={logo} alt="logo" height="120" />
         </div>
-      <Form.Group className={styles.SearchBar}>
-        <Form.Control size="lg" type="text" placeholder="Search this Website"/>        
-      </Form.Group>
+      
       </div>
       <Navbar expanded={expanded} className={styles.NavBar} expand="md" >
         <Container className={styles.NavContainer}>

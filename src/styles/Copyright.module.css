@@ -3,11 +3,17 @@
     display: flex;    
     align-items: center;
     justify-content: center;
-    margin: 0px;
     text-align: center;
+    margin-top: 50px;
 }
-p{
-    padding-top: 10px;
-    color:#fff;
+.CopyrightContainer p {
+    color: #fff;
     font-size: 15px;
+    margin:auto;
+    padding:20px;
+}
+.CopyrightContainer i{
+  font-size: 15px;
+  color: #fff;
+
 }

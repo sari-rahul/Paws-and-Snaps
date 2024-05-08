@@ -12,18 +12,19 @@ import About from "./pages/about/About";
 import Introduction from "./pages/introduction/Introduction";
 import Footer from "./components/Footer";
 import Copyright from "./components/Copyright";
+//import ProfilePage from "./pages/profiles/ProfilePage";
 
 function App() {
   
   return (
     
         <div className={styles.App}>
-          <NavBar />
+          <NavBar /> 
           <Container className={styles.Main}>
             <Switch>
               <Route exact path="/" render={() => <About/>} />
               <Route exact path="/intro" render={() => <Introduction/>} />
-              <Route exact path="/news" render={() => <ArticleHomePage/>} />
+              <Route exact path="/articles" render={() => <ArticleHomePage/>} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/articles/create" render={() => <ArticleCreateForm />} />

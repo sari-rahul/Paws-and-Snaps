@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import Asset from "../../components/Assets";
@@ -18,7 +17,7 @@ import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "./ArticlePage";
 
 
-function ArticlesHomePage({ message }) {
+function ArticlesHomePage({ message, filter = "" }) {
   const [article, setArticles] = useState({ results: [] });
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -29,7 +28,7 @@ function ArticlesHomePage({ message }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/articles/?search=${query}`);
+        const { data } = await axiosReq.get(`/articles/?${filter}search=${query}`);
         setArticles(data);
         setHasLoaded(true);
       } catch (err) {
@@ -39,7 +38,7 @@ function ArticlesHomePage({ message }) {
 
     setHasLoaded(false);
     fetchPosts();
-  }, [pathname,query,]);
+  }, [filter, pathname,query,]);
 
   // Function to handle click on a card
   const handleCardClick = (selectedArticle) => {
@@ -49,21 +48,10 @@ function ArticlesHomePage({ message }) {
   };
 
   return (
-    <Container className={styles.Container}onClick={() => setSelectedArticle(null)}>      
+    <Container className={styles.Container}onClick={() => setSelectedArticle(null)}>
       {/* Larger screen layout */}
-      <Row className="d-none d-lg-flex justify-content-center">        
+      <Row className="d-none d-lg-flex justify-content-center">
         <Col>
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            placeholder="Search Articles"
-          />
-        </Form>
           {/* Large card covering 60% of the screen */}
           {hasLoaded && article.results.length > 0 ? (
             <Card className={`${styles.LargeCard} my-3`}
@@ -92,20 +80,10 @@ function ArticlesHomePage({ message }) {
           ))
         ):null}
       </Row>
+
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-lg-none justify-content-center">
         <Col className="py-2 p-0 ">
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            placeholder="Search Articles"
-          />
-        </Form>
           {hasLoaded ? (
             <>
               {article.results.length ? (

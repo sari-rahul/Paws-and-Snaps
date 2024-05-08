@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import styles from "../../styles/About.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
@@ -52,24 +51,3 @@ const About = () => {
 };
 
 export default About;
-
-{/*<h1 className={` ${styles.Heading1}`}>PAWS & SNAPS</h1>
-          
-          <Card.Text  Introducing Paws & Snaps: your go-to hub for pet lovers and photography enthusiasts. Join our vibrant community to share stories, photos, and valuable insights. Whether you're a seasoned writer or just starting out, Paws & Snaps welcomes you to showcase your passion and creativity. Sign up now to celebrate the bond between humans and animals, one blog post and snapshot at a time.
-            Introducing our pet-centric platform, the ultimate companion for sharing the 
-            joyous moments of your furry friends' lives in just a few clicks.
-          </Card.Text>
-          <h2 className={`${styles.Heading2} text-muted`}>
-            How did your furry friend bring joy into your day today?
-          </h2>
-          <Card.Text className={`text-muted pt-2 ${styles.Content}`}>
-            Join our vibrant community of pet enthusiasts to spread smiles,
-            forge connections, and create lasting memories. Welcome 
-            to the ultimate destination where every wag, purr, 
-            and tail flick is celebrated with joy and camaraderie.
-          </Card.Text>
-
-          
-         {/*} {
-            
-          }*/}

@@ -30,8 +30,9 @@ function ArticleCreateForm() {
     title: "",
     article: "",
     image: "",
+    category: "",
   });
-  const { title, article, image } = articleData;
+  const { title, article, image,category } = articleData;
   const imageInput = useRef(null);
   const history = useHistory();
 
@@ -79,6 +80,7 @@ function ArticleCreateForm() {
 
   const textFields = (
     <div className="text-center">
+      {/* Title */}
       <Form.Group>
         <Form.Label className={styles.label}>Title</Form.Label>
         <Form.Control
@@ -95,6 +97,7 @@ function ArticleCreateForm() {
         </Alert>
       ))}
 
+      {/* Content */}
       <Form.Group>
         <Form.Label className={styles.label}>Content</Form.Label>
         <ReactQuill
@@ -105,6 +108,34 @@ function ArticleCreateForm() {
         />
       </Form.Group>
       {errors?.article?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      {/* Category */}
+      <Form.Group controlId="category">
+        <Form.Label className={styles.label}>Category</Form.Label>
+        <Form.Control
+          className={styles.Category}
+          name="category"
+          as="select"
+          defaultValue="Please select a category"
+          onChange={handleChange}
+        >
+          <option value="select">Please select a category</option>
+          <option value="Dogs">Dogs</option>
+          <option value="Cats">Cats</option>
+          <option value="Fishes">Fishes</option>
+          <option value="Horses">Horses</option>
+          <option value="Birds">Birds</option>
+          <option value="Training">Training</option>
+          <option value="Wellness">Wellness</option>
+          <option value="Adoption">Adoption</option>
+          <option value="Other">Other</option>
+        </Form.Control>
+      </Form.Group>
+      {errors.category?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>

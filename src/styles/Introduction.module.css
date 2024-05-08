@@ -5,6 +5,7 @@
 }
 .IntroContainer{
     padding-top: 2%;
+    padding-bottom: 2%;
 }
 .Image{
     margin-bottom: 20px;
@@ -23,6 +24,7 @@
 p{
     font-family: 'Anek Devanagari' ,'sans serif';
     font-size: 20px;
+    color: black;
 }
 .Question{
     font-weight: 600;
@@ -31,4 +33,7 @@ p{
 }
 .Question:hover{
     cursor: pointer;
+}
+.Question i{
+    font-size: 10px;
 }

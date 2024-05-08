@@ -5,7 +5,8 @@ const Copyright = () => {
   return (
     <div className={styles.CopyrightContainer}>
         <p> 
-        Copyright<strong>  Paws & Snaps</strong> :All rights Reserved
+        <i className="fa fa-copyright" aria-hidden="true"></i>
+        Copyright <strong>  Paws & Snaps</strong> :All rights Reserved
         </p>
     </div>
   )

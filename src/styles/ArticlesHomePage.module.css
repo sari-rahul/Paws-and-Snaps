@@ -27,3 +27,11 @@
   height:300px;
   object-fit: cover;
 }
+.SearchBar{
+  height:30px !important;
+  width:50%;
+  margin:auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+
+}

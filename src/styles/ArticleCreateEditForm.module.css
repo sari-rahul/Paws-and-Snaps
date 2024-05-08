@@ -70,3 +70,7 @@ select{
     background-color: #fff;
     padding-top:2%;
 }
+.Category{
+    border: 1px solid rgb(121, 121, 121);
+    background-color:rgb(240, 243, 235);
+}

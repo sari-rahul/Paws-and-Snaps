@@ -21,18 +21,25 @@ const Introduction = (filter = "") => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchRecentArticles = async () => {
       try {
-        const { data } = await axiosReq.get(`/articles/?${filter}`);
+        const { data } = await axiosReq.get("/articles/", {
+          params: {
+            _limit: 10, // Limit the number of articles to 10
+            _sort: "created_at", // Sort articles by creation date in descending order
+            _order: "desc"
+          }
+        });
         setArticles(data);
         setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.error("Error fetching recent articles:", error);
       }
     };
+
     setHasLoaded(false);
-    fetchPosts();
-  }, [filter]);
+    fetchRecentArticles();
+  }, []);
 
   // Function to handle click on a question
   const handleClick = (selectedQuestion) => {
@@ -83,7 +90,7 @@ const Introduction = (filter = "") => {
                 <div className={`${styles.Question} my-3`}
                   onClick={() => handleClick(article.results[0])}>
                     <p onClick={() => history.push(`/articles/${article.id}`)}>
-                      <i class="fa fa-circle" aria-hidden="true"></i> 
+                      <i className="fa fa-circle" aria-hidden="true"></i> 
                       {article.title}
                     </p>
                 </div>

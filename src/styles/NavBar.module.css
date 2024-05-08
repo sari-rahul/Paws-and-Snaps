@@ -29,7 +29,7 @@ transform: rotate(-60deg);
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding-right: 30px;
   padding-bottom: 30px;
   padding-left:30px ;
@@ -37,7 +37,7 @@ transform: rotate(-60deg);
   background-color: #fff;
 }
 .SearchBar{
-  width:30%;
+  width:100%;
 
 }
 .NavContainer{
@@ -45,7 +45,8 @@ transform: rotate(-60deg);
   justify-content: center !important;
   align-items: center;
 
-  background-color: rgb(232, 229, 229);
+  background-color: rgb(242, 237, 237);
+
   border-top: 1px solid rgb(206, 205, 205);
   border-bottom: 1px solid rgb(206, 205, 205);
 
