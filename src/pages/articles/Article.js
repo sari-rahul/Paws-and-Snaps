@@ -36,7 +36,7 @@ const Article = (props) => {
   };
   const handleDelete = async ()=>{
     try {
-      await axiosRes.delete(`/articles/${id}/`);
+      await axiosRes.delete(`/articles/${id}`);
       history.goBack();
     } catch (err) {
       console.log(err);

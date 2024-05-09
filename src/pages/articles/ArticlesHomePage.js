@@ -114,6 +114,7 @@ function ArticlesHomePage({ message }) {
                     <Card.Img variant="top" src={article.image}className={styles.SmallScreenCardImage} />
                     <Card.Body>
                       <Card.Title>{article.title}</Card.Title>
+
                     </Card.Body>
                   </Card>
                 ))

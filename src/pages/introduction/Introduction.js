@@ -90,8 +90,8 @@ const Introduction = (filter = "") => {
                 <div className={`${styles.Question} my-3`}
                   onClick={() => handleClick(article.results[0])}>
                     <p onClick={() => history.push(`/articles/${article.id}`)}>
-                      <i className="fa fa-circle" aria-hidden="true"></i> 
-                      {article.title}
+                    <i class="fa fa-paw" aria-hidden="true"></i> 
+                      {  article.title}
                     </p>
                 </div>
               </div>

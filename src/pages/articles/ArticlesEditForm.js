@@ -141,15 +141,15 @@ function ArticleEditForm() {
           onChange={handleChange}
         >
           <option value="select">Please select a category</option>
-          <option value="Dogs">Dogs</option>
-          <option value="Cats">Cats</option>
-          <option value="Fishes">Fishes</option>
-          <option value="Horses">Horses</option>
-          <option value="Birds">Birds</option>
-          <option value="Training">Training</option>
-          <option value="Wellness">Wellness</option>
-          <option value="Adoption">Adoption</option>
-          <option value="Other">Other</option>
+          <option value="dogs">Dogs</option>
+          <option value="cats">Cats</option>
+          <option value="fishes">Fishes</option>
+          <option value="horses">Horses</option>
+          <option value="birds">Birds</option>
+          <option value="training">Training</option>
+          <option value="wellness">Wellness</option>
+          <option value="adoption">Adoption</option>
+          <option value="other">Other</option>
         </Form.Control>
       </Form.Group>
       {errors.category?.map((message, idx) => (

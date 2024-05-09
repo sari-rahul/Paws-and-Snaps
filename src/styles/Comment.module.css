@@ -1,0 +1,41 @@
+.Owner {
+    font-size:20px;
+    font-weight: 600;
+    color: black;
+    margin-right: 8px;
+  }
+  
+  .Date {
+    font-weight: lighter;
+    color: #949496;
+  }
+  .Comment{
+    width: 100%;
+    background-color: rgb(242, 237, 237);
+    border:1px solid rgb(213, 212, 212); 
+    margin-bottom: 2%;
+
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .OwnerDetails{
+    padding-top: 5%;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+  }
+  .OwnerDetailsInnerDiv{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+@media (max-width: 700px){
+  .Comment{
+    padding-right: 20px;
+  }
+}
