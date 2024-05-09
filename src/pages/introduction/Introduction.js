@@ -79,7 +79,7 @@ const Introduction = (filter = "") => {
             information. Start blogging today and make your voice heard!"
           </p>
           <h5>Here are some helpful links to our most popular 
-              content to get you started
+              content to get you started:
           </h5>
           <br />
           <h3>Our Most Popular Articles</h3>

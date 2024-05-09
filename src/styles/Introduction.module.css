@@ -7,6 +7,10 @@
     padding-top: 2%;
     padding-bottom: 2%;
 }
+.IntroContainer h5{
+    font-family: 'Anek Devanagari' ,'sans serif';
+
+}
 .Image{
     margin-bottom: 20px;
     margin-top: 20px;

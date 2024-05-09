@@ -53,7 +53,7 @@ const SignInForm = () => {
         <Card.Title className={styles.Header}>Sign in</Card.Title>
         <br />
         <br />
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className={styles.SignInForm}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
               <Form.Control

@@ -53,6 +53,7 @@ function ArticlesHomePage({ message }) {
       {/* Larger screen layout */}
       <Row className="d-none d-lg-flex justify-content-center">        
         <Col>
+        {/*Search Bar*/}
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
@@ -95,6 +96,7 @@ function ArticlesHomePage({ message }) {
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-lg-none justify-content-center">
         <Col className="py-2 p-0 ">
+          {/*Search Bar*/}
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}

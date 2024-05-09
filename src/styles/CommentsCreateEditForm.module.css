@@ -1,23 +1,23 @@
-Form {
+.CommentForm {
     background-color: #fff;
     height: fit-content;
-  }
-  .Form{
-    border:none !important;
-  }
+}
+.Form{
+  border:none !important;
+}
+
+.Button {
+  border: none;
+  background-color: #bbbbbb;
+  color: aliceblue;
+  border-radius: 100px;
+  padding: 4px 10px;
+  min-width: 75px;
+  margin: 5px;
+}
   
-  .Button {
-    border: none;
-    background-color: #bbbbbb;
-    color: aliceblue;
-    border-radius: 100px;
-    padding: 4px 10px;
-    min-width: 75px;
-    margin: 5px;
-  }
-  
-  .Button:hover {
-    cursor: pointer;
-    background-color: aliceblue;
-    color: #242a3d;
-  }
+.Button:hover {
+  cursor: pointer;
+  background-color: aliceblue;
+  color: #242a3d;
+}
