@@ -50,7 +50,7 @@ const SignUpForm = () => {
           <Card.Title className={styles.Header}>Sign up</Card.Title>
         <br />
         <br />
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className={styles.SignUpForm}>
           <Form.Group controlId="username">
             <Form.Label className="d-none">username</Form.Label>
             <Form.Control
@@ -101,12 +101,12 @@ const SignUpForm = () => {
               {message}
             </Alert>
           ))}
-
+          
           <Button
-            className={`${btnStyles.Button}`}
-            type="submit"
+              className={`${btnStyles.Button} ${styles.Margin}`}
+              type="submit"
           >
-            Sign up
+              Sign up
           </Button>
           {errors.non_field_errors?.map((message, idx) => (
             <Alert key={idx} variant="warning" className="mt-3">
@@ -115,8 +115,8 @@ const SignUpForm = () => {
           ))}
         </Form>
         <Link className={styles.Link} to="/signin">
-        Already have an account? <span>Sign in</span>
-      </Link>
+          Already have an account? <span>Sign in</span>
+        </Link>
       </Card>
       </Container>
       

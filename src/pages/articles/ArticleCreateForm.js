@@ -165,7 +165,7 @@ function ArticleCreateForm() {
               {image ? (
                 <>
                   <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
+                    <Image className={styles.Image} src={image} />
                   </figure>
                   <div>
                     <Form.Label

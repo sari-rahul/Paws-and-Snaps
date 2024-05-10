@@ -1,4 +1,7 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React
 import React from 'react';
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Internal imports
 import styles from '../styles/Copyright.module.css';
 
 const Copyright = () => {

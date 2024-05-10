@@ -30,6 +30,11 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.SignInForm{
+    display: flex;
+    justify-content: center !important;
+    flex-direction: column !important;
+}
 
 .CardContainer{
     display: flex;
@@ -48,7 +53,8 @@
 }
 
 
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 770px) {
 
     .Header {
         font-size: 1.7rem;

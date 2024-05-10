@@ -9,14 +9,16 @@
 }
 
 a {
-  color: rgb(105 104 104);
+  color: black;
   font-size: 1.2rem;
   transition: color ease-in-out 0.3s;
 }
 
 a:hover {
   text-decoration: underline;
-  color: rgb(67, 66, 66);
+  font-size: 1.4rem;
+  color: black;
+
   
 }
 

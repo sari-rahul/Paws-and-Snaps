@@ -17,7 +17,7 @@
     color: black;
 }
 .Link {
-    font-size: 20px;
+    font-size: 20px !important;
     text-decoration: none;
     text-align: center;
     display: block;
@@ -34,6 +34,7 @@
     background-size: cover;
 
 }
+
 .CardContainer{
     display: flex;
     justify-content: center !important;

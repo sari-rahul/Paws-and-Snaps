@@ -1,11 +1,16 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React
 import React from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React bootstrap
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Internal imports
 import styles from "../../styles/About.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Link } from "react-router-dom/cjs/react-router-dom";
 
 /**
  * Returns the About component with user-specific content and conditional rendering based on the currentUser state.
@@ -32,18 +37,19 @@ const About = () => {
            * Show send us a message button if user is logged in
            * Otherwise, show sign up and sign in buttons
            */}
-          <>
+          <div className={styles.ButtonContainer}>
               <Link to="/signup">
                 <Button className={btnStyles.Button} variant="primary">
                   Sign Up
                 </Button>
               </Link>
+              <br />
               <Link to="/signin">
                 <Button className={btnStyles.Button} variant="primary">
                   Sign In
                 </Button>
               </Link>
-            </>
+            </div>
         </Card.Body>
       </Card>
     </Container>

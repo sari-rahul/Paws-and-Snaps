@@ -1,20 +1,21 @@
 .Button {
   border-radius: 1.5rem;
-  margin: 5px;
+  margin: auto;
   padding: 10px 50px;
   width: 50%;
 
   border: 1px solid #aeaeae;
   min-width: 75px;
-  background-color: #cdcaca;
-  color:black ;
+  background-color: black;
+  color:pink;
 
 }
   
 .Button:hover {
-    background-color: #ffff !important;
+    background-color: rgb(176, 173, 173) !important;
     cursor: pointer;
-    color: #fb6897;
+    color: black;
+    border: 1px solid black;
 
   }
   
@@ -31,6 +32,7 @@
   }
   
   .Button:focus {
+    border: none !important;
     background-color: #ffff;
     color: #fb6897;
 
@@ -52,7 +54,7 @@
   .Blue:hover {
     /* border: 1px solid #2142b2; */
     background-color: #ffffff;
-    color: #2142b2;
+    color: pink;
   }
   
   .Black,

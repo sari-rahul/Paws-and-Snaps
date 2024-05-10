@@ -1,18 +1,9 @@
 .NavBar {
   padding:0!important;
-  color:#cdcaca;
-  background-color: #ffff;
-
-}
-.NavBarBrand img {
-transition: 0.3s;
+  color:pink;
+  background-color: rgb(242, 237, 237);
 }
 
-.NavBarBrand img:hover {
-transform: scale(1.1);
-transition: 0.5s;
-transform: rotate(-60deg);
-}
 .NavLink {
   padding: 18px;
 }
@@ -46,6 +37,7 @@ transform: rotate(-60deg);
   align-items: center;
 
   background-color: rgb(242, 237, 237);
+
 
   border-top: 1px solid rgb(206, 205, 205);
   border-bottom: 1px solid rgb(206, 205, 205);

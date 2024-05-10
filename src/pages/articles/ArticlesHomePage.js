@@ -23,7 +23,7 @@ function ArticlesHomePage({ message }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-  const history = useHistory(); // Initialize useHistory
+  const history = useHistory(); 
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -54,34 +54,23 @@ function ArticlesHomePage({ message }) {
       <Row className="d-none d-lg-flex justify-content-center">        
         <Col>
         {/*Search Bar*/}
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            placeholder="Search Articles"
-          />
-        </Form>
-          {/* Large card covering 60% of the screen */}
-          {hasLoaded && article.results.length > 0 ? (
-            <Card className={`${styles.LargeCard} my-3`}
-               key={article.results[0].id} 
-               onClick={() => handleCardClick(article.results[0])}>
-              <Card.Img variant="top" src={article.results[0].image} className={styles.LargeCardImage}/>
-              <Card.Body>
-                <Card.Title>{article.results[0].title}</Card.Title>
-              </Card.Body>
-            </Card>
-          ): <Asset spinner />}
+          <Form
+            className={styles.SearchBar}
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              placeholder="Search Articles"
+            />
+          </Form>
         </Col>
       </Row>
       <Row className="d-none d-lg-flex justify-content-center">
-        {/* Render smaller cards in a row below the large card */}
+        {/* Render  cards in a row  */}
         {hasLoaded && article.results.length > 1 ? (
-          article.results.slice(1).map((article) => (
+          article.results.map((article) => (
             <Col key={article.id} lg={4}>
               <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
                 <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
@@ -91,7 +80,7 @@ function ArticlesHomePage({ message }) {
               </Card>
             </Col>
           ))
-        ):null}
+        ):<Asset spinner />}
       </Row>
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-lg-none justify-content-center">

@@ -38,6 +38,11 @@
 .Content{
     font-family: 'Anek Devanagari' ,'sans serif';
 }
+.ButtonContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 @media screen and (max-width: 900px) {
 
     .OutterContainer h4{
