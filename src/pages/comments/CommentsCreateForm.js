@@ -63,7 +63,7 @@ function CommentCreateForm(props) {
         disabled={!content.trim()}
         type="submit"
       >
-        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        <i className="fa fa-paper-plane" aria-hidden="true"></i>
       </button>
     </Form>
   );

@@ -50,7 +50,12 @@ function ArticlePage() {
                 <br /><br />
                 {comments.results.length ? (
                   comments.results.map((comment) => (
-                    <Comment key={comment.id} {...comment} />
+                    <Comment
+                      key={comment.id}
+                      {...comment}
+                      setArticle={setArticle}
+                      setComments={setComments}
+                    />
                   ))
                 ) : 'No comments yet !!!'}
               </div>
