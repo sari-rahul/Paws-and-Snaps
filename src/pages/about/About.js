@@ -1,6 +1,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Redirect } from "react-router-dom";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React bootstrap
 import Card from "react-bootstrap/Card";
@@ -19,6 +20,9 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
  */
 const About = () => {
   const currentUser = useCurrentUser();
+  if (currentUser) {
+    return <Redirect to="/intro" />;
+  }
   return (
     <Container className={styles.OutterContainer} >
       <Card className= {styles.CardContainer} >

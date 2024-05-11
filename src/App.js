@@ -25,9 +25,9 @@ function App() {
             <Switch>
               <Route exact path="/" render={() => <About/>} />
               <Route exact path="/intro" render={() => <Introduction/>} />
-              <Route exact path="/articles" render={() => <ArticleHomePage/>} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
+              <Route exact path="/articles" render={() => <ArticleHomePage/>} />
               <Route exact path="/articles/create" render={() => <ArticleCreateForm />} />
               <Route exact path="/articles/:id" render={() => <ArticlePage />} />
               <Route exact path="/articles/:id/edit" render={() => <ArticleEditForm />} />

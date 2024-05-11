@@ -1,12 +1,12 @@
 .ProfileImage {
     object-fit: cover;
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
   }
   .SmallCardImage{
     height:200px;
     border: 1px solid grey !important;
-  
+    border-radius: 0px;
   }
   .SmallCardTitle{
     height:50px;
@@ -16,13 +16,31 @@
     background-color: #fff;
     padding: 0px;
   }
+  .MemberSince{
+    font-family: 'Oswald','sans-serif';
+    color:grey;
+  }
+
   .Bio{
     width: 100%;
     height: fit-content;
     padding: 2%;
+    margin-top: 1%;
     text-align: left;
   }
-  
+  .ContactIcons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .ContactIcons i{
+    font-size: 1rem !important;
+  }
+  .ProfileContactIcons{
+    padding-left: 4%;
+    padding-right: 4%;
+  }
   
   @media screen and (max-width: 991px) {
     .ProfileImage {
