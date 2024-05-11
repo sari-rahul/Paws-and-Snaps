@@ -57,6 +57,10 @@ function ProfilePage() {
     // Redirect to the ArticlePage with the selected article's ID
     history.push(`/articles/${selectedArticle.id}`);
   };
+   // Function to open a link in a new tab
+  const openLinkInNewTab = (link) => {
+    window.open(link, "_blank");
+  };
 //The profile data of the users
   const mainProfile = (
     <Row noGutters className="justify-content-center text-center">
@@ -66,13 +70,13 @@ function ProfilePage() {
         <h3 className="m-2">{profile?.owner}</h3>
         <p className={styles.MemberSince}>Member since: {profile?.created_at}</p>
         <div className={styles.ContactIcons}>
-          <div className={styles.ProfileContactIcons}>
+          <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile?.linked_in)}>
             <i className="fa fa-linkedin" aria-hidden="true"></i>
           </div>
-          <div className={styles.ProfileContactIcons}>
+          <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile.facebook)}>
             <i className="fa fa-facebook" aria-hidden="true"></i>
           </div>
-          <div className={styles.ProfileContactIcons}>
+          <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile.instagram)}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
           </div>
 

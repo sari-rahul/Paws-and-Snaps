@@ -1,14 +1,19 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Asset from "../../components/Assets";
 import { Container } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
+import Asset from "../../components/Assets";
 import { axiosReq } from "../../api/axiosDefault";
 import Article from "./Article";
 import styles from '../../styles/ArticlePage.module.css'
 import CommentCreateForm from "../comments/CommentsCreateForm";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
 
 function ArticlePage() {

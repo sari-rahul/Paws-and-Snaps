@@ -1,5 +1,10 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React from 'react';
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import { Container } from 'react-bootstrap';
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import styles from '../styles/Footer.module.css';
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import logo from '../assets/logo.png';

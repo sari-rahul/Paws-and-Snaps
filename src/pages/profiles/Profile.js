@@ -1,7 +1,12 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React from "react";
-import styles from "../../styles/Profile.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
+import styles from "../../styles/Profile.module.css";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 
 const Profile = (props) => {
