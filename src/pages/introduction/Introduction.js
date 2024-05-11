@@ -12,13 +12,15 @@ import { axiosReq } from "../../api/axiosDefault";
 import Asset from "../../components/Assets";
 import styles from "../../styles/Introduction.module.css";
 import ArticlePage from "../articles/ArticlePage";
-
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Introduction = (filter = "") => {
   const [article, setArticles] = useState({ results: [] });
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const history = useHistory();
   const [hasLoaded, setHasLoaded] = useState(false);
+  const currentUser = useCurrentUser();
+ 
 
   useEffect(() => {
     const fetchRecentArticles = async () => {
@@ -44,8 +46,11 @@ const Introduction = (filter = "") => {
   // Function to handle click on a question
   const handleClick = (selectedQuestion) => {
     setSelectedQuestion(selectedQuestion);
-    // Redirect to the ArticlePage with the selected article's ID
-    history.push(`/articles/${selectedQuestion.id}`);
+    if (currentUser) {
+      // Redirect to the ArticlePage with the selected article's ID
+      history.push(`/articles/${selectedQuestion.id}`);
+    }
+    
   };
 
   return (

@@ -1,15 +1,17 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Card } from "react-bootstrap";
 
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import Asset from "../../components/Assets";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
@@ -85,7 +87,7 @@ function ProfilePage() {
     </Row>
   );
 
-  const mainProfilePosts = (
+  const mainProfileArticles = (
     <Row noGutters className="justify-content-center text-center">
       <Container>
       <Col>
@@ -146,7 +148,7 @@ function ProfilePage() {
           {hasLoaded ? (
             <Container className={styles.ProfileContainer}>
               {mainProfile}
-              {mainProfilePosts}
+              {mainProfileArticles}
             </Container>
           ) : (
             <Asset spinner />
