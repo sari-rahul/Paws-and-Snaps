@@ -52,3 +52,14 @@
     }
     
 }
+@media screen and (max-width: 800px) {
+    .FooterBlocks{
+        width:100%;
+        margin-top: 5%;
+        margin-bottom: 3%;
+        padding:5%;        
+
+        text-align: center;
+        
+    }
+}

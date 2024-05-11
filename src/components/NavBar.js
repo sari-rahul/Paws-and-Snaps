@@ -101,7 +101,7 @@ const NavBar = () => {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className={styles.NavbarOutterContainer}>
-              <div >
+              <div className={styles.DisplayColumnSmallScreen} >
                 {currentUser ? loggedInIcons : loggedOutIcons}
               </div>
             </Nav>

@@ -1,13 +1,35 @@
 .ProfileImage {
     object-fit: cover;
-    height: 120px;
-    width: 120px;
-    margin: 4px;
+    height: 200px;
+    width: 200px;
   }
+  .SmallCardImage{
+    height:200px;
+    border: 1px solid grey !important;
+  
+  }
+  .SmallCardTitle{
+    height:50px;
+    overflow: hidden;
+  }
+  .ProfileContainer{
+    background-color: #fff;
+    padding: 0px;
+  }
+  .Bio{
+    width: 100%;
+    height: fit-content;
+    padding: 2%;
+    text-align: left;
+  }
+  
   
   @media screen and (max-width: 991px) {
     .ProfileImage {
-      width: 250px;
-      height: 250px;
+      width: 150px;
+      height: 150px;
+    }
+    .Bio{
+      padding: 5%;
     }
   }
