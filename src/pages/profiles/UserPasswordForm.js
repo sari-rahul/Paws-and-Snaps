@@ -1,5 +1,8 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -7,12 +10,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
-import { useHistory, useParams } from "react-router-dom";
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import { axiosRes } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfileEditForm.module.css";
+
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -53,8 +58,11 @@ const UserPasswordForm = () => {
   };
 
   return (
+    <Container className={styles.UsernameEditForm}>
     <Row>
-      <Col className="py-2 mx-auto text-center" md={6}>
+      <Col className="py-2 mx-auto text-center">
+      <h3>Change Your Password Here </h3>
+        <br />
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
@@ -103,6 +111,7 @@ const UserPasswordForm = () => {
         </Container>
       </Col>
     </Row>
+    </Container>
   );
 };
 

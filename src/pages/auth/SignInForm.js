@@ -14,11 +14,12 @@ import { Card } from "react-bootstrap";
 import styles from "../../styles/SignInForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
-  
+  //useRedirect('loggedIn');
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -40,7 +41,7 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/login/", signInData);
-      history.push("/intro");
+      history.push();
       console.log('redirected')
     } catch (err) {
       setErrors(err.response?.data);

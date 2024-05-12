@@ -1,5 +1,8 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -7,7 +10,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
-import { useHistory, useParams } from "react-router-dom";
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import { axiosRes } from "../../api/axiosDefault";
 import {
   useCurrentUser,
@@ -15,7 +18,8 @@ import {
 } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfileEditForm.module.css";
+
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -53,12 +57,15 @@ const UsernameForm = () => {
   };
 
   return (
+    <Container className={styles.UsernameEditForm}>
     <Row>
-      <Col className="py-2 mx-auto text-center" md={6}>
-        <Container className={appStyles.Content}>
+      <Col className="py-2 mx-auto text-center">
+        <h3>Change Your Username Here </h3>
+        <br />
+        <Container >
           <Form onSubmit={handleSubmit} className="my-2">
             <Form.Group>
-              <Form.Label>Change username</Form.Label>
+              <Form.Label>Add new username :</Form.Label>
               <Form.Control
                 placeholder="username"
                 type="text"
@@ -87,6 +94,7 @@ const UsernameForm = () => {
         </Container>
       </Col>
     </Row>
+    </Container>
   );
 };
 

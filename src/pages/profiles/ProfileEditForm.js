@@ -1,6 +1,8 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
@@ -9,11 +11,14 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import { axiosReq } from "../../api/axiosDefault";
 import {useCurrentUser,useSetCurrentUser } from "../../contexts/CurrentUserContext";
-
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfileEditForm.module.css"
+import ProfileImageStyles from "../../styles/ProfilePage.module.css";
+
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -38,9 +43,10 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, bio, image, linked_in, facebook, instagram } = data;
-          setProfileData({ name, bio, image, linked_in, facebook, instagram });
+          const { data } = await axiosReq.get(`/profiles/${id}`);
+          const { name, bio, image, linked_in, facebook, instagram ,is_owner} = data;
+
+          is_owner ? setProfileData({ name, bio, image, linked_in, facebook, instagram }):history.push("/intro");
         } catch (err) {
           console.log(err);
           //history.push("/");
@@ -74,7 +80,7 @@ const ProfileEditForm = () => {
     }
 
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      const { data } = await axiosReq.put(`/profiles/${id}`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
@@ -107,10 +113,10 @@ const ProfileEditForm = () => {
      <Form.Group>
         <Form.Label>Linked_in</Form.Label>
         <Form.Control
-          as="text"
+          as="input"
           value={linked_in}
           onChange={handleChange}
-          name="Linked_in"
+          name="linked_in"
         />
       </Form.Group>
 
@@ -122,10 +128,10 @@ const ProfileEditForm = () => {
       <Form.Group>
         <Form.Label>Facebook</Form.Label>
         <Form.Control
-          as="text"
+          as="input"
           value={facebook}
           onChange={handleChange}
-          name="Facebook"
+          name="facebook"
         />
       </Form.Group>
 
@@ -137,7 +143,7 @@ const ProfileEditForm = () => {
       <Form.Group>
         <Form.Label>Instagram</Form.Label>
         <Form.Control
-          as="text"
+          as="input"
           value={instagram}
           onChange={handleChange}
           name="instagram"
@@ -149,6 +155,7 @@ const ProfileEditForm = () => {
           {message}
         </Alert>
       ))}
+      <div>
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => history.goBack()}
@@ -158,19 +165,20 @@ const ProfileEditForm = () => {
       <Button className={`${btnStyles.Button}`} type="submit">
         save
       </Button>
+      </div>
     </>
   );
 
   return (
-    <Container>
+    <Container className={styles.EditFormContainer}>
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2 text-center"  >
-          <Container className={appStyles.Content}>
+          <Container className={styles.EditFormContainer}>
             <Form.Group>
               {image && (
                 <figure>
-                  <Image src={image} fluid />
+                  <Image src={image} roundedCircle className={ProfileImageStyles.ProfileImage}/>
                 </figure>
               )}
               {errors?.image?.map((message, idx) => (
@@ -200,7 +208,6 @@ const ProfileEditForm = () => {
                 }}
               />
             </Form.Group>
-            <div className="d-md-none">{textFields}</div>
           </Container>
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>

@@ -12,6 +12,7 @@ import styles from "../styles/NavBar.module.css";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import { useEffect } from "react";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -21,11 +22,15 @@ const NavBar = () => {
   const handleSignOut= async()=>{
     try{
       await axios.post("dj-rest-auth/logout/");
-      setCurrentUser(null);
+      setCurrentUser(null)
+      console.log( 'currentuser is',currentUser)
     }catch(err){
       console.log(err)
     }
   };
+  useEffect(() => {
+    console.log("current user after logout:", currentUser);
+  }, [currentUser]);
 
   const loggedInIcons = <>
    {/*Start here link*/}

@@ -19,10 +19,11 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
  * @returns {JSX.Element} The About component JSX
  */
 const About = () => {
-  const currentUser = useCurrentUser();
+  {/** {const currentUser = useCurrentUser();
   if (currentUser) {
     return <Redirect to="/intro" />;
-  }
+  }}*/}
+  
   return (
     <Container className={styles.OutterContainer} >
       <Card className= {styles.CardContainer} >
