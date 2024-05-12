@@ -1,12 +1,8 @@
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useState } from "react";
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefault";
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import styles from "../../styles/CommentsCreateEditForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
@@ -25,15 +21,15 @@ function CommentEditForm(props) {
       });
       setComments((prevComments) => ({
         ...prevComments,
-        results: prevComments.results.map((comment) => {
-          return comment.id === id
+        results: prevComments.results.map((comment) =>
+          comment.id === id
             ? {
                 ...comment,
                 content: formContent.trim(),
                 updated_at: "now",
               }
-            : comment;
-        }),
+            : comment
+        ),
       }));
       setShowEditForm(false);
     } catch (err) {
@@ -54,18 +50,18 @@ function CommentEditForm(props) {
       </Form.Group>
       <div className="text-right">
         <button
-          className={styles.Button}
+          className={`${btnStyles.Button} ${btnStyles.ButtonSmall}`}
           onClick={() => setShowEditForm(false)}
           type="button"
         >
-          cancel
+          Cancel
         </button>
         <button
-          className={styles.Button}
-          disabled={!content.trim()}
+          className={`${btnStyles.Button} ${btnStyles.ButtonSmall}`}
+          disabled={!formContent.trim()}
           type="submit"
         >
-          save
+          Save
         </button>
       </div>
     </Form>

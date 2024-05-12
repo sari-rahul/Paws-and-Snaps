@@ -39,6 +39,11 @@ i:hover {
   transition: color ease-in-out 0.3s;
   color: #FFB7CE;
 }
+.ButtonContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /*----------------------------------------------------*/
 .Content {
@@ -77,5 +82,11 @@ figure {
 @media screen and (max-width: 600px){
   a {
     font-size: .8 rem;
+  }
+}
+@media screen and (max-width: 600px){
+  .Main{
+    padding:0px !important;
+    min-height: 65vh;
   }
 }

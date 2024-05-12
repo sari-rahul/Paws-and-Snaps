@@ -52,12 +52,14 @@ const Article = (props) => {
       <h1 className={styles.Title}>{title}</h1>
 
       <div className={styles.Author}>
-        <div>
+        <div className={styles.AuthorInnerDiv}>
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} height={120} />
-            {owner}
         </Link>
-        <p className={styles.Updation}>Last Updated: {updated_at} </p>
+        <div className={styles.NameAndTime}>
+            <span className={styles.Owner}>{owner}</span>
+            <span className={styles.Date}>Last Updated: {updated_at}</span>
+        </div>
         </div>
         <div className={styles.Margin}>
           {is_owner && articlePage && (
@@ -67,10 +69,10 @@ const Article = (props) => {
             />
           )}
         </div>
-
       </div>
 
-
+      <br/>
+      <br/>
       <div dangerouslySetInnerHTML={{ __html: article }}
         className={styles.Content}></div>
       </div>

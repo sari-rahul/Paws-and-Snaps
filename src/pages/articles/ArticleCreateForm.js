@@ -25,7 +25,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 
 
 function ArticleCreateForm() {
-  //useRedirect('loggedOut');
+  useRedirect('loggedOut');
   const [errors, setErrors] = useState({});
   const [articleData, setArticleData] = useState({
     title: "",
@@ -142,16 +142,18 @@ function ArticleCreateForm() {
           {message}
         </Alert>
       ))}
-
+      <div className={appStyles.ButtonContainer}>
       <Button
-        className={`${styles.Button} ${btnStyles.Button} `}
+        className={`${btnStyles.Button}  `}
         onClick={() => history.goBack()}
       >
         Cancel
       </Button>
-      <Button className={`${styles.Button}`} type="submit">
+      <br/>
+      <Button className={`${btnStyles.Button}`} type="submit">
         Create
       </Button>
+      </div>
     </div>
   );
 
@@ -166,11 +168,11 @@ function ArticleCreateForm() {
               {image ? (
                 <>
                   <figure>
-                    <Image className={styles.Image} src={image} />
+                    <Image className={appStyles.Image} src={image} />
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${styles.Button}`}
+                      className={`${btnStyles.Button}`}
                       htmlFor="image-upload"
                     >
                       Change the image

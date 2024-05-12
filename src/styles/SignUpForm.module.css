@@ -22,6 +22,11 @@
     text-align: center;
     display: block;
 }
+.SignUpForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
   
 .Link span {
     color:#042eff ;
@@ -32,6 +37,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height:70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -60,4 +69,13 @@
         width:100%;
         
     }
+
+}
+@media screen and (max-width: 800px) {
+
+    .CardContainer{
+        width:100%;
+
+    }
+
 }

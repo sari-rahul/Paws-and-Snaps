@@ -1,6 +1,7 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
+import btnStyles from "../styles/Button.module.css";
 import  {useHistory} from 'react-router';
 
 // The forwardRef is important!!
@@ -17,7 +18,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
 ));
 const ButtonComponent = React.forwardRef(({ onClick }, ref) => (
   <button
-    className={`${styles.ProfileButton}`}
+    className={`${btnStyles.Button}`}
     ref={ref}
     onClick={(e) => {
       e.preventDefault();

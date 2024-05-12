@@ -90,7 +90,7 @@ const NavBar = () => {
   );
 
   return (
-    <Container>
+    <Container className={styles.Container}>
       <div className={styles.LogoAndSearchContainer}>
         <div>
         <img src={logo} alt="logo" height="120" />

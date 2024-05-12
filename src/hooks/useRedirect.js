@@ -16,7 +16,7 @@ export const useRedirect = (userAuthStatus) => {
         await axios.post('/dj-rest-auth/token/refresh/');
         // if the user is logged in, the following code will run
         if (userAuthStatus === 'loggedIn') {
-          history.push('/');
+          history.push('/intro');
         }
       } catch (err) {
         // if the user is not logged in, the following code will run

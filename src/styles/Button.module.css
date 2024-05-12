@@ -5,17 +5,24 @@
   width: 50%;
 
   border: 1px solid #aeaeae;
+  background-color: #e8cfcf;
   min-width: 75px;
-  background-color: black;
-  color:pink;
+  font-size: 20px;
+  color:black;
 
+}
+.ButtonWide{
+  width:100%;
+}
+.ButtonSmall{
+  width:15%;
 }
   
 .Button:hover {
-    background-color: rgb(176, 173, 173) !important;
+    background-color: pink !important;
     cursor: pointer;
     color: black;
-    border: 1px solid black;
+    border: 3px solid rgb(129, 127, 127);
 
   }
   

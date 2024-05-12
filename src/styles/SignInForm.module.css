@@ -29,6 +29,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height:65vh;
+    display: flex;
+    
 }
 .SignInForm{
     display: flex;
@@ -64,4 +67,6 @@
         width:100%;
         
     }
+}
+@media screen and (max-width: 500px) {
 }

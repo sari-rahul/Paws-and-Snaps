@@ -13,11 +13,7 @@ import styles from "../../styles/About.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-/**
- * Returns the About component with user-specific content and conditional rendering based on the currentUser state.
- *
- * @returns {JSX.Element} The About component JSX
- */
+
 const About = () => {
   {/** {const currentUser = useCurrentUser();
   if (currentUser) {

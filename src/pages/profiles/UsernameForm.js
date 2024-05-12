@@ -16,7 +16,7 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-
+import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/ProfileEditForm.module.css";
 
@@ -78,18 +78,21 @@ const UsernameForm = () => {
                 {message}
               </Alert>
             ))}
+            <div className={appStyles.ButtonContainer}>
             <Button
-              className={`${btnStyles.Button} s`}
+              className={`${btnStyles.Button} ${btnStyles.ButtonWide} `}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
+            <br />
             <Button
-              className={`${btnStyles.Button}`}
+              className={`${btnStyles.Button} ${btnStyles.ButtonWide}`}
               type="submit"
             >
               save
             </Button>
+            </div>
           </Form>
         </Container>
       </Col>

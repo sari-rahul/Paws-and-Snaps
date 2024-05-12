@@ -48,6 +48,7 @@ const SignUpForm = () => {
     <Container className={styles.SignUpContainer}>
       <Container>
         <Card className={styles.CardContainer}>
+          <br/>
           <Card.Title className={styles.Header}>Sign up</Card.Title>
         <br />
         <br />

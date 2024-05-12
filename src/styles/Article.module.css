@@ -35,14 +35,28 @@
   height: fit-content;
   padding-left: 50px;
 } 
-.Author p{
-  margin-top: auto;
-  text-transform: capitalize;
+.AuthorInnerDiv{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
 }
-.Updation{
-  margin-left: 0px;  
-  font-family: 'Oswald','sans-serif';
+.NameAndTime{
+  display: flex;
+  flex-direction: column;
 }
+
+.Owner {
+  font-size:20px;
+  font-weight: 600;
+  color: black;
+  margin-right: 8px;
+}
+
+.Date {
+  color: #949496;
+}
+
 .Margin{
   margin: auto;
   margin-right: 0px;
@@ -65,5 +79,24 @@
   }
   .Author{
     padding-left: 0px;
+  }
+  .AuthorInnerDiv{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .Author{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+  }
+  .NameAndTime{
+    align-items: center;
+    justify-content: center;
+  }
+  .Margin{
+    margin: auto;
   }
 }
