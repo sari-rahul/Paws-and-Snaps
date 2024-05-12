@@ -10,3 +10,18 @@
     right: 0;
     z-index: 99;
   }
+  .ProfileButton{
+    width: 25%;
+    border-radius: 1.5rem;
+    margin: auto;
+    padding: 10px 50px;
+    border: 1px solid #aeaeae;
+    background-color: #afaeae;
+    min-width: 75px;
+    text-align: center;
+  }
+  @media screen and (max-width: 991px) {
+    .ProfileButton{
+      padding: 10px ;
+    }
+  }

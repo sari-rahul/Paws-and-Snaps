@@ -1,6 +1,7 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
+import  {useHistory} from 'react-router';
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -14,6 +15,16 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     }}
   />
 ));
+const ButtonComponent = React.forwardRef(({ onClick }, ref) => (
+  <button
+    className={`${styles.ProfileButton}`}
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  >Edit
+  </button>));
 
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
@@ -43,3 +54,27 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
     </Dropdown>
   );
 };
+export function ProfileEditDropdown({id}) {
+  const history = useHistory();
+  return(
+    <Dropdown>
+       <Dropdown.Toggle as={ButtonComponent}/>
+        <Dropdown.Menu>
+          <Dropdown.Item 
+            onClick={()=>history.push(`/profiles/${id}/edit`)}
+              aria-label="edit-profile">
+            <i className="fas fa-edit" aria-hidden="true"/>Edit Profile
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={()=> history.push(`/profiles/${id}/edit/username`)}
+            aria-label="edit-username">
+            <i className="fas fa-id-card" aria-hidden="true"/>Edit Username
+          </Dropdown.Item>
+          <Dropdown.Item
+          onClick={()=>history.push(`/profiles/${id}/edit/password`)}>
+            <i className="fa fa-key" aria-hidden="true"></i>Edit Password
+          </Dropdown.Item>
+        </Dropdown.Menu>
+    </Dropdown>
+  )
+}

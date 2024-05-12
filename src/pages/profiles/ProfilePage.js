@@ -18,6 +18,7 @@ import appStyles from "../../App.module.css";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "../articles/ArticlePage";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 
 function ProfilePage() {
@@ -81,12 +82,14 @@ function ProfilePage() {
           </div>
 
         </div>
+        {profile?.is_owner && <ProfileEditDropdown id={profile?.id}/>}
         <p className={styles.Bio}> Bio:Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea 
            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem 
            ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing 
-           et.{profile?.bio}</p>
+           et.{profile?.bio}
+        </p>
       </Col>
     </Row>
   );

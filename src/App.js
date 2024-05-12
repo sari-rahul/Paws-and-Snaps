@@ -14,6 +14,9 @@ import Footer from "./components/Footer";
 import Copyright from "./components/Copyright";
 import ArticleEditForm from "./pages/articles/ArticlesEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
   
@@ -32,6 +35,9 @@ function App() {
               <Route exact path="/articles/:id" render={() => <ArticlePage />} />
               <Route exact path="/articles/:id/edit" render={() => <ArticleEditForm />} />
               <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+              <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm/>} />
+              <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm/>} />
+              <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm/>} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
             <Footer/> 
