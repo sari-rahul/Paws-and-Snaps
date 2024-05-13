@@ -79,19 +79,34 @@ function ArticlesHomePage({ message }) {
               hasMore={!!article.next}
               next={() => fetchMoreData(article, setArticles)}
             >
-            {article.results.map((article) => (
+            <div className="d-flex flex-wrap justify-content-center">
+              {article.results.map((article) => (
                 <Col lg={4} key={article.id}>
                   <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
-                    <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
+                    <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
                     <Card.Body>
                       <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
                     </Card.Body>
                   </Card>
                 </Col>
-            ))}
-          </InfiniteScroll>
+              ))}
+            </div>
+        </InfiniteScroll>
           ) : <Asset spinner />}
       </Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-lg-none justify-content-center">
         <Col className="py-2 p-0 ">
