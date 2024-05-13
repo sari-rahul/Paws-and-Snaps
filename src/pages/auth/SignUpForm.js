@@ -116,6 +116,7 @@ const SignUpForm = () => {
             </Alert>
           ))}
         </Form>
+        <br />
         <Link className={styles.Link} to="/signin">
           Already have an account? <span>Sign in</span>
         </Link>

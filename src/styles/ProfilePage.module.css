@@ -2,7 +2,23 @@
     object-fit: cover;
     height: 300px;
     width: 300px;
+    margin-top: 3%;
+    border:10px solid #878484;
+    animation-name: spinImage;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    transform-origin: center; /* Rotate around the center */
   }
+
+  @keyframes spinImage {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+
   .SmallCardImage{
     height:200px;
     border: 1px solid grey !important;
@@ -47,6 +63,7 @@
     .ProfileImage {
       width: 150px;
       height: 150px;
+      margin-top: 5%;
     }
     .Bio{
       padding: 5%;

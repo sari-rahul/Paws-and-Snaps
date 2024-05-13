@@ -21,7 +21,7 @@ export const ProfileDataProvider = ({ children }) => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
-          "/profiles/?ordering=-followers_count"
+          "/profiles/"
         );
         setProfileData((prevState) => ({
           ...prevState,

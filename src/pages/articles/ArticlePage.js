@@ -33,7 +33,7 @@ function ArticlePage() {
                 ])
                 setArticle({results:[article]})
                 setComments(comments)
-                console.log(article)
+                console.log (article)
                 setHasLoaded(true);
             }catch(err){
                 console.log(err)
@@ -69,6 +69,7 @@ function ArticlePage() {
                   profile_id={currentUser.profile_id}
                   profileImage={profile_image}
                   article={id}
+                  article_owner={article.results[0].is_owner}
                   setArticle={setArticle}
                   setComments={setComments}
                 />

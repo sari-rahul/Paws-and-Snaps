@@ -12,6 +12,7 @@ input{
     color: black;
     border-radius: 5px;
     margin-bottom: 10px;
+    font-size: 15px !important;
 }
 .Title{
     border: 1px solid rgb(121, 121, 121);

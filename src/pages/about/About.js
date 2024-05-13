@@ -14,12 +14,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
-const About = () => {
-  {/** {const currentUser = useCurrentUser();
-  if (currentUser) {
-    return <Redirect to="/intro" />;
-  }}*/}
-  
+const About = () => { 
   return (
     <Container className={styles.OutterContainer} >
       <Card className= {styles.CardContainer} >
