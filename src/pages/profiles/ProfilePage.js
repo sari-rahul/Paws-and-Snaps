@@ -1,17 +1,13 @@
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import {Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import Asset from "../../components/Assets";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
@@ -20,54 +16,49 @@ import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "../articles/ArticlePage";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
-
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const currentUser = useCurrentUser();
-  const {id}= useParams();
+  const { id } = useParams();
   const setProfileData = useSetProfileData();
-  const {pageProfile} = useProfileData();
+  const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const [profileArticles, setProfileArticles] = useState({ results: [] });
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const history = useHistory(); 
+  const history = useHistory();
 
   useEffect(() => {
-    const fetchData = async ()=>{
-        try{
-            const [{data : pageProfile},{data:profileArticles}] = await Promise.all([
-                axiosReq.get(`/profiles/${id}`),
-                axiosReq.get(`/articles/?owner__profile=${id}`),
-            ]);
-            setProfileData((prevState)=>({
-                ...prevState,
-                pageProfile:{results:[pageProfile]}
-            }));
-            setProfileArticles(profileArticles);
-            setHasLoaded(true);
-        }catch(err){
-            console.log(err);
-        }
+    const fetchData = async () => {
+      try {
+        const [{ data: pageProfile }, { data: profileArticles }] = await Promise.all([
+          axiosReq.get(`/profiles/${id}`),
+          axiosReq.get(`/articles/?owner__profile=${id}`),
+        ]);
+        setProfileData((prevState) => ({
+          ...prevState,
+          pageProfile: { results: [pageProfile] }
+        }));
+        setProfileArticles(profileArticles);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
     };
-      fetchData();
-  }, [id,setProfileData]);
+    fetchData();
+  }, [id, setProfileData]);
 
-  // Function to handle click on a card
   const handleCardClick = (selectedArticle) => {
     setSelectedArticle(selectedArticle);
-    // Redirect to the ArticlePage with the selected article's ID
     history.push(`/articles/${selectedArticle.id}`);
   };
-   // Function to open a link in a new tab
+
   const openLinkInNewTab = (link) => {
     window.open(link, "_blank");
   };
-//The profile data of the users
+
   const mainProfile = (
     <Row noGutters className="justify-content-center text-center">
       <Col lg={10} className="text-lg-center">
-        <Image src={profile?.image} roundedCircle className={styles.ProfileImage}/>
-
+        <Image src={profile?.image} roundedCircle className={styles.ProfileImage} />
         <h3 className="m-2">{profile?.owner}</h3>
         <p className={styles.MemberSince}>Member since: {profile?.created_at}</p>
         <div className={styles.ContactIcons}>
@@ -80,12 +71,9 @@ function ProfilePage() {
           <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile.instagram)}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
           </div>
-
         </div>
-        {profile?.is_owner && <ProfileEditDropdown id={profile?.id}/>}
-        <p className={styles.Bio}>
-          {profile?.bio}
-        </p>
+        {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+        <p className={styles.Bio}>{profile?.bio}</p>
       </Col>
     </Row>
   );
@@ -93,61 +81,59 @@ function ProfilePage() {
   const mainProfileArticles = (
     <Row noGutters className="justify-content-center text-center">
       <Container>
-      <Col>
-        <hr />
-        <h3>{profile?.owner}'s Articles</h3>
-        <hr />
-      {/* Large screen layout layout */}
-        <Row className="d-none d-lg-flex justify-content-center">
-        {/* Render  cards in a row  */}
-        {hasLoaded && profileArticles.results.length > 1 ? (
-           profileArticles.results.map(( profileArticles) => (
-            <Col key={ profileArticles.id} lg={4}>
-              <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticles)} >
-                <Card.Img variant="top" src={ profileArticles.image} className={styles.SmallCardImage}/>
-                <Card.Body>
-                  <Card.Title className={styles.SmallCardTitle}>{ profileArticles.title}</Card.Title>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))
-        ):<Asset spinner />}
-        </Row>
-      {/* Mobile layout */}
-        <Row noGutters className="h-100 d-flex d-lg-none justify-content-center">
-          <Col className="py-2 p-0 ">
-            {hasLoaded ? (
-              <>
-                {profileArticles.results.length ? (
-                  profileArticles.results.map((profileArticles) => (
-                    <Card className={`${styles.Card} my-3`} key={profileArticles.id} onClick={() => handleCardClick(profileArticles)}>
-                      <Card.Img variant="top" src={profileArticles.image}className={styles.SmallScreenCardImage} />
-                      <Card.Body>
-                        <Card.Title>{profileArticles.title}</Card.Title>
-
-                      </Card.Body>
-                    </Card>
-                  ))
-                ) : <Asset spinner />}
-              </>
+        <Col>
+          <hr />
+          <h3>{profile?.owner}'s Articles</h3>
+          <hr />
+          <Row className="d-none d-lg-flex justify-content-center">
+            {hasLoaded && profileArticles.results.length > 0 ? (
+              profileArticles.results.map((profileArticle) => (
+                <Col key={profileArticle.id} lg={4}>
+                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticle)}>
+                    <Card.Img variant="top" src={profileArticle.image} className={styles.SmallCardImage} />
+                    <Card.Body>
+                      <Card.Title className={styles.SmallCardTitle}>{profileArticle.title}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))
             ) : (
-              <Container className={appStyles.Content}>
-                <Asset spinner />
-              </Container>
+              <p>No articles yet</p>
             )}
-          </Col>
-        </Row>
-      </Col>
-      {/* Render Article component if an article is selected */}
-      {selectedArticle && <ArticlePage {...selectedArticle} />}
+          </Row>
+          <Row noGutters className="h-100 d-flex d-lg-none justify-content-center">
+            <Col className="py-2 p-0">
+              {hasLoaded ? (
+                <>
+                  {profileArticles.results.length > 0 ? (
+                    profileArticles.results.map((profileArticle) => (
+                      <Card className={`${styles.Card} my-3`} key={profileArticle.id} onClick={() => handleCardClick(profileArticle)}>
+                        <Card.Img variant="top" src={profileArticle.image} className={styles.SmallScreenCardImage} />
+                        <Card.Body>
+                          <Card.Title>{profileArticle.title}</Card.Title>
+                        </Card.Body>
+                      </Card>
+                    ))
+                  ) : (
+                    <p>No articles yet</p>
+                  )}
+                </>
+              ) : (
+                <Container className={appStyles.Content}>
+                  <Asset spinner />
+                </Container>
+              )}
+            </Col>
+          </Row>
+        </Col>
       </Container>
     </Row>
   );
 
   return (
     <>
-    <Row className="justify-content-center">
-      <Col>
+      <Row className="justify-content-center">
+        <Col>
           {hasLoaded ? (
             <Container className={styles.ProfileContainer}>
               {mainProfile}
@@ -156,10 +142,8 @@ function ProfilePage() {
           ) : (
             <Asset spinner />
           )}
-      </Col>
-    </Row>
-
-    
+        </Col>
+      </Row>
     </>
   );
 }
