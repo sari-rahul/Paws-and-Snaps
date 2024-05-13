@@ -23,11 +23,11 @@ const About = () => {
             <h4 className={styles.Quote}> "Unleash Your Stories, Frame Your Memories: 
             Paws & Snaps, Where Pets Meet Pixels!"</h4> 
               <br />
-              <p className={styles.CardText}>Join our vibrant community to share 
+              <div className={styles.CardText}>Join our vibrant community to share 
               stories, photos, and valuable insights.<br/> Whether you're a seasoned 
               writer or just starting out, Paws & Snaps welcomes you to showcase 
               your passion and creativity. <br /><br />Sign up now to celebrate the bond 
-              between humans and animals, one blog post and snapshot at a time.</p>
+              between humans and animals, one blog post and snapshot at a time.</div>
           </Card.Text>
           {/*
            * Show send us a message button if user is logged in

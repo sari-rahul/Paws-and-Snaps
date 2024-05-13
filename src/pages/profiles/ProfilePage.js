@@ -1,22 +1,27 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Import from React Bootstrap 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import Asset from "../../components/Assets";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import { axiosReq } from "../../api/axiosDefault";
-import ArticlePage from "../articles/ArticlePage";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import ArticlePage from "../articles/ArticlePage";
+
 
 
 function ProfilePage() {
@@ -26,7 +31,6 @@ function ProfilePage() {
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const [profileArticles, setProfileArticles] = useState({ results: [] });
-  const [selectedArticle, setSelectedArticle] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -49,9 +53,8 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
-  const handleCardClick = (selectedArticle) => {
-    setSelectedArticle(selectedArticle);
-    history.push(`/articles/${selectedArticle.id}`);
+  const handleCardClick = (selectedProfileArticle) => {
+    history.push(`/articles/${selectedProfileArticle.id}`);
   };
 
   const openLinkInNewTab = (link) => {
@@ -88,30 +91,57 @@ function ProfilePage() {
           <hr />
           <h3>{profile?.owner}'s Articles</h3>
           <hr />
-          <Row className="d-none d-lg-flex justify-content-center">
-              {/* Render three cards in a row  */}
-              {hasLoaded &&  profileArticles.results.length > 0  ? (
-              <InfiniteScroll
-                    dataLength={profileArticles.results.length}
-                    loader={<Asset spinner />}
-                    hasMore={!!profileArticles.next}
-                    next={() => fetchMoreData(profileArticles, setProfileArticles)}
-                  >
-                  <div className="d-flex flex-wrap justify-content-center">
-                    {profileArticles.results.map((profilesArticle) => (
-                      <Col lg={4} key={profileArticles.id}>
-                        <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticles)}>
-                          <Card.Img variant="top" src={profilesArticle.image} className={styles.SmallCardImage} />
-                          <Card.Body>
-                            <Card.Title className={styles.SmallCardTitle}>{profilesArticle.title}</Card.Title>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    ))}
-                  </div>
-              </InfiniteScroll>
-                ) : <Asset spinner />}
+      {/* Larger screen layout */}
+        <Row className="d-none d-lg-flex justify-content-center">
+          {/* Render three cards in a row  */}
+          {hasLoaded && profileArticles.results.length > 0 ? (
+            <InfiniteScroll
+              dataLength={profileArticles.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!profileArticles.next}
+              next={() => fetchMoreData(profileArticles, setProfileArticles)}
+            >
+              <div className="d-flex flex-wrap justify-content-center">
+                {profileArticles.results.map((profileArticle) => (
+                  <Col lg={4} key={profileArticle.id}>
+                    <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticle)}>
+                      <Card.Img variant="top" src={profileArticle.image} className={styles.SmallCardImage} />
+                      <Card.Body>
+                        <Card.Title className={styles.SmallCardTitle}>{profileArticle.title}</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </div>
+            </InfiniteScroll>
+          ) : <Asset spinner />}
+        </Row>
+        {/* Medium  screen layout */}
+          <Row className="d-none d-md-flex  d-lg-none justify-content-center">
+        {/* Render three cards in a row  */}
+        {hasLoaded && profileArticles.results.length > 1 ? (
+          <InfiniteScroll
+            dataLength={profileArticles.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!profileArticles.next}
+            next={() => fetchMoreData(profileArticles, setProfileArticles)}
+          >
+            <div className="d-flex flex-wrap justify-content-center">
+              {profileArticles.results.map((profileArticles) => (
+                <Col md={6} key={profileArticles.id}>
+                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticles)}>
+                    <Card.Img variant="top" src={profileArticles.image} className={styles.SmallCardImage} />
+                    <Card.Body>
+                      <Card.Title className={styles.SmallCardTitle}>{profileArticles.title}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </div>
+          </InfiniteScroll>
+        ) : <Asset spinner />}
           </Row>
+      {/* Mobile layout */}
           <Row className="h-100 d-flex d-lg-none justify-content-center">
           <Col className="py-2 p-0 ">
             {hasLoaded && profileArticles.results.length > 1 ? (
@@ -158,6 +188,7 @@ function ProfilePage() {
           )}
         </Col>
       </Row>
+      
     </>
   );
 }
