@@ -12,12 +12,15 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefault";
 import btnStyles from "../../styles/Button.module.css"
 
+
 function CommentCreateForm(props) {
-  const { article, setArticle, setComments, profileImage, profile_id } = props;
+  const { article, setArticle, setComments, profileImage, profile_id, article_owner} = props;
   const [content, setContent] = useState("");
 
+
   const handleChange = (event) => {
-    setContent(event.target.value);
+    if (!article_owner)
+      setContent(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -37,6 +40,7 @@ function CommentCreateForm(props) {
             ...prevArticle.results[0],
             comments_count: prevArticle.results[0].comments_count + 1,
           },
+          console.log('Current article',prevArticle)
         ],
       }));
       setContent("");
@@ -69,6 +73,7 @@ function CommentCreateForm(props) {
       >
         <i className="fa fa-paper-plane" aria-hidden="true"></i>
       </button>
+      
     </Form>
   );
 }
