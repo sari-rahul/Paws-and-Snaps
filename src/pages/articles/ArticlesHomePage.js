@@ -71,7 +71,7 @@ function ArticlesHomePage({ message }) {
         </Col>
       </Row>
       <Row className="d-none d-lg-flex justify-content-center">
-        {/* Render  cards in a row  */}
+        {/* Render three cards in a row  */}
         {hasLoaded && article.results.length > 1 ? (
         <InfiniteScroll
               dataLength={article.results.length}
@@ -94,19 +94,6 @@ function ArticlesHomePage({ message }) {
         </InfiniteScroll>
           ) : <Asset spinner />}
       </Row>
-
-
-
-
-
-
-
-
-
-
-
-
-
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-lg-none justify-content-center">
         <Col className="py-2 p-0 ">

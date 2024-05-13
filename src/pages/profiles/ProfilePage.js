@@ -15,6 +15,9 @@ import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataCon
 import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "../articles/ArticlePage";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -86,47 +89,58 @@ function ProfilePage() {
           <h3>{profile?.owner}'s Articles</h3>
           <hr />
           <Row className="d-none d-lg-flex justify-content-center">
-            {hasLoaded && profileArticles.results.length > 0 ? (
-              profileArticles.results.map((profileArticle) => (
-                <Col key={profileArticle.id} lg={4}>
-                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticle)}>
-                    <Card.Img variant="top" src={profileArticle.image} className={styles.SmallCardImage} />
+              {/* Render three cards in a row  */}
+              {hasLoaded &&  profileArticles.results.length > 0  ? (
+              <InfiniteScroll
+                    dataLength={profileArticles.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!profileArticles.next}
+                    next={() => fetchMoreData(profileArticles, setProfileArticles)}
+                  >
+                  <div className="d-flex flex-wrap justify-content-center">
+                    {profileArticles.results.map((profilesArticle) => (
+                      <Col lg={4} key={profileArticles.id}>
+                        <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticles)}>
+                          <Card.Img variant="top" src={profilesArticle.image} className={styles.SmallCardImage} />
+                          <Card.Body>
+                            <Card.Title className={styles.SmallCardTitle}>{profilesArticle.title}</Card.Title>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    ))}
+                  </div>
+              </InfiniteScroll>
+                ) : <Asset spinner />}
+          </Row>
+          <Row className="h-100 d-flex d-lg-none justify-content-center">
+          <Col className="py-2 p-0 ">
+            {hasLoaded && profileArticles.results.length > 1 ? (
+              <InfiniteScroll
+              dataLength={profileArticles.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!profileArticles.next}
+              next={() => fetchMoreData(profileArticles, setProfileArticles)}
+            >
+            {profileArticles.results.map((profileArticles) => (
+                <Col lg={4} key={profileArticles.id}>
+                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticles)}>
+                    <Card.Img variant="top" src={profileArticles.image} className={styles.SmallCardImage}/>
                     <Card.Body>
-                      <Card.Title className={styles.SmallCardTitle}>{profileArticle.title}</Card.Title>
+                      <Card.Title className={styles.SmallCardTitle}>{profileArticles.title}</Card.Title>
                     </Card.Body>
                   </Card>
                 </Col>
-              ))
+            ))}
+              </InfiniteScroll>
             ) : (
-              <p>No articles yet</p>
+              <Container className={appStyles.Content}>
+                <Asset spinner />
+              </Container>
             )}
-          </Row>
-          <Row noGutters className="h-100 d-flex d-lg-none justify-content-center">
-            <Col className="py-2 p-0">
-              {hasLoaded ? (
-                <>
-                  {profileArticles.results.length > 0 ? (
-                    profileArticles.results.map((profileArticle) => (
-                      <Card className={`${styles.Card} my-3`} key={profileArticle.id} onClick={() => handleCardClick(profileArticle)}>
-                        <Card.Img variant="top" src={profileArticle.image} className={styles.SmallScreenCardImage} />
-                        <Card.Body>
-                          <Card.Title>{profileArticle.title}</Card.Title>
-                        </Card.Body>
-                      </Card>
-                    ))
-                  ) : (
-                    <p>No articles yet</p>
-                  )}
-                </>
-              ) : (
-                <Container className={appStyles.Content}>
-                  <Asset spinner />
-                </Container>
-              )}
-            </Col>
+          </Col>
           </Row>
         </Col>
-      </Container>
+    </Container>
     </Row>
   );
 
