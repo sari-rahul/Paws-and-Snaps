@@ -94,8 +94,50 @@ function ArticlesHomePage({ message }) {
         </InfiniteScroll>
           ) : <Asset spinner />}
       </Row>
+      <Row className=" d-none d-md-flex d-lg-none  justify-content-center">
+      {/* Medium screen layout */}
+      <Col>
+        {/*Search Bar*/}
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            placeholder="Search Articles"
+          />
+        </Form>
+      </Col>
+      </Row>
+      <Row className="d-none d-md-flex  d-lg-none justify-content-center">
+        {/* Render three cards in a row  */}
+        {hasLoaded && article.results.length > 1 ? (
+          <InfiniteScroll
+            dataLength={article.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!article.next}
+            next={() => fetchMoreData(article, setArticles)}
+          >
+            <div className="d-flex flex-wrap justify-content-center">
+              {article.results.map((article) => (
+                <Col md={6} key={article.id}>
+                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
+                    <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
+                    <Card.Body>
+                      <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </div>
+          </InfiniteScroll>
+        ) : <Asset spinner />}
+      </Row>
+
       {/* Mobile layout */}
-      <Row className="h-100 d-flex d-lg-none justify-content-center">
+      <Row className="h-100 d-flex d-md-none justify-content-center">
         <Col className="py-2 p-0 ">
           {/*Search Bar*/}
         <Form
@@ -119,7 +161,7 @@ function ArticlesHomePage({ message }) {
           {article.results.map((article) => (
               <Col lg={4} key={article.id}>
                 <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
-                  <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
+                <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
                   <Card.Body>
                     <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
                   </Card.Body>

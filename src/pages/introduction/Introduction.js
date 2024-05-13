@@ -101,7 +101,7 @@ const Introduction = (filter = "") => {
                 </div>
               </div>
             ))
-          ): <Asset smallSpinner />}
+          ): <Asset spinner />}
           {/* Render Article component if an article is selected */}
           {selectedQuestion && <ArticlePage {...selectedQuestion} />}
         </Col>
