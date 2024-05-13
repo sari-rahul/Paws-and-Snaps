@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal React Bootstrap 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -16,6 +18,7 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/ArticlesHomePage.module.css";
 import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "./ArticlePage";
+import { fetchMoreData } from "../../utils/utils";
 
 
 function ArticlesHomePage({ message }) {
@@ -49,7 +52,7 @@ function ArticlesHomePage({ message }) {
   };
 
   return (
-    <Container className={styles.Container}onClick={() => setSelectedArticle(null)}>      
+    <Container className={styles.Container} onClick={() => setSelectedArticle(null)}>      
       {/* Larger screen layout */}
       <Row className="d-none d-lg-flex justify-content-center">        
         <Col>
@@ -70,17 +73,24 @@ function ArticlesHomePage({ message }) {
       <Row className="d-none d-lg-flex justify-content-center">
         {/* Render  cards in a row  */}
         {hasLoaded && article.results.length > 1 ? (
-          article.results.map((article) => (
-            <Col key={article.id} lg={4}>
-              <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
-                <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
-                <Card.Body>
-                  <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))
-        ):<Asset spinner />}
+        <InfiniteScroll
+              dataLength={article.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!article.next}
+              next={() => fetchMoreData(article, setArticles)}
+            >
+            {article.results.map((article) => (
+                <Col lg={4} key={article.id}>
+                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
+                    <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
+                    <Card.Body>
+                      <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+            ))}
+          </InfiniteScroll>
+          ) : <Asset spinner />}
       </Row>
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-lg-none justify-content-center">
@@ -97,20 +107,24 @@ function ArticlesHomePage({ message }) {
             placeholder="Search Articles"
           />
         </Form>
-          {hasLoaded ? (
-            <>
-              {article.results.length ? (
-                article.results.map((article) => (
-                  <Card className={`${styles.Card} my-3`} key={article.id} onClick={() => handleCardClick(article)}>
-                    <Card.Img variant="top" src={article.image}className={styles.SmallScreenCardImage} />
-                    <Card.Body>
-                      <Card.Title>{article.title}</Card.Title>
-
-                    </Card.Body>
-                  </Card>
-                ))
-              ) : <Asset spinner />}
-            </>
+          {hasLoaded && article.results.length > 1 ? (
+            <InfiniteScroll
+            dataLength={article.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!article.next}
+            next={() => fetchMoreData(article, setArticles)}
+          >
+          {article.results.map((article) => (
+              <Col lg={4} key={article.id}>
+                <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
+                  <Card.Img variant="top" src={article.image} className={styles.SmallCardImage}/>
+                  <Card.Body>
+                    <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Col>
+          ))}
+            </InfiniteScroll>
           ) : (
             <Container className={appStyles.Content}>
               <Asset spinner />

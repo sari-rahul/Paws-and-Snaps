@@ -12,6 +12,9 @@
   border: 1px solid grey !important;
 
 }
+.SmallCard{
+  max-width: 100%;
+}
 .SmallCardTitle{
   height:50px;
   overflow: hidden;

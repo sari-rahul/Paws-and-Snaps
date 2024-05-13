@@ -5,7 +5,7 @@
     margin-top: 3%;
     border:10px solid #878484;
     animation-name: spinImage;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-timing-function: linear;
     transform-origin: center; /* Rotate around the center */
   }
