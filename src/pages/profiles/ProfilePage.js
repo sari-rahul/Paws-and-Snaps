@@ -118,12 +118,12 @@ function ProfilePage() {
             </InfiniteScroll>
               ) : (
             <Container className={styles.EmptyFolder}>
-          <Asset src={EmptyFolder} message={"No Articles Yet"} />
+              <Asset src={EmptyFolder} message={"No Articles Yet"} />
             </Container>)
            : (
-          <Container className={appStyles.Content}>
+            <Container className={appStyles.Content}>
             <Asset spinner />
-          </Container>
+            </Container>
           )}
         </Row>
         {/* Medium  screen layout */}

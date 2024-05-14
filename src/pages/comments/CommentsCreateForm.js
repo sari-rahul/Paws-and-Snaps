@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import { OverlayTrigger, Tooltip, Tooltips } from "react-bootstrap";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import styles from "../../styles/CommentsCreateEditForm.module.css";
@@ -14,7 +15,14 @@ import btnStyles from "../../styles/Button.module.css"
 
 
 function CommentCreateForm(props) {
-  const { article, setArticle, setComments, profileImage, profile_id, article_owner} = props;
+  const { 
+    article, 
+    setArticle, 
+    setComments, 
+    profileImage, 
+    profile_id, 
+    article_owner
+  } = props;
   const [content, setContent] = useState("");
 
 
@@ -56,14 +64,27 @@ function CommentCreateForm(props) {
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profileImage} height={40} />
           </Link>
+          {article_owner ?
+          <OverlayTrigger 
+          placement="top"
+          overlay={<Tooltip> You can't Comment on your own Post!</Tooltip>}>
+            <Form.Control
+              className={styles.Form}
+              placeholder="Add Your Comment"
+              as="textarea"
+              value={content}
+              onChange={handleChange}
+              rows={0}
+            />
+          </OverlayTrigger>:
           <Form.Control
-            className={styles.Form}
-            placeholder="Add Your Comment"
-            as="textarea"
-            value={content}
-            onChange={handleChange}
-            rows={0}
-          />
+          className={styles.Form}
+          placeholder="Add Your Comment"
+          as="textarea"
+          value={content}
+          onChange={handleChange}
+          rows={0}
+        />}
         </InputGroup>
       </Form.Group>
       <button

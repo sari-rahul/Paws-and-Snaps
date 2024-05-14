@@ -34,6 +34,7 @@
   flex-direction: row;
   height: fit-content;
   padding-left: 50px;
+  margin-top: 4%;
 } 
 .AuthorInnerDiv{
   display: flex;
@@ -67,6 +68,9 @@
   .article-preview .Article_Content__1XSO0 
   .Article_Photo{
       display: none;
+  }
+  .Content{
+    padding-left:0px;
   }
 }
 @media (max-width: 550px) {

@@ -53,7 +53,7 @@ function ArticlePage() {
               <div className={styles.Container}>
                 <Article { ...article.results[0]} articlePage/>
               </div>
-              <div className={styles.CommentContainer}>
+              <div className={`${styles.CommentContainer} mt-4`}>
                 <h4>COMMENTS</h4>
                 <br /><br />
                 {hasLoaded ? 
@@ -100,7 +100,9 @@ function ArticlePage() {
                 "Comments"
               ) : null}
             </>
-          ):<Asset spinner />}  
+          ):(<Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>)} 
         </Col>
       </Row>
     </Container>
