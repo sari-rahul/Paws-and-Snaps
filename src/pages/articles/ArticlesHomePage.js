@@ -19,6 +19,9 @@ import styles from "../../styles/ArticlesHomePage.module.css";
 import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "./ArticlePage";
 import { fetchMoreData } from "../../utils/utils";
+import useDebounce from "../../hooks/useDebounce";
+import NoResults from "../../assets/not found.jpg";
+
 
 
 function ArticlesHomePage({ message }) {
@@ -28,11 +31,12 @@ function ArticlesHomePage({ message }) {
   const { pathname } = useLocation();
   const history = useHistory(); 
   const [query, setQuery] = useState("");
+  const debouncedQuery =useDebounce (query,500);// Debounce search query with a delay of 500ms
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/articles/?search=${query}`);
+        const { data } = await axiosReq.get(`/articles/?search=${debouncedQuery}`);
         setArticles(data);
         setHasLoaded(true);
       } catch (err) {
@@ -42,7 +46,7 @@ function ArticlesHomePage({ message }) {
 
     setHasLoaded(false);
     fetchPosts();
-  }, [pathname,query,]);
+  }, [pathname,debouncedQuery,]);
 
   // Function to handle click on a card
   const handleCardClick = (selectedArticle) => {
@@ -73,7 +77,7 @@ function ArticlesHomePage({ message }) {
       <Row className="d-none d-lg-flex justify-content-center">
         {/* Render three cards in a row  */}
         {hasLoaded ? (
-            article.results.length > 1 ? (
+            article.results.length > 0 ? (
               <InfiniteScroll
                 dataLength={article.results.length}
                 loader={<Asset spinner />}
@@ -95,7 +99,7 @@ function ArticlesHomePage({ message }) {
               </InfiniteScroll>
             ) : (
             <Container className={appStyles.Content}>
-              <Asset spinner />
+              <Asset src={NoResults} message={"No Results Found"} />
             </Container>
                 )
           ) : (
@@ -104,8 +108,9 @@ function ArticlesHomePage({ message }) {
             </Container>
           )}
       </Row>
-      <Row className=" d-none d-md-flex d-lg-none  justify-content-center">
+      
       {/* Medium screen layout */}
+      <Row className=" d-none d-md-flex d-lg-none  justify-content-center">
       <Col>
         {/*Search Bar*/}
         <Form
@@ -146,7 +151,7 @@ function ArticlesHomePage({ message }) {
           </InfiniteScroll>
         ) : (
           <Container className={appStyles.Content}>
-            <Asset spinner />
+            <Asset src={NoResults} message={"No Results Found"} />
           </Container>
         ) : (
           <Container className={appStyles.Content}>
@@ -191,7 +196,7 @@ function ArticlesHomePage({ message }) {
               </InfiniteScroll>
             ) : (
               <Container className={appStyles.Content}>
-                <Asset spinner />
+                <Asset src={NoResults} message={"No Results Found"} />
               </Container>
             )
             ) : (

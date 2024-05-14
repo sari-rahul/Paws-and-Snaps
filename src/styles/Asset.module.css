@@ -4,12 +4,10 @@
     justify-content: center;
     align-items: center;
     height: 70vh;
+    object-fit: contain;
   }
   .Spinner{
     height:400px;
     width:400px;
   }
-  .smallSpinner{
-    height:50px;
-    width:50px;
-  }
+  

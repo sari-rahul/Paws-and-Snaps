@@ -20,7 +20,8 @@ import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataCon
 import { axiosReq } from "../../api/axiosDefault";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { fetchMoreData } from "../../utils/utils";
-import ArticlePage from "../articles/ArticlePage";
+//import ArticlePage from "../articles/ArticlePage";
+import EmptyFolder from "../../assets/emptyfolder.webp";
 
 
 
@@ -94,7 +95,8 @@ function ProfilePage() {
       {/* Larger screen layout */}
         <Row className="d-none d-lg-flex justify-content-center">
           {/* Render three cards in a row  */}
-          {hasLoaded && profileArticles.results.length > 0 ? (
+          {hasLoaded ?
+             profileArticles.results.length > 0 ? (
             <InfiniteScroll
               dataLength={profileArticles.results.length}
               loader={<Asset spinner />}
@@ -114,12 +116,21 @@ function ProfilePage() {
                 ))}
               </div>
             </InfiniteScroll>
-          ) : <Asset spinner />}
+              ) : (
+            <Container className={styles.EmptyFolder}>
+          <Asset src={EmptyFolder} message={"No Articles Yet"} />
+            </Container>)
+           : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+          )}
         </Row>
         {/* Medium  screen layout */}
           <Row className="d-none d-md-flex  d-lg-none justify-content-center">
         {/* Render three cards in a row  */}
-        {hasLoaded && profileArticles.results.length > 1 ? (
+        {hasLoaded ?
+         profileArticles.results.length > 0 ? (
           <InfiniteScroll
             dataLength={profileArticles.results.length}
             loader={<Asset spinner />}
@@ -139,12 +150,22 @@ function ProfilePage() {
               ))}
             </div>
           </InfiniteScroll>
-        ) : <Asset spinner />}
+            ) : (
+          <Container className={styles.EmptyFolder}>
+            <Asset src={EmptyFolder} message={"No Articles Yet"} />
+          </Container>
+              )
+          : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+            )}
           </Row>
       {/* Mobile layout */}
-          <Row className="h-100 d-flex d-lg-none justify-content-center">
+          <Row className="h-100 d-flex  d-md-none d-lg-none justify-content-center">
           <Col className="py-2 p-0 ">
-            {hasLoaded && profileArticles.results.length > 1 ? (
+            {hasLoaded ?
+              profileArticles.results.length > 0 ? (
               <InfiniteScroll
               dataLength={profileArticles.results.length}
               loader={<Asset spinner />}
@@ -163,10 +184,14 @@ function ProfilePage() {
             ))}
               </InfiniteScroll>
             ) : (
+              <Container className={styles.EmptyFolder}>
+                <Asset src={EmptyFolder} message={"No Articles Yet !!"}/>
+              </Container>)
+            :(
               <Container className={appStyles.Content}>
                 <Asset spinner />
               </Container>
-            )}
+            )}          
           </Col>
           </Row>
         </Col>

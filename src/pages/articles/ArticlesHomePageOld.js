@@ -19,6 +19,8 @@ import styles from "../../styles/ArticlesHomePage.module.css";
 import { axiosReq } from "../../api/axiosDefault";
 import ArticlePage from "./ArticlePage";
 import { fetchMoreData } from "../../utils/utils";
+import EmptyFolder from "../../assets/emptyfolder.webp";
+
 
 
 function ArticlesHomePage({ message }) {
@@ -73,7 +75,7 @@ function ArticlesHomePage({ message }) {
       <Row className="d-none d-lg-flex justify-content-center">
         {/* Render three cards in a row  */}
         {hasLoaded ? (
-            article.results.length > 1 ? (
+            article.results.length > 0 ? (
               <InfiniteScroll
                 dataLength={article.results.length}
                 loader={<Asset spinner />}
@@ -94,8 +96,8 @@ function ArticlesHomePage({ message }) {
                 </div>
               </InfiniteScroll>
             ) : (
-            <Container className={appStyles.Content}>
-              <Asset spinner />
+            <Container>
+              <Asset src={EmptyFolder} message={"No Articles Yet"} />
             </Container>
                 )
           ) : (
@@ -122,7 +124,7 @@ function ArticlesHomePage({ message }) {
       </Col>
       </Row>
       <Row className="d-none d-md-flex  d-lg-none justify-content-center">
-        {/* Render three cards in a row  */}
+        {/* Render two cards in a row  */}
         {hasLoaded ?
         article.results.length > 1 ? (
           <InfiniteScroll
@@ -145,8 +147,8 @@ function ArticlesHomePage({ message }) {
             </div>
           </InfiniteScroll>
         ) : (
-          <Container className={appStyles.Content}>
-            <Asset spinner />
+          <Container >
+            <Asset src={EmptyFolder} message={"No Articles Yet"} />
           </Container>
         ) : (
           <Container className={appStyles.Content}>
@@ -190,8 +192,8 @@ function ArticlesHomePage({ message }) {
                 ))}
               </InfiniteScroll>
             ) : (
-              <Container className={appStyles.Content}>
-                <Asset spinner />
+              <Container>
+                <Asset src={EmptyFolder} message={"No Articles Yet"} />
               </Container>
             )
             ) : (

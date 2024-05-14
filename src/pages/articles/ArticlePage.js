@@ -76,7 +76,7 @@ function ArticlePage() {
                       </InfiniteScroll>
                     </div>
                   ) : (
-                    <Container className={appStyles.Content}>
+                    <Container >
                       No comments yet !!!
                     </Container>
                   ))
