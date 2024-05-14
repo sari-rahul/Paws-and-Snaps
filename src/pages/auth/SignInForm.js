@@ -41,7 +41,7 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/login/", signInData);
-      history.push();
+      history.push('/intro');
       console.log('redirected')
     } catch (err) {
       setErrors(err.response?.data);

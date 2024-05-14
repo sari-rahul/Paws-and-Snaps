@@ -1,7 +1,6 @@
-import styles from "./App.module.css";
-import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
+
 import "./api/axiosDefault";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
@@ -10,13 +9,17 @@ import ArticlePage from "./pages/articles/ArticlePage";
 import ArticleHomePage from "./pages/articles/ArticlesHomePage";
 import About from "./pages/about/About";
 import Introduction from "./pages/introduction/Introduction";
-import Footer from "./components/Footer";
 import Copyright from "./components/Copyright";
 import ArticleEditForm from "./pages/articles/ArticlesEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import styles from "./App.module.css";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+
+
 
 function App() {
   

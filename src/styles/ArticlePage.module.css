@@ -11,4 +11,6 @@
     text-align: left;
 
 }
-
+.CommentInfinitescroll{
+    min-width: 100%;
+}

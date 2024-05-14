@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import Col from "react-bootstrap/Col";
@@ -15,6 +16,8 @@ import Article from "./Article";
 import styles from '../../styles/ArticlePage.module.css'
 import CommentCreateForm from "../comments/CommentsCreateForm";
 import Comment from "../comments/Comment";
+import { fetchMoreData } from "../../utils/utils";
+import appStyles from '../../App.module.css'
 
 function ArticlePage() {
     const { id } = useParams()
@@ -53,16 +56,36 @@ function ArticlePage() {
               <div className={styles.CommentContainer}>
                 <h4>COMMENTS</h4>
                 <br /><br />
-                {comments.results.length ? (
-                  comments.results.map((comment) => (
-                    <Comment
-                      key={comment.id}
-                      {...comment}
-                      setArticle={setArticle}
-                      setComments={setComments}
-                    />
+                {hasLoaded ? 
+                  (comments.results.length ? (
+                    <div className={styles.CommentInfinitescroll}>
+                      <InfiniteScroll 
+                        dataLength={comments.results.length}
+                        loader={<Asset spinner />}
+                        hasMore={!!comments.next}
+                        next={() => fetchMoreData(comments, setComments)}
+                      >
+                        {comments.results.map((comment) => (
+                          <Comment
+                            key={comment.id}
+                            {...comment}
+                            setArticle={setArticle}
+                            setComments={setComments}
+                          />
+                        ))}
+                      </InfiniteScroll>
+                    </div>
+                  ) : (
+                    <Container className={appStyles.Content}>
+                      No comments yet !!!
+                    </Container>
                   ))
-                ) : 'No comments yet !!!'}
+                : (
+                  <Container className={appStyles.Content}>
+                    <Asset spinner />
+                  </Container>
+                )}
+
               </div>
               {currentUser ? (
                 <CommentCreateForm

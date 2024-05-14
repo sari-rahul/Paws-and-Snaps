@@ -72,27 +72,37 @@ function ArticlesHomePage({ message }) {
       </Row>
       <Row className="d-none d-lg-flex justify-content-center">
         {/* Render three cards in a row  */}
-        {hasLoaded && article.results.length > 1 ? (
-        <InfiniteScroll
-              dataLength={article.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!article.next}
-              next={() => fetchMoreData(article, setArticles)}
-            >
-            <div className="d-flex flex-wrap justify-content-center">
-              {article.results.map((article) => (
-                <Col lg={4} key={article.id}>
-                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
-                    <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
-                    <Card.Body>
-                      <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </div>
-        </InfiniteScroll>
-          ) : <Asset spinner />}
+        {hasLoaded ? (
+            article.results.length > 1 ? (
+              <InfiniteScroll
+                dataLength={article.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!article.next}
+                next={() => fetchMoreData(article, setArticles)}
+              >
+                <div className="d-flex flex-wrap justify-content-center">
+                  {article.results.map((innerArticle) => (
+                    <Col lg={4} key={innerArticle.id}>
+                      <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(innerArticle)}>
+                        <Card.Img variant="top" src={innerArticle.image} className={styles.SmallCardImage} />
+                        <Card.Body>
+                          <Card.Title className={styles.SmallCardTitle}>{innerArticle.title}</Card.Title>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))}
+                </div>
+              </InfiniteScroll>
+            ) : (
+            <Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>
+                )
+          ) : (
+            <Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>
+          )}
       </Row>
       <Row className=" d-none d-md-flex d-lg-none  justify-content-center">
       {/* Medium screen layout */}
@@ -113,7 +123,8 @@ function ArticlesHomePage({ message }) {
       </Row>
       <Row className="d-none d-md-flex  d-lg-none justify-content-center">
         {/* Render three cards in a row  */}
-        {hasLoaded && article.results.length > 1 ? (
+        {hasLoaded ?
+        article.results.length > 1 ? (
           <InfiniteScroll
             dataLength={article.results.length}
             loader={<Asset spinner />}
@@ -133,47 +144,62 @@ function ArticlesHomePage({ message }) {
               ))}
             </div>
           </InfiniteScroll>
-        ) : <Asset spinner />}
+        ) : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+        ) : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+            )}
       </Row>
 
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-md-none justify-content-center">
         <Col className="py-2 p-0 ">
           {/*Search Bar*/}
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            placeholder="Search Articles"
-          />
-        </Form>
-          {hasLoaded && article.results.length > 1 ? (
-            <InfiniteScroll
-            dataLength={article.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!article.next}
-            next={() => fetchMoreData(article, setArticles)}
+          <Form
+            className={styles.SearchBar}
+            onSubmit={(event) => event.preventDefault()}
           >
-          {article.results.map((article) => (
-              <Col lg={4} key={article.id}>
-                <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
-                <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
-                  <Card.Body>
-                    <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Col>
-          ))}
-            </InfiniteScroll>
-          ) : (
+            <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              placeholder="Search Articles"
+            />
+          </Form>
+          {hasLoaded ? (
+          article.results.length > 1 ? (
+              <InfiniteScroll
+                dataLength={article.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!article.next}
+                next={() => fetchMoreData(article, setArticles)}
+              >
+                {article.results.map((article) => (
+                  <Col lg={4} key={article.id}>
+                    <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
+                      <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
+                      <Card.Body>
+                        <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </InfiniteScroll>
+            ) : (
+              <Container className={appStyles.Content}>
+                <Asset spinner />
+              </Container>
+            )
+            ) : (
             <Container className={appStyles.Content}>
               <Asset spinner />
             </Container>
           )}
+
         </Col>
       </Row>
 

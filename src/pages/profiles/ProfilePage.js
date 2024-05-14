@@ -182,13 +182,13 @@ function ProfilePage() {
             <Container className={styles.ProfileContainer}>
               {mainProfile}
               {mainProfileArticles}
+               
             </Container>
           ) : (
             <Asset spinner />
           )}
         </Col>
-      </Row>
-      
+      </Row>      
     </>
   );
 }
