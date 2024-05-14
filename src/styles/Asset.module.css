@@ -5,6 +5,7 @@
     align-items: center;
     height: 70vh;
     object-fit: contain;
+    color: rgb(223, 128, 144) !important;
   }
   .Spinner{
     height:400px;

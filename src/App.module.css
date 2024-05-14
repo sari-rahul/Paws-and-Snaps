@@ -16,13 +16,11 @@ a {
 a:hover {
   text-decoration: underline;
   font-size: 1.4rem;
-  color: black;
-
-  
+  color: black;  
 }
 
 a:hover i {
-  color: #FFB7CE;
+  color: #f56593;
 }
 
 i {
@@ -34,7 +32,7 @@ i {
 
 i:hover {
   cursor: pointer;
-  color: #FFB7CE;
+  color: #f56593;
 }
 .ButtonContainer{
   display: flex;
@@ -61,6 +59,16 @@ input[type="file"] {
 figure {
   text-align: center;
   display: inline-block;
+}
+
+input:focus{
+  border-color: pink !important;
+  box-shadow: 0 0 0 .1rem rgb(239, 191, 191) !important;
+}
+textarea:focus{
+  border-color: pink !important;
+  box-shadow: 0 0 0 .1rem rgb(239, 191, 191) !important;
+  height:fit-content
 }
 
 /* scrollbar */

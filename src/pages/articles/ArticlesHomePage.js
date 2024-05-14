@@ -36,17 +36,22 @@ function ArticlesHomePage({ message }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/articles/?search=${debouncedQuery}`);
+        let endpoint = '/articles/';
+        // If debouncedQuery is not empty, add search parameter to the endpoint
+        if (debouncedQuery.trim()) {
+          endpoint += `?search=${debouncedQuery}`;
+        }
+        const { data } = await axiosReq.get(endpoint);
         setArticles(data);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
-
+  
     setHasLoaded(false);
     fetchPosts();
-  }, [pathname,debouncedQuery,]);
+  }, [pathname, debouncedQuery]);
 
   // Function to handle click on a card
   const handleCardClick = (selectedArticle) => {

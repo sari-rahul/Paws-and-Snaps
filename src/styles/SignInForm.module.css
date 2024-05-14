@@ -29,9 +29,12 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:65vh;
+
+    height: 100vh;
     display: flex;
-    
+    justify-content: center;
+    align-items: center;
+
 }
 .SignInForm{
     display: flex;
@@ -48,7 +51,7 @@
     width:60%;
     height: fit-content;
     padding:4% !important;
-
+    overflow: auto;
     margin: auto !important;
     background-color: pink !important;
     box-shadow: 0 4px 10px rgba(74, 74, 74, 0.1); /* Adjust the shadow values as needed */

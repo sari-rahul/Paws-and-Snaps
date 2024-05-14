@@ -26,7 +26,7 @@ const Introduction = () => {
       try {
         const { data } = await axiosReq.get("/articles/", {
           params: {
-            _limit: 10, // Limit the number of articles to 10
+            _limit: 11, // Limit the number of articles to 10
             _sort: "created_at", // Sort articles by creation date in descending order
             _order: "desc"
           }
