@@ -21,7 +21,11 @@ input{
     border-radius: 5px;
     margin-bottom: 10px;
     margin-left: auto;
+
+    font-family: 'Anek Devanagari';
+    font-size: 20px;
 }
+
 .Title:focus{
     color: black;
     border: 1px solid rgb(121, 121, 121);

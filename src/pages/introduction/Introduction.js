@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
-import { Col } from 'react-bootstrap';
+import { Col, Overlay } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
@@ -13,6 +13,8 @@ import Asset from "../../components/Assets";
 import styles from "../../styles/Introduction.module.css";
 import ArticlePage from "../articles/ArticlePage";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import EmptyFolder from '../../assets/emptyfolder.webp';
+
 
 const Introduction = () => {
   const [articles, setArticles] = useState({ results: [] });
@@ -26,7 +28,7 @@ const Introduction = () => {
       try {
         const { data } = await axiosReq.get("/articles/", {
           params: {
-            _limit: 11, // Limit the number of articles to 10
+            _limit: 10, // Limit the number of articles to 10
             _sort: "created_at", // Sort articles by creation date in descending order
             _order: "desc"
           }
@@ -80,15 +82,18 @@ const Introduction = () => {
         <br />
         <h3>Our Most Popular Articles</h3>
         <br />
-        {hasLoaded && articles.results.length > 0 ? (
-          articles.results.slice(1).map((article) => (
+        {hasLoaded ?
+         articles.results.length > 0 ? (
+          articles.results.map((article) => (
             <Col key={article.id}>
-              <div className={`${styles.Question} my-3`} onClick={() => handleClick(article)}>
+              <div className={`${styles.Question} my-3`} 
+              onClick={() => handleClick(article)}>
                 <p><i className="fa fa-paw" aria-hidden="true"></i> {article.title}</p>
               </div>
             </Col>
           ))
-        ): <Asset spinner />}
+        ): <Asset src={EmptyFolder} message={'No articles added'}/>
+      :<Asset spinner />}
         {/* Render ArticlePage component if an article is selected */}
         {selectedArticle && <ArticlePage {...selectedArticle} />}
       </Col>

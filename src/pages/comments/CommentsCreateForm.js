@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { OverlayTrigger, Tooltip, Tooltips } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import styles from "../../styles/CommentsCreateEditForm.module.css";
