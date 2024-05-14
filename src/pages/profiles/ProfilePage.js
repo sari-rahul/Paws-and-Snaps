@@ -22,6 +22,7 @@ import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { fetchMoreData } from "../../utils/utils";
 //import ArticlePage from "../articles/ArticlePage";
 import EmptyFolder from "../../assets/emptyfolder.webp";
+import NotFound from "../../assets/not found.jpg";
 
 
 
@@ -41,12 +42,20 @@ function ProfilePage() {
           axiosReq.get(`/profiles/${id}`),
           axiosReq.get(`/articles/?owner__profile=${id}`),
         ]);
+
+        if (!pageProfile) {
+          // If pageProfile doesn't exist, set hasLoaded to true to display "No Results Found"
+          setHasLoaded(true);
+          return;
+        }
+
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] }
         }));
         setProfileArticles(profileArticles);
         setHasLoaded(true);
+
       } catch (err) {
         console.log(err);
       }
@@ -121,7 +130,7 @@ function ProfilePage() {
               <Asset src={EmptyFolder} message={"No Articles Yet"} />
             </Container>)
            : (
-            <Container className={appStyles.Content}>
+            <Container className={appStyles.AssetContainer}>
             <Asset spinner />
             </Container>
           )}
@@ -156,7 +165,7 @@ function ProfilePage() {
           </Container>
               )
           : (
-          <Container className={appStyles.Content}>
+          <Container className={appStyles.AssetContainer}>
             <Asset spinner />
           </Container>
             )}
@@ -188,7 +197,7 @@ function ProfilePage() {
                 <Asset src={EmptyFolder} message={"No Articles Yet !!"}/>
               </Container>)
             :(
-              <Container className={appStyles.Content}>
+              <Container className={appStyles.AssetContainer}>
                 <Asset spinner />
               </Container>
             )}          
@@ -204,13 +213,16 @@ function ProfilePage() {
       <Row className="justify-content-center">
         <Col>
           {hasLoaded ? (
-            <Container className={styles.ProfileContainer}>
-              {mainProfile}
-              {mainProfileArticles}
-               
-            </Container>
-          ) : (
-            <Asset spinner />
+            {pageProfile}?
+              (<Container className={styles.ProfileContainer}>
+                {mainProfile}
+                {mainProfileArticles}
+                : <Asset src={NotFound} message={'No Results Found'}/>             
+              </Container>
+              ):(
+              <Asset spinner />)
+              ):(
+            <Asset src={NotFound} message={'No Results Found'} />
           )}
         </Col>
       </Row>      

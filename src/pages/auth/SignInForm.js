@@ -15,10 +15,11 @@ import styles from "../../styles/SignInForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
-  //useRedirect('loggedIn');
+  useRedirect('loggedIn');
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -39,15 +40,16 @@ const SignInForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
-      history.push('/intro');
-      console.log('redirected')
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      setTokenTimestamp(data);
+      history.goBack();
     } catch (err) {
       setErrors(err.response?.data);
     }
   };
-
   return (
     <Container className={styles.SignInContainer}>
       <Card className={styles.CardContainer}>

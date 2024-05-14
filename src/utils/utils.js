@@ -1,4 +1,8 @@
 import { axiosReq } from "../api/axiosDefault";
+import jwtDecode from "jwt-decode";
+/**This function helps in fetch more data from the API 
+ * and is used to display data in the infinite scroll component
+ */
 
 export const fetchMoreData = async (resource, setResource) => {
   try {
@@ -13,4 +17,16 @@ export const fetchMoreData = async (resource, setResource) => {
       }, prevResource.results),
     }));
   } catch (err) {}
+};
+export const setTokenTimestamp = (data) => {
+  const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+  localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+};
+
+export const shouldRefreshToken = () => {
+  return !!localStorage.getItem("refreshTokenTimestamp");
+};
+
+export const removeTokenTimestamp = () => {
+  localStorage.removeItem("refreshTokenTimestamp");
 };

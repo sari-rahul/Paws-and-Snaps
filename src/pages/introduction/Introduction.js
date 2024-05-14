@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
-import { Col, Overlay } from 'react-bootstrap';
+import { Col} from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 

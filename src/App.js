@@ -18,7 +18,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-
+import NotFound from "./components/NotFound";
 
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
               <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm/>} />
               <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm/>} />
               <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm/>} />
-              <Route render={() => <p>Page not found!</p>} />
+              <Route render={() => <NotFound/> } />
             </Switch>
             <Footer/>
           </Container>

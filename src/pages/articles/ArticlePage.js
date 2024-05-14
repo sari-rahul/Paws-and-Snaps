@@ -18,6 +18,7 @@ import CommentCreateForm from "../comments/CommentsCreateForm";
 import Comment from "../comments/Comment";
 import { fetchMoreData } from "../../utils/utils";
 import appStyles from '../../App.module.css'
+import NotFound from '../../assets/not found.jpg';
 
 function ArticlePage() {
     const { id } = useParams()
@@ -27,28 +28,41 @@ function ArticlePage() {
     const profile_image = currentUser?.profile_image;
     const [comments, setComments] = useState({ results: [] });
 
-    useEffect(()=>{
-        const handleMount = async ()=>{
-            try{
-                const [{data:article},{ data: comments }] = await Promise.all([
-                    axiosReq.get(`/articles/${id}`),
-                    axiosReq.get(`/comments/?article=${id}`),
-                ])
-                setArticle({results:[article]})
-                setComments(comments)
-                console.log (article)
-                setHasLoaded(true);
-            }catch(err){
-                console.log(err)
-            } 
-        };
-        handleMount();
+    useEffect(() => {
+      const handleMount = async () => {
+        try {
+          const [{ data: article }, { data: comments }] = await Promise.all([
+            axiosReq.get(`/articles/${id}`),
+            axiosReq.get(`/comments/?article=${id}`),
+          ]);
+    
+          if (!article) {
+            // If article doesn't exist, set article state to null
+            setArticle(null);
+            setComments([]);
+            setHasLoaded(true);
+            return;
+          }
+    
+          // Article exists, set the article and comments
+          setArticle({ results: [article] });
+          setComments(comments);
+          setHasLoaded(true);
+        } catch (err) {
+          console.log(err);
+          setHasLoaded(true);
+        }
+      };
+    
+      handleMount();
     }, [id]);
+    
   return (
     <Container >
       <Row className="h-100">
         <Col className=" p-0 " lg={12}>
-          {hasLoaded ?(
+          {hasLoaded ?
+            article.results.length > 0 ?(
             <>  
               <div className={styles.Container}>
                 <Article { ...article.results[0]} articlePage/>
@@ -81,7 +95,7 @@ function ArticlePage() {
                     </Container>
                   ))
                 : (
-                  <Container className={appStyles.Content}>
+                  <Container className={appStyles.AssetContainer}>
                     <Asset spinner />
                   </Container>
                 )}
@@ -100,7 +114,10 @@ function ArticlePage() {
                 "Comments"
               ) : null}
             </>
-          ):(<Container className={appStyles.Content}>
+          ):(<Container className={appStyles.AssetContainer}>
+              <Asset src={NotFound} message={'No Results Found'} />
+            </Container>)
+            :(<Container className={appStyles.AssetContainer}>
               <Asset spinner />
             </Container>)} 
         </Col>
