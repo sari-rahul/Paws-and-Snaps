@@ -21,11 +21,13 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/ArticleCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 
 
 function ArticleCreateForm() {
   useRedirect('loggedOut');
+  
   const [errors, setErrors] = useState({});
   const [articleData, setArticleData] = useState({
     title: "",
@@ -36,12 +38,15 @@ function ArticleCreateForm() {
   const { title, article, image,category } = articleData;
   const imageInput = useRef(null);
   const history = useHistory();
+  const currentUser = useCurrentUser();
+  //const [isImageSelected, setIsImageSelected] = useState(false);
 
   const handleChange = (event) => {
+    if (currentUser) {
     setArticleData({
       ...articleData,
       [event.target.name]: event.target.value,
-    });
+    })};
   };
 
   const handleChangeImage = (event) => {
@@ -183,11 +188,12 @@ function ArticleCreateForm() {
                 <Form.Label
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
-                >
+                > 
                   <Asset
                     src={Upload}
                     message="Click or tap to upload an image"
                   />
+                
                 </Form.Label>
               )}
 

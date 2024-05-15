@@ -4,11 +4,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    height: 80vh;
 }
 .CardContainer{
     width:60%;
     margin: 1%;
-    padding : 20px;
     text-align: center;
     background-color: rgb(250, 217, 223);
     border-radius: 0px !important;
@@ -26,7 +26,7 @@
 .CardText{
     padding:20px;
     color: black;
-
+    font-family: 'Anek Devanagari', 'sans-serif';
 }
 .Link {
     font-size: 1.2rem;

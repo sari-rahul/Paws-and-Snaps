@@ -21,7 +21,7 @@ export const useRedirect = (userAuthStatus) => {
       } catch (err) {
         // if the user is not logged in, the following code will run
         if (userAuthStatus === 'loggedOut') {
-          history.push('/signup');
+          history.push('/');
         }
       }
     }

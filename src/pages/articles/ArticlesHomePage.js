@@ -21,10 +21,14 @@ import ArticlePage from "./ArticlePage";
 import { fetchMoreData } from "../../utils/utils";
 import useDebounce from "../../hooks/useDebounce";
 import NoResults from "../../assets/not found.jpg";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 
-function ArticlesHomePage({ message }) {
+function ArticlesHomePage() {
+
+  useRedirect('loggedOut');
+
   const [article, setArticles] = useState({ results: [] });
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -103,12 +107,12 @@ function ArticlesHomePage({ message }) {
                 </div>
               </InfiniteScroll>
             ) : (
-            <Container className={appStyles.Content}>
+            <Container className={appStyles.AssetContainer}>
               <Asset src={NoResults} message={"No Results Found"} />
             </Container>
                 )
           ) : (
-            <Container className={appStyles.Content}>
+            <Container className={appStyles.AssetContainer}>
               <Asset spinner />
             </Container>
           )}
@@ -155,11 +159,11 @@ function ArticlesHomePage({ message }) {
             </div>
           </InfiniteScroll>
         ) : (
-          <Container className={appStyles.Content}>
+          <Container className={appStyles.AssetContainer}>
             <Asset src={NoResults} message={"No Results Found"} />
           </Container>
         ) : (
-          <Container className={appStyles.Content}>
+          <Container className={appStyles.AssetContainer}>
             <Asset spinner />
           </Container>
             )}
@@ -200,12 +204,12 @@ function ArticlesHomePage({ message }) {
                 ))}
               </InfiniteScroll>
             ) : (
-              <Container className={appStyles.Content}>
+              <Container className={appStyles.AssetContainer}>
                 <Asset src={NoResults} message={"No Results Found"} />
               </Container>
             )
             ) : (
-            <Container className={appStyles.Content}>
+            <Container className={appStyles.AssetContainer}>
               <Asset spinner />
             </Container>
           )}

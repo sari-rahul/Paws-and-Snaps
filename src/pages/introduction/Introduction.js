@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
-import { Col} from 'react-bootstrap';
+import { Col, Container} from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
@@ -11,12 +11,15 @@ import image from '../../assets/introimage.jpg';
 import { axiosReq } from "../../api/axiosDefault";
 import Asset from "../../components/Assets";
 import styles from "../../styles/Introduction.module.css";
+import appStyles from "../../App.module.css";
 import ArticlePage from "../articles/ArticlePage";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import EmptyFolder from '../../assets/emptyfolder.webp';
-
+import {useRedirect} from '../../hooks/useRedirect'
 
 const Introduction = () => {
+  useRedirect('loggedOut')
+
   const [articles, setArticles] = useState({ results: [] });
   const [selectedArticle, setSelectedArticle] = useState(null);
   const history = useHistory();
@@ -24,6 +27,7 @@ const Introduction = () => {
   const currentUser = useCurrentUser();
 
   useEffect(() => {
+    let isMounted = true;
     const fetchRecentArticles = async () => {
       try {
         const { data } = await axiosReq.get("/articles/", {
@@ -33,8 +37,11 @@ const Introduction = () => {
             _order: "desc"
           }
         });
-        setArticles(data);
-        setHasLoaded(true);
+        if (isMounted){
+          setArticles(data);
+          setHasLoaded(true);
+        }
+        
       } catch (error) {
         console.error("Error fetching recent articles:", error);
       }
@@ -42,7 +49,12 @@ const Introduction = () => {
 
     setHasLoaded(false);
     fetchRecentArticles();
-  }, []);
+
+  // Cleanup function to set isMounted to false when component unmounts
+  return () => {
+    isMounted = false;
+  };
+}, [currentUser]);
 
   // Function to handle click on an article
   const handleClick = (selectedArticle) => {
@@ -93,7 +105,9 @@ const Introduction = () => {
             </Col>
           ))
         ): <Asset src={EmptyFolder} message={'No articles added'}/>
-      :<Asset spinner />}
+        :<Container className={appStyles.AssetContainer}>
+          <Asset spinner />
+         </Container>}
         {/* Render ArticlePage component if an article is selected */}
         {selectedArticle && <ArticlePage {...selectedArticle} />}
       </Col>

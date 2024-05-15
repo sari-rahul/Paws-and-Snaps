@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    /*height: 70vh;*/
     object-fit: contain;
     color: rgb(223, 128, 144) !important;
   }

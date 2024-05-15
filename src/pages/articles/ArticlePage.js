@@ -20,6 +20,7 @@ import { fetchMoreData } from "../../utils/utils";
 import appStyles from '../../App.module.css'
 import NotFound from '../../assets/not found.jpg';
 
+
 function ArticlePage() {
     const { id } = useParams()
     const [article,setArticle] = useState({results:[]});

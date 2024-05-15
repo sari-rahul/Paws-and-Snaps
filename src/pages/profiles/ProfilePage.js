@@ -20,7 +20,6 @@ import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataCon
 import { axiosReq } from "../../api/axiosDefault";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { fetchMoreData } from "../../utils/utils";
-//import ArticlePage from "../articles/ArticlePage";
 import EmptyFolder from "../../assets/emptyfolder.webp";
 import NotFound from "../../assets/not found.jpg";
 
@@ -43,21 +42,16 @@ function ProfilePage() {
           axiosReq.get(`/articles/?owner__profile=${id}`),
         ]);
 
-        if (!pageProfile) {
-          // If pageProfile doesn't exist, set hasLoaded to true to display "No Results Found"
-          setHasLoaded(true);
-          return;
-        }
-
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] }
         }));
         setProfileArticles(profileArticles);
         setHasLoaded(true);
-
-      } catch (err) {
+        } 
+      catch (err) {
         console.log(err);
+        setHasLoaded(true);
       }
     };
     fetchData();
@@ -209,24 +203,25 @@ function ProfilePage() {
   );
 
   return (
-    <>
       <Row className="justify-content-center">
         <Col>
           {hasLoaded ? (
-            {pageProfile}?
-              (<Container className={styles.ProfileContainer}>
-                {mainProfile}
-                {mainProfileArticles}
-                : <Asset src={NotFound} message={'No Results Found'}/>             
-              </Container>
+            (pageProfile.results.length) ?
+              (
+                <Container className={styles.ProfileContainer}>
+                  {mainProfile}
+                  {mainProfileArticles}            
+                </Container>
               ):(
-              <Asset spinner />)
-              ):(
-            <Asset src={NotFound} message={'No Results Found'} />
-          )}
+                <Container className={appStyles.AssetContainer}>
+                    <Asset src={NotFound} message={'No Results Found'}/>
+                </Container>
+                )
+          ):<Container className={appStyles.AssetContainer}>
+              <Asset spinner />
+            </Container>}
         </Col>
       </Row>      
-    </>
   );
 }
 
