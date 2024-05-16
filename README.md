@@ -3,7 +3,7 @@
 ![Mockup image]()
 
 🚀 [Deployed Frontend Site]()  
-💻 [Deployed API]()  
+💻 [Deployed API](https://paws-and-snaps-d602158cc7f7.herokuapp.com/)  
 🔗 [API Repo]()
 
 - [Paws&Snaps](#paws&snaps)
@@ -167,15 +167,20 @@ The sitemap was made using [Lucid Chart](https://lucid.app/)
 
 #### Wireframes
 
-![Landing page wireframe]()
-![Signup wireframe]()
-![Login wireframe]()
-![Introduction wireframe]()
-![Articles Home Page wireframe]()
-![Create article wireframe]()
-![Article page wireframe]()
-![Profile wireframe](/docs/wireframes/profile-wireframe.jpg)
-[Canva](https://www.canva.com/en_gb/) was used to create the wireframes.
+![Landing page wireframe](docs/wireframes/landingpage.png)
+![Signup wireframe](docs/wireframes/signuppage.png)
+![Login wireframe](docs/wireframes/signinpage.png)
+![Introduction wireframe](docs/wireframes/introductionpage.png)
+![Articles Home Page wireframe on large screens](docs/wireframes/newspagelargescreen.png)
+![Articles Home Page wireframe on medium screens](docs/wireframes/newspagemedscreen.png)
+![Articles Home Page wireframe on small screens](docs/wireframes/newspagesmallscreen.png)
+
+![Create article wireframe](docs/wireframes/articlecreatepage.png)
+![Article page wireframe](docs/wireframes/articlepage.png)
+![Profile wireframe](docs/wireframes/profilepagelargescreen.png)
+
+
+[Figma](https://www.figma.com/templates/web-design-inspiration/) was used to create the wireframes.
 
 
 [Back to top](#paws&snaps)
@@ -184,7 +189,7 @@ The sitemap was made using [Lucid Chart](https://lucid.app/)
 
 Color and themes for Paws & Snaps were carefully selected to evoke a sense of warmth, playfulness, and love for pets. The primary colors used in the theme are black and pink, with accents of white to provide contrast and balance. The theme revolves around a prominent paw print design with a heart inside it, symbolizing the deep bond between pets and their owners.
 
-![Color Palette]()
+![Color Palette](docs/readme/colorpallete.png)
 The color palette for Paws & Snaps includes the following colors:
 
 Black (#000000): Represents elegance, sophistication, and the timeless bond between humans and animals.
@@ -193,13 +198,15 @@ White (#FFFFFF): Provides contrast and balance, creating a clean and modern aest
 
 Fonts play a crucial role in shaping the visual identity of Paws & Snaps, reflecting the platform's personality and values. For Paws & Snaps, two distinct fonts were selected to create a harmonious and engaging user experience.
 
-![Fonts Used]()
+![oswald font](docs/readme/oswaldfont.png)
 
 Oswald:
 
 Purpose: Oswald is utilized for headings, titles, and other prominent text elements throughout the platform. Its bold and modern appearance conveys a sense of strength, reliability, and professionalism.
 Characteristics: Oswald is a sans-serif font with clean lines and geometric shapes, making it highly legible and suitable for display purposes.
 Attributes: Its condensed letterforms and ample spacing provide visual impact and readability, ensuring that important information stands out effectively.
+
+![devanagri font](docs/readme/devanagrifont.png)
 
 Anek Devnagri:
 
@@ -231,7 +238,7 @@ The props are:
 
 #### Avatar  
 
-![avatar]()
+![avatar](docs/readme/avatar.png)
 
 The avatar component is used throughout the site for users avatar and their username. It take the following props:
 - src: a link to the image url
@@ -264,7 +271,8 @@ The navbar is displayed on every page on the site, but will show different optio
 
 **Desktop - signed in**
 
-![navbar on desktop for a signed in user]()
+![navbar on desktop for a signed in user](docs/readme/signedin-navbar.png
+)
 
 A signed in user will see the options to:
 - Start here to visit the home page
@@ -275,7 +283,7 @@ A signed in user will see the options to:
 
 **Desktop - signed out**
 
-![navbar on desktop for a non signed in user]()
+![navbar on desktop for a non signed in user](docs/readme/signedout-navbar.png)
 
 A user who is not signed in will see the following options:
 - Sign in
@@ -285,20 +293,33 @@ A user who is not signed in will see the following options:
 
 Users on a mobile device will have the same options but via a hamburger menu
 
-![nav bar on mobile for a signed in user]()
+![nav bar on mobile for a signed in user](docs/readme/mobile-signedin-navbar.png)
 
 **Mobile - signed out**
 
-![nav bar on a mobile device for a non signed in user]()
+![nav bar on a mobile device for a non signed in user](docs/readme/mobile-signedout-navbar.png)
 
 
 [Back to top](#paws&snaps)
+
+
+#### Footer
+
+The signed in user will be able to see a footer component containing social media icons, logo and affiliate disclosure. It will be displayed in a column on small screen.
+![footer on large screens](docs/readme/footerlargescreen.png)
+![footer on small screens](docs/readme/footersmallscreen.png)
+
+#### Copyright
+The copyright container is displayed throughout the website to all users.
+
+![Copyright bar](docs/readme/copyright.png)
+
 
 ### Pages
 
 #### About / Landing
 
-![landing page]()
+![landing page](docs/readme/landingpage.png)
 
 The first page a user sees when navigating to the site is the landing page with:
 - Information on the site
@@ -308,7 +329,7 @@ The first page a user sees when navigating to the site is the landing page with:
 
 #### Sign up
 
-![sign up page]()
+![sign up page](docs/readme/signup.png)
 
 
 This page is accessible for non signed in users via the navbar. For all user it displays:
@@ -319,8 +340,8 @@ This page is accessible for non signed in users via the navbar. For all user it 
 
 #### Sign in
 
-![sign in page]()
-<img src="./docs/readme/signin_mobile.png" height="450" alt="mobile sign in page">
+![sign in page](docs/readme/signin.png)
+
 
 This page is accessible for non signed in users via the navbar. For all  users it displays:
 
@@ -328,9 +349,10 @@ This page is accessible for non signed in users via the navbar. For all  users i
 
 [Back to top](#paws&snaps)
 
-#### Create a highlight
+#### Create an Article
 
-![create an article]()
+![create an article-image and title](docs/readme/addarticleform1.png)
+![create an article-editor and buttons](docs/readme/addarticleform2.png)
 
 A logged in user will be able to create an article from the navbar and will be taken to a form with the options to add the following things to their article:
 
@@ -348,9 +370,9 @@ React Quill Editor is used to enter the article which provides the ability to ad
 
 #### Edit an Article
 
-![edit an article dropdown menu]()
+![edit an article dropdown menu](docs/readme/editarticeldropdownmenu.png)
 
-![edit an article form]()
+![edit an article form](docs/readme/prepopulatedarticleeditform.png)
 
 A user can edit one of their highlights via the dropdown menu in the article page. They are taken to a pre-populated article form containing the details of the highlight that can  be modified.
 
@@ -359,7 +381,7 @@ A user can edit one of their highlights via the dropdown menu in the article pag
 
 #### Delete an Article
 
-![deleting an Article]()
+![deleting an Article](docs/readme/editarticeldropdownmenu.png)
 
 From the dropdown menu on a users Article they also have the option to delete the Article. Clicking on this will remove it from the site and the database then redirect the user to their last page.
 
@@ -368,7 +390,7 @@ From the dropdown menu on a users Article they also have the option to delete th
 
 #### View an Article
 
-![viewing an Article]()
+![viewing an Article](docs/readme/viewanarticle.png)
 
 Once an Article has been created it will show up on the news page and profile page. From those pages the image  will take a user to a page for the article containing more details and any comments.
 
@@ -384,7 +406,7 @@ The Article page will show the following information:
 
 #### Comment 
 
-![add a comment]()
+![add a comment](docs/readme/comments.png)
 
 A signed in user can add a comment to an article from the Article detail page. The comment will be displayed under the Article and can be edited or deleted by the author via the dropdown menu. Comments are displayed newest to oldest from top to bottom and have an infinite scroll component so users don't have to click to a new page to view more comments.
 The owner of the article cannot comment on his own article.
@@ -394,7 +416,8 @@ The owner of the article cannot comment on his own article.
 
 #### Profile
 
-![profile]()
+![profile-detail](docs/readme/profiledetailsection.png)
+![profile-articles](docs/readme/articlesectioninprofile.png)
 
 Each user has a profile page that they can access from the navbar, accessing a different users profile can be done by clicking on their avatar from one of their articles or comments. The users profile contains the following information:
 
@@ -408,9 +431,11 @@ Each user has a profile page that they can access from the navbar, accessing a d
 
 #### Edit Profile
 
-![edit a profile]()
+![edit a profile](docs/readme/profileeditbutton.png)
 
 A user can edit their own profile by clicking on the edit button at the top of their profile. The following things can be added or changed:
+
+![edit a profile form](docs/readme/editprofileform.png)
 
 - Username
 - Bio
@@ -420,18 +445,27 @@ A user can edit their own profile by clicking on the edit button at the top of t
 
 **Change Username**
 
-![change username]()
+![change username](docs/readme/usernamechange.png)
 
 **Change Password**
 
-![change password]()
+![change password](docs/readme/passwordchange.png)
 
 #### PageNotFound
 
-![404 page]()
+![404 page](docs/readme/404error.png)
 
 If a user navigated to an invalid url a custom 404 page will be displayed
 
+#### No results Page
+
+![no results found](docs/readme/noresultsfound.png)
+If the user searches for a user or article which does not exists a no result found page will be displayed.
+
+#### Empty folder Page
+![empty folder page]()
+
+If a user has no article in their profile an empty folder page will be displayed
 
 [Back to top](#paws&snaps)
 
@@ -463,7 +497,7 @@ If a user navigated to an invalid url a custom 404 page will be displayed
 - [Chrome Dev Tools](https://developer.chrome.com/docs/devtools) - Development and bug fixing
 - [Favicon.io](https://favicon.io/favicon-converter/) - Favicon conversion
 - [React Router](https://v5.reactrouter.com/web/guides/quick-start) - Dynamic routing
-- [React Quill]()
+- [React Quill]()-for editing the article.
 - [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) - for instant loading and infinite scrolling
 - [Axios](https://github.com/axios/axios) - Promise-based HTTP requests
 - [Adobe Color](https://color.adobe.com/) - Color Palette
@@ -561,7 +595,7 @@ npm start
 - Change the current working directory to the one where you want the cloned directory
 - Type git clone and paste the URL from the clipboard
 ```
-git clone https://github.com/DanMorriss/highlights.git
+git clone https://github.com/sari-rahul/Pawfect-Pics
 ```
 - Press Enter to create your local clone
 
