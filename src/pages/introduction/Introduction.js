@@ -34,7 +34,8 @@ const Introduction = () => {
           params: {
             _limit: 10, // Limit the number of articles to 10
             _sort: "created_at", // Sort articles by creation date in descending order
-            _order: "desc"
+            _order: "desc",
+            published: true,// Only fetch published articles
           }
         });
         if (isMounted){

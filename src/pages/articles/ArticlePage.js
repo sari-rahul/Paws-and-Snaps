@@ -30,14 +30,19 @@ function ArticlePage() {
     const [comments, setComments] = useState({ results: [] });
 
     useEffect(() => {
+      let isMounted = true; 
       const handleMount = async () => {
         try {
           const [{ data: article }, { data: comments }] = await Promise.all([
             axiosReq.get(`/articles/${id}`),
             axiosReq.get(`/comments/?article=${id}`),
           ]);
+
+          if (!isMounted) {
+            return;  // If component is unmounted, abort further processing
+          }
     
-          if (!article) {
+          if (!article || !article.published) {
             // If article doesn't exist, set article state to null
             setArticle(null);
             setComments([]);
@@ -45,10 +50,11 @@ function ArticlePage() {
             return;
           }
     
-          // Article exists, set the article and comments
+          // Article exists and is published set the article and comments
           setArticle({ results: [article] });
           setComments(comments);
           setHasLoaded(true);
+          console.log(article)
         } catch (err) {
           console.log(err);
           setHasLoaded(true);
@@ -56,6 +62,10 @@ function ArticlePage() {
       };
     
       handleMount();
+
+      return () => {
+        isMounted = false;
+      };
     }, [id]);
     
   return (

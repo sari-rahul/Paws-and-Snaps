@@ -33,8 +33,10 @@ function ArticleEditForm() {
     article: "",
     image: "",
     category: "",
+    published: false,
+
   });
-  const { title, article, image,category } = articleData;
+  const { title, article, image,category ,published} = articleData;
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
@@ -43,9 +45,9 @@ function ArticleEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/articles/${id}`);
-        const { title, article, image, category,is_owner } = data;
+        const { title, article, image, category,is_owner, published } = data;
 
-        is_owner ? setArticleData({ title, article, image, category }) : history.push("/intro");
+        is_owner ? setArticleData({ title, article, image, category ,published}) : history.push("/intro");
       } catch (err) {
         console.log(err);
       }
@@ -77,6 +79,12 @@ function ArticleEditForm() {
       article: value,
     });
   };
+  const handleCheckboxChange = (event) => {
+    setArticleData({
+      ...articleData,
+      published: event.target.checked,
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -85,10 +93,16 @@ function ArticleEditForm() {
     formData.append("article", article);
     formData.append("image", imageInput.current.files[0]);
     formData.append("category", category);
+    formData.append("published", published);
+
 
     try {
       const { data } = await axiosReq.post("/articles/", formData);
-      history.push(`/articles/${data.id}`);
+      if(published){
+          history.push(`/articles/${data.id}`);
+      } else {
+        history.push("/articles");
+      }
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -159,6 +173,15 @@ function ArticleEditForm() {
           {message}
         </Alert>
       ))}
+       {/* Checkbox for publication status */}
+       <Form.Group controlId="published">
+          <Form.Check
+            type="checkbox"
+            label="Publish this article"
+            checked={published}
+            onChange={handleCheckboxChange}
+          />
+      </Form.Group>
 
       <div className={appStyles.ButtonContainer}>
       <Button

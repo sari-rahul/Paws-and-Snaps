@@ -34,12 +34,12 @@ function ArticleCreateForm() {
     article: "",
     image: "",
     category: "",
+    published: false,
   });
-  const { title, article, image,category } = articleData;
+  const { title, article, image,category,published} = articleData;
   const imageInput = useRef(null);
   const history = useHistory();
   const currentUser = useCurrentUser();
-  //const [isImageSelected, setIsImageSelected] = useState(false);
 
   const handleChange = (event) => {
     if (currentUser) {
@@ -65,6 +65,12 @@ function ArticleCreateForm() {
       article: value,
     });
   };
+  const handleCheckboxChange = (event) => {
+    setArticleData({
+      ...articleData,
+      published: event.target.checked,
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,6 +79,7 @@ function ArticleCreateForm() {
     formData.append("article", article);
     formData.append("category", category);
     formData.append("image", imageInput.current.files[0]);
+    formData.append("published", published);
 
     try {
       const { data } = await axiosReq.post("/articles/", formData);
@@ -147,6 +154,16 @@ function ArticleCreateForm() {
           {message}
         </Alert>
       ))}
+       {/* Checkbox for publication status */}
+       <Form.Group controlId="published">
+              <Form.Check
+                type="checkbox"
+                label="Publish this article"
+                checked={published}
+                onChange={handleCheckboxChange}
+              />
+       </Form.Group>
+
       <div className={appStyles.ButtonContainer}>
       <Button
         className={`${btnStyles.Button}  `}
@@ -209,6 +226,7 @@ function ArticleCreateForm() {
                 {message}
               </Alert>
             ))}
+           
           </Container>
           <Container className={appStyles.Content}>{textFields}</Container>
       </Row>
