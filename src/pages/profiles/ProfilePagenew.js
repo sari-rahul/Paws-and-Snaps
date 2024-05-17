@@ -23,33 +23,35 @@ function ProfilePage() {
   const { id } = useParams();
   const setProfileData = useSetProfileData();
   const { pageProfile } = useProfileData();
-  const [profile] = pageProfile.results || [];
-  const [profileArticles, setProfileArticles] = useState({ results: [], next: null });
+  const [profile] = pageProfile.results;
+  const [profileArticles, setProfileArticles] = useState({ results: [] });
   const history = useHistory();
   const currentUser = useCurrentUser();
+  const isProfileOwner = currentUser === profile?.owner;
 
   useEffect(() => {
-    let isMounted = true;
+    let isMounted = true; 
     const fetchData = async () => {
       try {
         const pageProfileResponse = await axiosReq.get(`/profiles/${id}`);
         const pageProfileData = pageProfileResponse.data;
-
-        let profileArticlesResponse;
-        if (currentUser?.username === pageProfileData.owner) {
-          profileArticlesResponse = await axiosReq.get(`/articles/?owner__profile=${id}`);
-        } else {
-          profileArticlesResponse = await axiosReq.get(`/articles/?owner__profile=${id}&published=true`);
+        
+        // Fetch all articles initially
+        let profileArticlesResponse = await axiosReq.get(`/articles/?owner__profile=${id}`);
+        
+        // If the user is not the profile owner, filter articles based on publication status
+        if (!isProfileOwner) {
+          profileArticlesResponse = profileArticlesResponse.data.results.filter(article => article.published);
         }
-
+  
         if (isMounted) {
           setProfileData((prevState) => ({
             ...prevState,
             pageProfile: { results: [pageProfileData] }
           }));
-          setProfileArticles(profileArticlesResponse.data);
+          setProfileArticles(profileArticlesResponse);
           setHasLoaded(true);
-        }
+        } 
       } catch (err) {
         console.log(err);
         if (isMounted) {
@@ -57,14 +59,15 @@ function ProfilePage() {
         }
       }
     };
-
+    
     fetchData();
-
+  
     return () => {
       isMounted = false;
     };
-  }, [id, setProfileData, currentUser]);
-
+  }, [id, setProfileData, isProfileOwner]);
+    
+  
   const handleCardClick = (selectedProfileArticle) => {
     history.push(`/articles/${selectedProfileArticle.id}`);
   };
@@ -115,14 +118,14 @@ function ProfilePage() {
           <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile?.linked_in)}>
             <i className="fa fa-linkedin" aria-hidden="true"></i>
           </div>
-          <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile?.facebook)}>
+          <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile.facebook)}>
             <i className="fa fa-facebook" aria-hidden="true"></i>
           </div>
-          <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile?.instagram)}>
+          <div className={styles.ProfileContactIcons} onClick={() => openLinkInNewTab(profile.instagram)}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
           </div>
         </div>
-        {currentUser?.username === profile?.owner && <ProfileEditDropdown id={profile?.id} />}
+        {isProfileOwner && <ProfileEditDropdown id={profile?.id} />}
         <p className={styles.Bio}>{profile?.bio}</p>
       </Col>
     </Row>

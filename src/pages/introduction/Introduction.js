@@ -18,7 +18,7 @@ import EmptyFolder from '../../assets/emptyfolder.webp';
 import {useRedirect} from '../../hooks/useRedirect'
 
 const Introduction = () => {
-  useRedirect('loggedOut')
+  //useRedirect('loggedOut')
 
   const [articles, setArticles] = useState({ results: [] });
   const [selectedArticle, setSelectedArticle] = useState(null);
