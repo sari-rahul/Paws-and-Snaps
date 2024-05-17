@@ -84,6 +84,7 @@ function ArticleEditForm() {
       ...articleData,
       published: event.target.checked,
     });
+    console.log('unpublished')
   };
 
   const handleSubmit = async (event) => {
@@ -91,17 +92,22 @@ function ArticleEditForm() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("article", article);
-    formData.append("image", imageInput.current.files[0]);
+    if (imageInput.current.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
     formData.append("category", category);
     formData.append("published", published);
 
 
     try {
-      const { data } = await axiosReq.post("/articles/", formData);
+      const { data } = await axiosReq.put(`/articles/${id}`, formData);
+
       if(published){
           history.push(`/articles/${data.id}`);
+          console.log('edit sucessfull')
       } else {
         history.push("/articles");
+        console.log(published)
       }
     } catch (err) {
       console.log(err);

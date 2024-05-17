@@ -42,7 +42,7 @@ function ArticlePage() {
             return;  // If component is unmounted, abort further processing
           }
     
-          if (!article || !article.published) {
+          if (!article) {
             // If article doesn't exist, set article state to null
             setArticle(null);
             setComments([]);

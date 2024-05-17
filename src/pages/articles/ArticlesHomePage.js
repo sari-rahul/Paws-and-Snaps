@@ -23,36 +23,40 @@ import useDebounce from "../../hooks/useDebounce";
 import NoResults from "../../assets/not found.jpg";
 import { useRedirect } from "../../hooks/useRedirect";
 
-
-
 function ArticlesHomePage() {
-
   useRedirect('loggedOut');
 
-  const [article, setArticles] = useState({ results: [] });
+  const [article, setArticles] = useState({ results: [], next: null });
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-  const history = useHistory(); 
+  const history = useHistory();
   const [query, setQuery] = useState("");
-  const debouncedQuery =useDebounce (query,500);// Debounce search query with a delay of 500ms
+  const debouncedQuery = useDebounce(query, 500); // Debounce search query with a delay of 500ms
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        let endpoint = '/articles/';
+        let endpoint = '/articles/?published=true';
         // If debouncedQuery is not empty, add search parameter to the endpoint
         if (debouncedQuery.trim()) {
-          endpoint += `?search=${debouncedQuery}`;
+          endpoint += `&search=${debouncedQuery}`;
         }
         const { data } = await axiosReq.get(endpoint);
-        setArticles(data);
+        // Filter the results to include only published articles
+        const filteredData = {
+          ...data,
+          results: data.results.filter(article => article.published)
+        };
+
+
+        setArticles(filteredData);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
-  
+
     setHasLoaded(false);
     fetchPosts();
   }, [pathname, debouncedQuery]);
@@ -65,11 +69,11 @@ function ArticlesHomePage() {
   };
 
   return (
-    <Container className={styles.Container} onClick={() => setSelectedArticle(null)}>      
+    <Container className={styles.Container} onClick={() => setSelectedArticle(null)}>
       {/* Larger screen layout */}
-      <Row className="d-none d-lg-flex justify-content-center">        
+      <Row className="d-none d-lg-flex justify-content-center">
         <Col>
-        {/*Search Bar*/}
+          {/* Search Bar */}
           <Form
             className={styles.SearchBar}
             onSubmit={(event) => event.preventDefault()}
@@ -84,95 +88,96 @@ function ArticlesHomePage() {
         </Col>
       </Row>
       <Row className="d-none d-lg-flex justify-content-center">
-        {/* Render three cards in a row  */}
+        {/* Render three cards in a row */}
         {hasLoaded ? (
-            article.results.length > 0 ? (
-              <InfiniteScroll
-                dataLength={article.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!article.next}
-                next={() => fetchMoreData(article, setArticles)}
-              >
-                <div className="d-flex flex-wrap justify-content-center">
-                  {article.results.map((innerArticle) => (
-                    <Col lg={4} key={innerArticle.id}>
-                      <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(innerArticle)}>
-                        <Card.Img variant="top" src={innerArticle.image} className={styles.SmallCardImage} />
-                        <Card.Body>
-                          <Card.Title className={styles.SmallCardTitle}>{innerArticle.title}</Card.Title>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))}
-                </div>
-              </InfiniteScroll>
-            ) : (
+          article.results.length > 0 ? (
+            <InfiniteScroll
+              dataLength={article.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!article.next}
+              next={() => fetchMoreData(article, setArticles)}
+            >
+              <div className="d-flex flex-wrap justify-content-center">
+                {article.results.map((innerArticle) => (
+                  <Col lg={4} key={innerArticle.id}>
+                    <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(innerArticle)}>
+                      <Card.Img variant="top" src={innerArticle.image} className={styles.SmallCardImage} />
+                      <Card.Body>
+                        <Card.Title className={styles.SmallCardTitle}>{innerArticle.title}</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </div>
+            </InfiniteScroll>
+          ) : (
             <Container className={appStyles.AssetContainer}>
               <Asset src={NoResults} message={"No Results Found"} />
             </Container>
-                )
-          ) : (
-            <Container className={appStyles.AssetContainer}>
-              <Asset spinner />
-            </Container>
-          )}
-      </Row>
-      
-      {/* Medium screen layout */}
-      <Row className=" d-none d-md-flex d-lg-none  justify-content-center">
-      <Col>
-        {/*Search Bar*/}
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            placeholder="Search Articles"
-          />
-        </Form>
-      </Col>
-      </Row>
-      <Row className="d-none d-md-flex  d-lg-none justify-content-center">
-        {/* Render three cards in a row  */}
-        {hasLoaded ?
-        article.results.length > 1 ? (
-          <InfiniteScroll
-            dataLength={article.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!article.next}
-            next={() => fetchMoreData(article, setArticles)}
-          >
-            <div className="d-flex flex-wrap justify-content-center">
-              {article.results.map((article) => (
-                <Col md={6} key={article.id}>
-                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
-                    <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
-                    <Card.Body>
-                      <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </div>
-          </InfiniteScroll>
-        ) : (
-          <Container className={appStyles.AssetContainer}>
-            <Asset src={NoResults} message={"No Results Found"} />
-          </Container>
+          )
         ) : (
           <Container className={appStyles.AssetContainer}>
             <Asset spinner />
           </Container>
-            )}
+        )}
+      </Row>
+
+      {/* Medium screen layout */}
+      <Row className="d-none d-md-flex d-lg-none justify-content-center">
+        <Col>
+          {/* Search Bar */}
+          <Form
+            className={styles.SearchBar}
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              placeholder="Search Articles"
+            />
+          </Form>
+        </Col>
+      </Row>
+      <Row className="d-none d-md-flex d-lg-none justify-content-center">
+        {/* Render three cards in a row */}
+        {hasLoaded ? (
+          article.results.length > 1 ? (
+            <InfiniteScroll
+              dataLength={article.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!article.next}
+              next={() => fetchMoreData(article, setArticles)}
+            >
+              <div className="d-flex flex-wrap justify-content-center">
+                {article.results.map((article) => (
+                  <Col md={6} key={article.id}>
+                    <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(article)}>
+                      <Card.Img variant="top" src={article.image} className={styles.SmallCardImage} />
+                      <Card.Body>
+                        <Card.Title className={styles.SmallCardTitle}>{article.title}</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </div>
+            </InfiniteScroll>
+          ) : (
+            <Container className={appStyles.AssetContainer}>
+              <Asset src={NoResults} message={"No Results Found"} />
+            </Container>
+          )
+        ) : (
+          <Container className={appStyles.AssetContainer}>
+            <Asset spinner />
+          </Container>
+        )}
       </Row>
 
       {/* Mobile layout */}
       <Row className="h-100 d-flex d-md-none justify-content-center">
-        <Col className="py-2 p-0 ">
-          {/*Search Bar*/}
+        <Col className="py-2 p-0">
+          {/* Search Bar */}
           <Form
             className={styles.SearchBar}
             onSubmit={(event) => event.preventDefault()}
@@ -185,7 +190,7 @@ function ArticlesHomePage() {
             />
           </Form>
           {hasLoaded ? (
-          article.results.length > 1 ? (
+            article.results.length > 1 ? (
               <InfiniteScroll
                 dataLength={article.results.length}
                 loader={<Asset spinner />}
@@ -208,12 +213,11 @@ function ArticlesHomePage() {
                 <Asset src={NoResults} message={"No Results Found"} />
               </Container>
             )
-            ) : (
+          ) : (
             <Container className={appStyles.AssetContainer}>
               <Asset spinner />
             </Container>
           )}
-
         </Col>
       </Row>
 

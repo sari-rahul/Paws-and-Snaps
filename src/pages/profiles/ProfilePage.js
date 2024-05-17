@@ -22,6 +22,7 @@ import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { fetchMoreData } from "../../utils/utils";
 import EmptyFolder from "../../assets/emptyfolder.webp";
 import NotFound from "../../assets/not found.jpg";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 
@@ -33,31 +34,49 @@ function ProfilePage() {
   const [profile] = pageProfile.results;
   const [profileArticles, setProfileArticles] = useState({ results: [] });
   const history = useHistory();
+  const currentUser = useCurrentUser();
+
 
   useEffect(() => {
+    let isMounted = true; 
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profileArticles }] = await Promise.all([
+        const [{ data: pageProfileData }, { data: profileArticles }] = await Promise.all([
           axiosReq.get(`/profiles/${id}`),
-          axiosReq.get(`/articles/?owner__profile=${id}`),
+          // Check if the logged-in user is the owner of the profile
+          currentUser && pageProfile && pageProfile.owner === currentUser ?
+            axiosReq.get(`/articles/?owner__profile=${id}`)
+          : axiosReq.get(`/articles/?owner__profile=${id}&published=true`),
         ]);
 
+        
+      if (isMounted) 
+        {
         setProfileData((prevState) => ({
           ...prevState,
-          pageProfile: { results: [pageProfile] }
+          pageProfile: { results: [pageProfileData] }
         }));
         setProfileArticles(profileArticles);
         setHasLoaded(true);
         } 
+      }
       catch (err) {
         console.log(err);
-        setHasLoaded(true);
+        if (isMounted){
+          setHasLoaded(true);
+        }
       }
     };
     fetchData();
-  }, [id, setProfileData]);
+
+    return () => {
+      isMounted = false;
+    }
+
+  }, [id, setProfileData,currentUser,pageProfile]);
 
   const handleCardClick = (selectedProfileArticle) => {
+
     history.push(`/articles/${selectedProfileArticle.id}`);
   };
 
