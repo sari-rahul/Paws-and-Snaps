@@ -55,6 +55,7 @@ function ArticlePage() {
           setComments(comments);
           setHasLoaded(true);
           console.log(article)
+          console.log(comments)
         } catch (err) {
           console.log(err);
           setHasLoaded(true);
@@ -67,74 +68,75 @@ function ArticlePage() {
         isMounted = false;
       };
     }, [id]);
-    
-  return (
-    <Container >
-      <Row className="h-100">
-        <Col className=" p-0 " lg={12}>
-          {hasLoaded ?
-            article.results.length > 0 ?(
-            <>  
-              <div className={styles.Container}>
-                <Article { ...article.results[0]} articlePage/>
-              </div>
-              <div className={`${styles.CommentContainer} mt-4`}>
-                <h4>COMMENTS</h4>
-                <br /><br />
-                {hasLoaded ? 
-                  (comments.results.length ? (
-                    <div className={styles.CommentInfinitescroll}>
-                      <InfiniteScroll 
-                        dataLength={comments.results.length}
-                        loader={<Asset spinner />}
-                        hasMore={!!comments.next}
-                        next={() => fetchMoreData(comments, setComments)}
-                      >
-                        {comments.results.map((comment) => (
-                          <Comment
-                            key={comment.id}
-                            {...comment}
-                            setArticle={setArticle}
-                            setComments={setComments}
-                          />
-                        ))}
-                      </InfiniteScroll>
-                    </div>
-                  ) : (
-                    <Container >
-                      No comments yet !!!
-                    </Container>
-                  ))
-                : (
-                  <Container className={appStyles.AssetContainer}>
-                    <Asset spinner />
-                  </Container>
-                )}
 
-              </div>
-              {currentUser ? (
-                <CommentCreateForm
-                  profile_id={currentUser.profile_id}
-                  profileImage={profile_image}
-                  article={id}
-                  article_owner={article.results[0].is_owner}
-                  setArticle={setArticle}
-                  setComments={setComments}
-                />
-              ) : comments.results.length ? (
-                "Comments"
-              ) : null}
-            </>
-          ):(<Container className={appStyles.AssetContainer}>
-              <Asset src={NotFound} message={'No Results Found'} />
-            </Container>)
-            :(<Container className={appStyles.AssetContainer}>
-              <Asset spinner />
-            </Container>)} 
-        </Col>
-      </Row>
+  const approvedComments = comments.results.filter(comment => comment.is_approved);
+  return (
+    <Container>
+        <Row className="h-100">
+            <Col className=" p-0 " lg={12}>
+                {hasLoaded ?
+                    article.results.length > 0 ? (
+                        <>
+                            <div className={styles.Container}>
+                                <Article {...article.results[0]} articlePage />
+                            </div>
+                            <div className={`${styles.CommentContainer} mt-4`}>
+                                <h4>COMMENTS</h4>
+                                <br /><br />
+                                {hasLoaded ?
+                                    (approvedComments.length ? (
+                                        <div className={styles.CommentInfinitescroll}>
+                                            <InfiniteScroll
+                                                dataLength={approvedComments.length}
+                                                loader={<Asset spinner />}
+                                                hasMore={!!comments.next}
+                                                next={() => fetchMoreData(comments, setComments)}
+                                            >
+                                                {approvedComments.map((comment) => (
+                                                    <Comment
+                                                        key={comment.id}
+                                                        {...comment}
+                                                        setArticle={setArticle}
+                                                        setComments={setComments}
+                                                    />
+                                                ))}
+                                            </InfiniteScroll>
+                                        </div>
+                                    ) : (
+                                        <Container>
+                                            No comments yet !!!
+                                        </Container>
+                                    ))
+                                    : (
+                                        <Container className={appStyles.AssetContainer}>
+                                            <Asset spinner />
+                                        </Container>
+                                    )}
+
+                            </div>
+                            {currentUser ? (
+                                <CommentCreateForm
+                                    profile_id={currentUser.profile_id}
+                                    profileImage={profile_image}
+                                    article={id}
+                                    article_owner={article.results[0].is_owner}
+                                    setArticle={setArticle}
+                                    setComments={setComments}
+                                />
+                            ) : approvedComments.length ? (
+                                "Comments"
+                            ) : null}
+                        </>
+                    ) : (<Container className={appStyles.AssetContainer}>
+                        <Asset src={NotFound} message={'No Results Found'} />
+                    </Container>)
+                    : (<Container className={appStyles.AssetContainer}>
+                        <Asset spinner />
+                    </Container>)}
+            </Col>
+        </Row>
     </Container>
-  );
+);
 }
 
 export default ArticlePage;
