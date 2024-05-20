@@ -57,7 +57,12 @@
     width: 100%;
   }
   
-  
+  @media (max-width: 700px){
+   .Button{
+    padding: 0px;
+    font-size: 15px;
+   } 
+  }
   
   
   

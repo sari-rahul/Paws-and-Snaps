@@ -1,6 +1,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from ReactBootstrap 
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import Avatar from "../../components/Avatar";
@@ -17,12 +19,15 @@ const Comment = (props) => {
     owner,
     updated_at,
     content,
+    likes_count,
+    like_id,
     id,
     setArticle,
     setComments,
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
+  const [animateThumbsUp, setAnimateThumbsUp] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -42,40 +47,111 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { comment: id });
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? { ...comment, likes_count: comment.likes_count + 1, like_id: data.id }
+            : comment;
+        }),
+      }));
+      triggerAnimation();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? { ...comment, likes_count: comment.likes_count - 1, like_id: null }
+            : comment;
+        }),
+      }));
+      triggerAnimation();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const triggerAnimation = () => {
+    setAnimateThumbsUp(true);
+    setTimeout(() => setAnimateThumbsUp(false), 300); // duration of the animation
   };
 
   return (
     <div className={styles.Comment}>
       <div className={styles.OwnerDetails}>
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={70} />
-          </Link>
-          <div className={styles.NameAndTime}>
-            <span className={styles.Owner}>{owner}</span>
-            <span className={styles.Date}>{updated_at}</span>
-          </div>
+        <Link to={`/profiles/${profile_id}`}>
+          <Avatar src={profile_image} height={70} />
+        </Link>
+        <div className={styles.NameAndTime}>
+          <span className={styles.Owner}>{owner}</span>
+          <span className={styles.Date}>{updated_at}</span>
+        </div>
       </div>
       <div className={styles.CommentBody}>
-        <div  className={styles.CommentContent}>
-          {showEditForm ? 
+        <div className={styles.CommentContent}>
+          {showEditForm ? (
             <CommentEditForm
-            id={id}
-            profile_id={profile_id}
-            content={content}
-            profileImage={profile_image}
-            setComments= {setComments}
-            setShowEditForm={setShowEditForm}
-            /> : 
-            <p>{content}</p>}
-        </div>
-        <div className={styles.CommentDropDown}>{is_owner && !showEditForm && (
-          <MoreDropdown
-            handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
-          />
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              profileImage={profile_image}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+            />
+          ) : (
+            <p>{content}</p>
           )}
         </div>
+        <div className={styles.CommentDropDown}>
+          {is_owner && !showEditForm && (
+            <MoreDropdown
+              handleEdit={() => setShowEditForm(true)}
+              handleDelete={handleDelete}
+            />
+          )}
+        </div>
+      </div>
+      <div className={styles.CommentLike}>
+        {is_owner ? (
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>You can't like your own comment!</Tooltip>}
+          >
+            <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+          </OverlayTrigger>
+        ) : like_id ? (
+          <span
+            className={`${styles.thumbsUp} ${animateThumbsUp ? styles.animate : ""}`}
+            onClick={handleUnlike}
+          >
+            <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+          </span>
+        ) : currentUser ? (
+          <span
+            className={`${styles.thumbsUp} ${animateThumbsUp ? styles.animate : ""}`}
+            onClick={handleLike}
+          >
+            <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+          </span>
+        ) : (
+          null
+        )}
+        <p>{likes_count} likes</p>
       </div>
     </div>
   );
