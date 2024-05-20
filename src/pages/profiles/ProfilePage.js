@@ -27,6 +27,7 @@ function ProfilePage() {
   const [profileArticles, setProfileArticles] = useState({ results: [], next: null });
   const history = useHistory();
   const currentUser = useCurrentUser();
+  const [profileNotFound, setProfileNotFound] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -53,6 +54,9 @@ function ProfilePage() {
       } catch (err) {
         console.log(err);
         if (isMounted) {
+          if (err.response && err.response.status === 404) {
+            setProfileNotFound(true);
+          }
           setHasLoaded(true);
         }
       }
@@ -76,33 +80,35 @@ function ProfilePage() {
   const renderProfileArticles = () => {
     if (profileArticles.results && profileArticles.results.length > 0) {
       return (
-        <InfiniteScroll
-          dataLength={profileArticles.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!profileArticles.next}
-          next={() => fetchMoreData(profileArticles, setProfileArticles)}
-        >
-          <div className="d-flex flex-wrap justify-content-center">
-            {profileArticles.results.map((profileArticle) => (
-              <Col lg={4} key={profileArticle.id}>
-                <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticle)}>
-                  <Card.Img variant="top" src={profileArticle.image} className={styles.SmallCardImage} />
-                  <Card.Body>
-                    <Card.Title className={styles.SmallCardTitle}>{profileArticle.title}</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </div>
-        </InfiniteScroll>
-      );
-    } else {
-      return (
-        <Container className={styles.EmptyFolder}>
-          <Asset src={EmptyFolder} message={"No Articles Yet"} />
-        </Container>
-      );
-    }
+        <div className={styles.InfiniteScrollOuterdiv}>
+          <InfiniteScroll
+            dataLength={profileArticles.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!profileArticles.next}
+            next={() => fetchMoreData(profileArticles, setProfileArticles)}
+          >
+            <div className="d-flex flex-wrap justify-content-center">
+              {profileArticles.results.map((profileArticle) => (
+                <Col lg={4} md={6} key={profileArticle.id}>
+                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticle)}>
+                    <Card.Img variant="top" src={profileArticle.image} className={styles.SmallCardImage} />
+                    <Card.Body>
+                      <Card.Title className={styles.SmallCardTitle}>{profileArticle.title}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </div>
+          </InfiniteScroll>
+        </div>
+      )
+  }else {
+    return (
+      <Container className={styles.EmptyFolder}>
+        <Asset src={EmptyFolder} message={"No Articles Yet"} />
+      </Container>
+    );
+  }
   };
 
   const mainProfile = (
@@ -130,15 +136,29 @@ function ProfilePage() {
 
   return (
     <Container className={styles.ProfileContainer}>
-      {mainProfile}
-      <hr />
-      <h3>{profile?.owner}'s Articles</h3>
-      <hr />
-      <Row className="d-flex justify-content-center">
-        {hasLoaded ? renderProfileArticles() : <Container className={appStyles.AssetContainer}><Asset spinner /></Container>}
-      </Row>
+      {hasLoaded ? (
+        profileNotFound ? (
+          <Container className={styles.NotFound}>
+            <Asset src={NotFound} message={"Profile Not Found"} />
+          </Container>
+        ) : (
+          <>
+            {mainProfile}
+            <hr />
+            <h3>{profile?.owner}'s Articles</h3>
+            <hr />
+            <Container className="d-flex justify-content-center">
+              {renderProfileArticles()}
+            </Container>
+          </>
+        )
+      ) : (
+        <Container className={appStyles.AssetContainer}>
+          <Asset spinner />
+        </Container>
+      )}
     </Container>
   );
-}
+}  
 
 export default ProfilePage;
