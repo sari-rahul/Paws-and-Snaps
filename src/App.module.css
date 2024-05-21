@@ -73,6 +73,10 @@ input:focus{
   border-color: pink !important;
   box-shadow: 0 0 0 .1rem rgb(239, 191, 191) !important;
 }
+input[type="checkbox"] {
+  box-shadow: none !important;
+  border: none !important;
+}
 textarea:focus{
   border-color: pink !important;
   box-shadow: 0 0 0 .1rem rgb(239, 191, 191) !important;

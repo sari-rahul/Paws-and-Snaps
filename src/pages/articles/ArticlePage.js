@@ -55,7 +55,7 @@ function ArticlePage() {
           setComments(comments);
           setHasLoaded(true);
           console.log(article)
-          console.log(comments)
+          console.log('comments',comments)
         } catch (err) {
           console.log(err);
           setHasLoaded(true);
@@ -70,6 +70,7 @@ function ArticlePage() {
     }, [id]);
 
   const approvedComments = comments.results.filter(comment => comment.is_approved);
+  
   return (
     <Container>
         <Row className="h-100">

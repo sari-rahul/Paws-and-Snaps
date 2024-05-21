@@ -25,6 +25,10 @@ input{
     font-family: 'Anek Devanagari' 'sans-serif';
     font-size: 20px;
 }
+.Checkbox input :focus {
+    border-color: none !important;
+    box-shadow: none !important;
+}
 
 .Title:focus{
     color: black;

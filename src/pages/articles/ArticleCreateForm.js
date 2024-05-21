@@ -156,12 +156,13 @@ function ArticleCreateForm() {
       ))}
        {/* Checkbox for publication status */}
        <Form.Group controlId="published">
-              <Form.Check
-                type="checkbox"
-                label="Publish this article"
-                checked={published}
-                onChange={handleCheckboxChange}
-              />
+          <Form.Check
+            type="checkbox"
+            label="Publish this article"
+            checked={published}
+            onChange={handleCheckboxChange}
+            className={styles.Checkbox}
+          />
        </Form.Group>
 
       <div className={appStyles.ButtonContainer}>

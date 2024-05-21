@@ -27,7 +27,6 @@ const Comment = (props) => {
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
-  const [animateThumbsUp, setAnimateThumbsUp] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -63,7 +62,6 @@ const Comment = (props) => {
             : comment;
         }),
       }));
-      triggerAnimation();
     } catch (err) {
       console.log(err);
     }
@@ -80,15 +78,9 @@ const Comment = (props) => {
             : comment;
         }),
       }));
-      triggerAnimation();
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const triggerAnimation = () => {
-    setAnimateThumbsUp(true);
-    setTimeout(() => setAnimateThumbsUp(false), 300); // duration of the animation
   };
 
   return (
@@ -136,14 +128,14 @@ const Comment = (props) => {
           </OverlayTrigger>
         ) : like_id ? (
           <span
-            className={`${styles.thumbsUp} ${animateThumbsUp ? styles.animate : ""}`}
+            className={`${styles.thumbsUp}`}
             onClick={handleUnlike}
           >
             <i className="fa fa-thumbs-up" aria-hidden="true"></i>
           </span>
         ) : currentUser ? (
           <span
-            className={`${styles.thumbsUp} ${animateThumbsUp ? styles.animate : ""}`}
+            className={`${styles.thumbsUp}`}
             onClick={handleLike}
           >
             <i className="fa fa-thumbs-up" aria-hidden="true"></i>
