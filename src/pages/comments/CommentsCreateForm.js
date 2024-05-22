@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap 
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip, Button, Modal } from "react-bootstrap";
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import styles from "../../styles/CommentsCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefault";
 import btnStyles from "../../styles/Button.module.css"
-
 
 function CommentCreateForm(props) {
   const { 
@@ -23,16 +22,19 @@ function CommentCreateForm(props) {
     profile_id, 
     article_owner
   } = props;
+  
   const [content, setContent] = useState("");
-
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (event) => {
-    if (!article_owner)
+    if (!article_owner) {
       setContent(event.target.value);
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    showModalHandler();
     try {
       const { data } = await axiosRes.post("/comments/", {
         content,
@@ -48,7 +50,6 @@ function CommentCreateForm(props) {
             ...prevArticle.results[0],
             comments_count: prevArticle.results[0].comments_count + 1,
           },
-          console.log('Current article',prevArticle)
         ],
       }));
       setContent("");
@@ -57,45 +58,70 @@ function CommentCreateForm(props) {
     }
   };
 
+  const showModalHandler = () => {
+    setShowModal(true);
+  };
+
+  const hideModalHandler = () => {
+    setShowModal(false);
+  };
+
   return (
-    <Form  onSubmit={handleSubmit} className={ `${styles.CommentForm} mt-4`}>
-      <Form.Group>
-        <InputGroup>
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profileImage} height={40} />
-          </Link>
-          {article_owner ?
-          <OverlayTrigger 
-          placement="top"
-          overlay={<Tooltip> You can't Comment on your own Post!</Tooltip>}>
-            <Form.Control
-              className={styles.Form}
-              placeholder="Add Your Comment"
-              as="textarea"
-              value={content}
-              onChange={handleChange}
-              rows={0}
-            />
-          </OverlayTrigger>:
-          <Form.Control
-          className={styles.Form}
-          placeholder="Add Your Comment"
-          as="textarea"
-          value={content}
-          onChange={handleChange}
-          rows={0}
-        />}
-        </InputGroup>
-      </Form.Group>
-      <button
-        className={`${btnStyles.Button} ${styles.Button} btn d-block ml-auto`}
-        disabled={!content.trim()}
-        type="submit"
-      >
-        <i className="fa fa-paper-plane" aria-hidden="true"></i>
-      </button>
-      
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit} className={`${styles.CommentForm} mt-4`}>
+        <Form.Group>
+          <InputGroup>
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profileImage} height={40} />
+            </Link>
+            {article_owner ? (
+              <OverlayTrigger 
+                placement="top"
+                overlay={<Tooltip>You can't comment on your own post!</Tooltip>}
+              >
+                <Form.Control
+                  className={styles.Form}
+                  placeholder="Add Your Comment"
+                  as="textarea"
+                  value={content}
+                  onChange={handleChange}
+                  rows={1}
+                  disabled
+                />
+              </OverlayTrigger>
+            ) : (
+              <Form.Control
+                className={styles.Form}
+                placeholder="Add Your Comment"
+                as="textarea"
+                value={content}
+                onChange={handleChange}
+                rows={1}
+              />
+            )}
+          </InputGroup>
+        </Form.Group>
+        <button
+          className={`${btnStyles.Button} ${styles.Button} btn d-block ml-auto`}
+          disabled={!content.trim()}
+          type="submit"
+        >
+          <i className="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </Form>
+
+      <Modal show={showModal} onHide={hideModalHandler}>
+        <Modal.Header closeButton>
+          <Modal.Title>Comment Submitted Successfully</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Your comment will be displayed after approval from the admin.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={hideModalHandler}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 
