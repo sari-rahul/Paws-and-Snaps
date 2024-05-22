@@ -82,14 +82,14 @@ const Introduction = () => {
         </p>
         <h3>What topics are you eager to contribute to our blog community?</h3>
         <br />
-        <p>"Hey there! Are you ready to share your knowledge and experiences 
+        <p>&quot;Hey there! Are you ready to share your knowledge and experiences 
           with the world? We believe your insights are incredibly valuable, 
           and what better way to showcase them than through blogs? Whether you 
           have tips, stories, or expertise to share, our platform is the perfect 
           place to contribute. Join us in creating an enriching community where 
-          we learn from each other's unique perspectives. Let's inspire and 
+          we learn from each other&apos;s unique perspectives. Let&apos;s inspire and 
           empower others with your valuable information. Start blogging today 
-          and make your voice heard!"</p>
+          and make your voice heard!&quot;</p>
 
         <h5>Here are some helpful links to our most popular content to get you started:</h5>
         <br />

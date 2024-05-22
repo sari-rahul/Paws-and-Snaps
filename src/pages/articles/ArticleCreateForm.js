@@ -49,7 +49,7 @@ function ArticleCreateForm() {
     setArticleData({
       ...articleData,
       [event.target.name]: event.target.value,
-    })};
+    })}
   };
 
   const handleChangeImage = (event) => {

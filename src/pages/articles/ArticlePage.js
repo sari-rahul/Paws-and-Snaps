@@ -19,9 +19,13 @@ import Comment from "../comments/Comment";
 import { fetchMoreData } from "../../utils/utils";
 import appStyles from '../../App.module.css'
 import NotFound from '../../assets/not found.jpg';
+import { useRedirect } from "../../hooks/useRedirect";
+
 
 
 function ArticlePage() {
+    useRedirect('loggedOut');
+
     const { id } = useParams()
     const [article,setArticle] = useState({results:[]});
     const [hasLoaded, setHasLoaded] = useState(false);

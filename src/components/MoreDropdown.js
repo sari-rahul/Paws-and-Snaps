@@ -1,8 +1,9 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useHistory } from 'react-router';
+
 import styles from "../styles/MoreDropdown.module.css";
 import btnStyles from "../styles/Button.module.css";
-import  {useHistory} from 'react-router';
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -16,6 +17,8 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     }}
   />
 ));
+ThreeDots.displayName = 'ThreeDots';
+
 const ButtonComponent = React.forwardRef(({ onClick }, ref) => (
   <button
     className={`${btnStyles.Button}`}
@@ -24,8 +27,11 @@ const ButtonComponent = React.forwardRef(({ onClick }, ref) => (
       e.preventDefault();
       onClick(e);
     }}
-  >Edit
-  </button>));
+  >
+    Edit
+  </button>
+));
+ButtonComponent.displayName = 'ButtonComponent';
 
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
@@ -41,8 +47,7 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
           onClick={handleEdit}
           aria-label="edit"
         >
-        <i className="fa fa-pencil" 
-          aria-hidden="true"></i>
+          <i className="fa fa-pencil" aria-hidden="true"></i>
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
@@ -55,27 +60,31 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
     </Dropdown>
   );
 };
-export function ProfileEditDropdown({id}) {
+
+export function ProfileEditDropdown({ id }) {
   const history = useHistory();
-  return(
+  return (
     <Dropdown>
-       <Dropdown.Toggle as={ButtonComponent}/>
-        <Dropdown.Menu>
-          <Dropdown.Item 
-            onClick={()=>history.push(`/profiles/${id}/edit`)}
-              aria-label="edit-profile">
-            <i className="fas fa-edit" aria-hidden="true"/>Edit Profile
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={()=> history.push(`/profiles/${id}/edit/username`)}
-            aria-label="edit-username">
-            <i className="fas fa-id-card" aria-hidden="true"/>Edit Username
-          </Dropdown.Item>
-          <Dropdown.Item
-          onClick={()=>history.push(`/profiles/${id}/edit/password`)}>
-            <i className="fa fa-key" aria-hidden="true"></i>Edit Password
-          </Dropdown.Item>
-        </Dropdown.Menu>
+      <Dropdown.Toggle as={ButtonComponent} />
+      <Dropdown.Menu>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit`)}
+          aria-label="edit-profile"
+        >
+          <i className="fas fa-edit" aria-hidden="true" />Edit Profile
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit/username`)}
+          aria-label="edit-username"
+        >
+          <i className="fas fa-id-card" aria-hidden="true" />Edit Username
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit/password`)}
+        >
+          <i className="fa fa-key" aria-hidden="true"></i>Edit Password
+        </Dropdown.Item>
+      </Dropdown.Menu>
     </Dropdown>
-  )
+  );
 }

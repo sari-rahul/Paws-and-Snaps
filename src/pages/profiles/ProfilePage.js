@@ -160,7 +160,7 @@ function ProfilePage() {
           <>
             {mainProfile}
             <hr />
-            <h3>{profile?.owner}'s Articles</h3>
+            <h3>{profile?.owner}&apos;s Articles</h3>
             <hr />
             <Container className="d-flex justify-content-center">
               {renderProfileArticles()}

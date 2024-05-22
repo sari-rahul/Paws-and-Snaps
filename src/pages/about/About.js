@@ -21,13 +21,13 @@ const About = () => {
         <Card.Body>
           <div>
             <h4 className={styles.Quote}>
-              "Unleash Your Stories, Frame Your Memories: Paws & Snaps, Where
-              Pets Meet Pixels!"
+            &quot;Unleash Your Stories, Frame Your Memories: Paws & Snaps, Where
+              Pets Meet Pixels!&quot;
             </h4>
             <br />
             <div className={styles.CardText}>
               Join our vibrant community to share stories, photos, and valuable
-              insights. Whether you're a seasoned writer or just starting out,
+              insights. Whether you&apos;re a seasoned writer or just starting out,
               Paws & Snaps welcomes you to showcase your passion and creativity.
               <br />
               <br />
