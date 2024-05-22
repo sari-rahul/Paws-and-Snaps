@@ -18,11 +18,19 @@
       transform: rotateY(360deg);
     }
   }
-
+  .SmallCard{
+    position:relative;
+  }
+  .SmallCard .Badge {
+    position: absolute;
+    top: 5%;
+    z-index: 1;
+  }
   .SmallCardImage{
     height:200px;
     border: 1px solid grey !important;
     border-radius: 0px;
+
   }
   .SmallCardTitle{
     height:50px;
@@ -66,6 +74,7 @@
     min-width:100%;
     height: fit-content;
   }
+
   
   @media screen and (max-width: 991px) {
     .ProfileImage {

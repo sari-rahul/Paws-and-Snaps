@@ -17,6 +17,8 @@ import { fetchMoreData } from "../../utils/utils";
 import EmptyFolder from "../../assets/emptyfolder.webp";
 import NotFound from "../../assets/not found.jpg";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Badge } from "react-bootstrap";
+
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -90,13 +92,17 @@ function ProfilePage() {
             <div className="d-flex flex-wrap justify-content-center">
               {profileArticles.results.map((profileArticle) => (
                 <Col lg={4} md={6} key={profileArticle.id}>
-                  <Card className={`${styles.SmallCard} my-3`} onClick={() => handleCardClick(profileArticle)}>
+                <div className={`${styles.SmallCard} my-3`}>
+                  {!profileArticle.published && <Badge variant="danger" className={styles.Badge}>UNPUBLISHED</Badge>}
+                  <Card onClick={() => handleCardClick(profileArticle)}>
                     <Card.Img variant="top" src={profileArticle.image} className={styles.SmallCardImage} />
                     <Card.Body>
                       <Card.Title className={styles.SmallCardTitle}>{profileArticle.title}</Card.Title>
                     </Card.Body>
                   </Card>
-                </Col>
+                </div>
+              </Col>
+              
               ))}
             </div>
           </InfiniteScroll>
