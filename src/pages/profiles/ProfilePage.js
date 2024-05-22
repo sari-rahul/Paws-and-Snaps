@@ -1,12 +1,18 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports from React Bootstrap
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Internal Imports 
 import Asset from "../../components/Assets";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
@@ -17,7 +23,6 @@ import { fetchMoreData } from "../../utils/utils";
 import EmptyFolder from "../../assets/emptyfolder.webp";
 import NotFound from "../../assets/not found.jpg";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Badge } from "react-bootstrap";
 
 
 function ProfilePage() {
