@@ -21,6 +21,9 @@
   .SmallCard{
     position:relative;
   }
+  .SmallCard:hover{
+    cursor: pointer;
+  }
   .SmallCard .Badge {
     position: absolute;
     top: 5%;

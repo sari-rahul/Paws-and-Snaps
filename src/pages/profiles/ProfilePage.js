@@ -23,9 +23,13 @@ import { fetchMoreData } from "../../utils/utils";
 import EmptyFolder from "../../assets/emptyfolder.webp";
 import NotFound from "../../assets/not found.jpg";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
+
 
 
 function ProfilePage() {
+  useRedirect('loggedOut');
+
   const [hasLoaded, setHasLoaded] = useState(false);
   const { id } = useParams();
   const setProfileData = useSetProfileData();
