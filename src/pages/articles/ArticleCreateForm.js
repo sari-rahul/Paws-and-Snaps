@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+import Modal from "react-bootstrap/Modal"
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Imports from React
 import React, { useRef, useState } from "react";
@@ -40,6 +41,8 @@ function ArticleCreateForm() {
   const imageInput = useRef(null);
   const history = useHistory();
   const currentUser = useCurrentUser();
+  const [showModal, setShowModal] = useState(false);
+
 
   const handleChange = (event) => {
     if (currentUser) {
@@ -65,6 +68,14 @@ function ArticleCreateForm() {
       article: value,
     });
   };
+  const showModalHandler = () => {
+    setShowModal(true);
+  };
+
+  const hideModalHandler = () => {
+    setShowModal(false);
+  };
+
   const handleCheckboxChange = (event) => {
     setArticleData({
       ...articleData,
@@ -80,6 +91,10 @@ function ArticleCreateForm() {
     formData.append("category", category);
     formData.append("image", imageInput.current.files[0]);
     formData.append("published", published);
+
+    if(!published){
+      showModalHandler();
+    }
 
     try {
       const { data } = await axiosReq.post("/articles/", formData);
@@ -232,6 +247,19 @@ function ArticleCreateForm() {
           <Container className={appStyles.Content}>{textFields}</Container>
       </Row>
     </Form>
+
+    <Modal show={showModal} onHide={hideModalHandler}>
+        <Modal.Header closeButton>
+          <Modal.Title>Article Saved as Draft</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Your article has been saved as draft in your 
+          account and will not be visible to other users until you publish it</Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={hideModalHandler}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
