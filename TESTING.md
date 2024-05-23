@@ -76,7 +76,6 @@ The Chrome Lighthouse Dev Tool was used to test performance, accessibility, best
 | As a user I can see the navbar on every page so that I can easily navigate the site.   | As a logged in user visit all the pages on the site.      | Navbar is present on all pages with links to the start here, add article, news, and profile pages and a logout link. | As expected |
 |   | As a logged-out user the nav bar is present on the pages with sign-in and sign-up buttons| A logged-out user is redirected to the respective pages.| As expected|
 |   |Responsiveness of the Navbar| On smaller screens the navbar collapses into a hamburger button and the display changes to a column| As Expected|
-|
 |`Sign and Signup pages`|
 | As a new user I can create an account so that I can log into the site.  | Navigate to the signup page and create an account. | Account created and user is sent to sign-in page.| As expected |
 | As a returning user I can log in to my account so that I can enjoy the features of the site. | Navigate to the login page, enter your account details and sign in.    | User is sent to the Start hers page   | As expected |
