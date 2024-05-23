@@ -1,10 +1,10 @@
 #PAWS & SNAPS
 
-![Mockup image]()
+![Mockup image](docs/readme/pawsandsnapsmockup.png)
 
-🚀 [Deployed Frontend Site]()  
+🚀 [Deployed Frontend Site](https://pawfect-pics-87d81c100ee5.herokuapp.com/)  
 💻 [Deployed API](https://paws-and-snaps-d602158cc7f7.herokuapp.com/)  
-🔗 [API Repo]()
+🔗 [API Repo](https://github.com/sari-rahul/paws-snaps-api)
 
 - [Paws&Snaps](#paws&snaps)
    * [About](#about)
