@@ -99,6 +99,8 @@ The Chrome Lighthouse Dev Tool was used to test performance, accessibility, best
 |As a user, I want to see the timestamp of a comment to know how long ago it was made so that I can understand the age of the comment.|   |The time stamp is displayed in human readable manner.|As expected. |
 |As the owner of a comment, I want to edit my comment so that I can fix or update my existing comment.|Find the comment, Select the edit button from the dropdown, and get the edit form with the previous comment prepopulated in it.Edit te comment and resubmit it.| The new comment appeared.|As expected.|
 |As the owner of a comment, I want to delete my comment so that I can control the removal of my comment from the application.|Find the comment, Select the delete button from the dropdown, Delete it.| The comment Disappears.|As expected.|
+|As a logged in user I can like and unlike a comment and te comment count increases respectively.|Login ,find te comment to like and see the count increasing or decresing as per action.|Liked the comment and the count increased by one and on unliking it decresed by one.|As expected.|
+|As the owner of the article I should not be able to comment on my own article.|Login and select the your own article. Try to add a comment by clicking on the comment form.|A pop up appears stating you cannot comment on your own article.|As expected.|
 |`Profile page`|
 |As a user, I want to view other users' profiles so that I can see their posts and learn more about them.|Click the Avatar displayed on the Article page or near the comments and get redirected to the profile page of the corresponding user.| The user got redirected to the profile page and can see the profile image, bio, contact data and published article if present.|As expected.|
 |As a logged-in user, I want to edit my profile so that I can change my profile picture and update my bio.|Click on the Profile link on the navbar and get redirected to the Profile page with edit button in it. From the edit button select Edit Profile and get redirected to the form with prepopulated profile data.|The user can edit the data from the form and submit it. The edited data appears in the profile page.|As expected.|
@@ -107,6 +109,8 @@ The Chrome Lighthouse Dev Tool was used to test performance, accessibility, best
 |`edit username and password`|
 |As a logged-in user, I want to update my username so that I can change my display name and keep my profile secure.|Login and go to your profile,Click on the edit button,select the Edit username and get redirected to the form to edit it and submit the form.|The new username appears.|As expected.|
 |As a logged-in user, I want to update my password so that I can change my display name and keep my profile secure.|Login and go to your profile,Click on the edit button,select the Edit password and get redirected to the form to edit it and submit the form.|The new password appears.|As expected.|
+|`Footer`|
+|As a logged-in user I want to **see a footer with website social media icons and affiliate disclosure so that I can have access to their social media pages.|Login and click the icons on footer|The footer appears as the user logs in and on clicking the icons the user gets redirected to the respective sites on a new tab.|As expected.|
 |`Admin Approval`|
 |As the admin of the website, I have access to the admin pane and the privilege to approve the comments.|Login as admin select the comments, and approve the comments and those comments will appear on the website.|Approved comments appeared on the website.|As excepcted.|
 
