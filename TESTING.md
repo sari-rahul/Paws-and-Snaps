@@ -81,7 +81,6 @@ The Chrome Lighthouse Dev Tool was used to test performance, accessibility, best
 | As a returning user I can log in to my account so that I can enjoy the features of the site. | Navigate to the login page, enter your account details and sign in.    | User is sent to the Start hers page   | As expected |
 |`Log out`|
 | As a user I can log out of my account so that I can keep my account secure on shared computers.      | Once logged in, click the Logout link in the navbar.     | User is logged out and sent to the Start here page.               | As expected |
-|
 | As a logged in user I can maintain my logged in status so that I can keep using the site.      | Log in and wait for between 1 and 24 hours.      | User is still logged in.   | As expected |
 |`Start here page`|
 |Popular Article title displayed on Start Here page| The latest ten article titles will be displayed on the Start Here page and the logged-in user will be redirected to that article page on click.| The user was redirected to the respective article page.| As expected. |
