@@ -69,7 +69,7 @@ The Chrome Lighthouse Dev Tool was used to test performance, accessibility, best
 ### Manual Testing of User Stories
 
 | User Story   | Test  |Expected   | Result   |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+|--------------|-------|-----------|----------|
 |`Landing page`|
 | As a user I can view the landing page with information about the platform so that I can learn more about it.  | Navigate to https://pawfect-pics-87d81c100ee5.herokuapp.com/  | Landing page loads | As expected |
 |`Navbar`|

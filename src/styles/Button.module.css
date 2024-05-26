@@ -59,7 +59,7 @@
   
   @media (max-width: 700px){
    .Button{
-    padding: 0px;
+    padding: 5px;
     font-size: 15px;
    } 
   }

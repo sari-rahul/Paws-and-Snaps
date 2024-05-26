@@ -18,7 +18,7 @@
       + [5. Surface](#5-surface)
    * [Features](#features)
       + [Components](#components)
-         - [Asset/Spinner  ](#assetspinner)
+         - [Asset/Spinner](#assetspinner)
          - [Avatar  ](#avatar)
          - [MoreDropdown & ProfileEdit Dropdown](#moredropdown-profileedit-dropdown)
          - [Navbar](#navbar)
@@ -90,7 +90,7 @@ By focusing on these key features, Paws & Snaps aims to create a vibrant and inc
 
 #### User Stories
 
-For more details on the user stories go to the [projects KANBAN board]()
+For more details on the user stories go to the [projects KANBAN board](docs/readme/pawsandsnapskanbanboard.png)
 
 **First Sprint**
 
@@ -155,9 +155,9 @@ Search and Discovery: Users can easily search for pet-related content by keyword
 
 ### 3. Structure
 
-For the database schema visit the [Backend API Repo]()
+For the database schema visit the [Backend API Repo](https://github.com/sari-rahul/paws-snaps-api)
 
-![Sitemap]()
+![Sitemap](docs/readme/pawsandsnaps_layout.png)
 The sitemap was made using [Lucid Chart](https://lucid.app/)
 
 
@@ -249,7 +249,7 @@ The avatar component is used throughout the site for users avatar and their user
 
 #### MoreDropdown & ProfileEdit Dropdown
 
-![dropdown menu]()
+![dropdown menu](docs/readme/editarticeldropdownmenu.png)
 
 The components are shown as 3 dots when a user is able to make changed to something, like an article, comment or their profile. Clicking on the dots will show a dropdown menu with options for the user.
 
