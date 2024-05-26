@@ -3,7 +3,9 @@
     height: fit-content;
     padding: 1%;
     border: 1px solid rgb(206, 205, 205);
-
+}
+.CommentForm textarea{
+  background-color: #fff;
 }
 .Form{
   border:none !important;

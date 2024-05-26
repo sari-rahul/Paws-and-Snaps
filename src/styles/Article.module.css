@@ -83,6 +83,7 @@
   }
   .Author{
     padding-left: 0px;
+    margin-top: 6%;
   }
   .AuthorInnerDiv{
     display: flex;
@@ -103,4 +104,12 @@
   .Margin{
     margin: auto;
   }
+  .Photo{
+    height: 300px;
+  }
+  .Article{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
 }

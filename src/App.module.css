@@ -76,6 +76,8 @@ input:focus{
 input[type="checkbox"] {
   box-shadow: none !important;
   border: none !important;
+  width:fit-content !important;
+
 }
 textarea:focus{
   border-color: pink !important;
