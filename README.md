@@ -1,4 +1,4 @@
-#PAWS & SNAPS
+# PAWS & SNAPS
 
 ![Mockup image](docs/readme/pawsandsnapsmockup.png)
 
