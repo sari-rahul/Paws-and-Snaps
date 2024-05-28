@@ -10,8 +10,10 @@ import { Container } from "react-bootstrap";
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Internal imports
 import styles from "../../styles/About.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const About = () => {
+  useRedirect("loggedIn");
 
   return (
     <Container className={styles.OutterContainer}>
