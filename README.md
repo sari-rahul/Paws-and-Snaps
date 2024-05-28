@@ -223,7 +223,7 @@ By integrating Oswald and Anek Devnagri into the design of Paws & Snaps, the pla
 
 #### Asset/Spinner
 
-![spinner]()
+![spinner](docs/readme/pawsandsnaps_spinner.png)
 
 This component has 2 uses and has been used a number of times throughout the site.
 - Display a loading icon when fetching data from the API
@@ -463,7 +463,7 @@ If a user navigated to an invalid url a custom 404 page will be displayed
 If the user searches for a user or article which does not exists a no result found page will be displayed.
 
 #### Empty folder Page
-![empty folder page]()
+![empty folder page](docs/readme/pawsandsnaps_noarticle.png)
 
 If a user has no article in their profile an empty folder page will be displayed
 
@@ -606,7 +606,17 @@ git clone https://github.com/sari-rahul/Pawfect-Pics
 ## Credits
 
 ### Articles
+The article were taken from different online blogs like Puppy leeks and Pet Blog.
+
+### Design
+The design of this website was inspired from two website namely [PuppyLeaks](https://www.puppyleaks.com/blog/) and [PetBook](https://www.petbook.de/)
 
 ### Code
+This project was inspired by the Code Institute moments walkthrough project. I have added the code for the front-end to fit functionality and the backend modules have been changed as per needs.
 
 ### Acknowledgements
+* My Mentor Jubril Akolade for his advice and guidance throughout the project.
+* Mimmi Stokkvinnan for testing this project.
+* Tutors at Code institute for their support.
+
+[Back to top](#paws&snaps)
